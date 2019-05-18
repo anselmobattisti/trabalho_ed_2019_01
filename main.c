@@ -9,7 +9,7 @@ int main() {
   TAG* big = cria_arvore(1,cria_quadrado(10));
 
   big = insere_filho_quadrado(big,2,2);
-  big = insere_filho_quadrado(big,3,3);
+  big = insere_filho_circulo(big,3,3);
   big = insere_filho_quadrado(big,4,4);
 
   // inserer um quadrado como filho do segundo filho de big

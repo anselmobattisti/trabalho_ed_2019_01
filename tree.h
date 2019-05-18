@@ -1,4 +1,5 @@
 #define TIPO_QUADRADO 1
+#define TIPO_CIRCULO 2
 
 typedef struct dado {
   int tipo;
@@ -10,6 +11,10 @@ typedef struct quadrado {
   float l;
 }TQUADRADO;
 
+typedef struct circulo {
+  float r;
+}TCIRCULO;
+
 typedef struct ag {
   int cod;
   TDADO *fig;
@@ -18,6 +23,7 @@ typedef struct ag {
 }TAG;
 
 TAG* insere_filho_quadrado(TAG *t, int cod, float l);
+TAG* insere_filho_circulo(TAG *t, int cod, float r);
 
 int tem_filhos();
 int tem_irmaos();

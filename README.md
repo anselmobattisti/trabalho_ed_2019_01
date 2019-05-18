@@ -1,1 +1,10 @@
-# trabalho_ed_2019_01
+# Trabalho Árvore Genérica
+
+## Compilar
+
+`` gcc -o prog main.c tree.c
+
+## Escopo
+
+## Informações Importante
+

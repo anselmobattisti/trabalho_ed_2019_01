@@ -88,6 +88,7 @@ do nó e dos seus filhos
 */
 void imprimir_status_arvore(TAG *t);
 void imprimir_status_filhos(TAG *t);
+void imprimir_como_dir(TAG *t, int nivel);
 
 /*
   Função auxiliar que retorna o nome do tipo da figura
@@ -101,3 +102,8 @@ char* nome_tipo(int tipo);
   de um determinado nó
 */
 float area_filhos(TAG *t);
+
+/*
+  Retorna a área total de todas as figuras da árvre
+*/
+float area_total (TAG* t);

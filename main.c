@@ -11,7 +11,11 @@ void processar_entrada();
 int main() {
 
   processar_entrada();
+
   imprimir_status_filhos(t);
+  // imprimir_status_filhos(busca(t,4));
+  // imprimir_como_dir(t,1);
+  // printf("\n%.2f\n",area_total(t));
 
   /*
 
@@ -44,6 +48,9 @@ int main() {
   */
 }
 
+/*
+  A partir do arquivo popula a árvore
+*/
 void processar_entrada() {
   char s[1000];
 

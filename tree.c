@@ -2,26 +2,61 @@
 #include <stdio.h>
 #include "tree.h"
 
+/*
+  @todo: ainda não esta legal
+*/
+void imprimir_como_dir(TAG *t, int nivel) {
+  for (int i = 0; i < nivel; i++) {
+    printf("-");
+  }
+  printf("> %d\n",t->cod);
+  TAG* aux = t->f; // acessa o primeiro filho
+  while (aux) {
+    for (int i = 0; i < nivel; i++) {
+      printf("-");
+    }
+    printf("> %d\n",aux->cod);
+
+    if (tem_filhos(aux)) {
+      imprimir_como_dir(aux,nivel+2);
+    }
+    aux = aux->i; // navega pelos irmãos
+  }
+}
+
+float area_total (TAG* t) {
+  if (!t) return 0;
+  return t->fig->area+area_total(t->i)+area_total(t->f);
+}
+
 TAG* busca(TAG* t, int cod) {
   if (!t) return NULL;
-  TAG* aux = t->f; // acessa o primeiro filho
 
   // se estiver no nó pai
   if (t->cod == cod) {
+    printf("\n%d",cod);
     return t;
   }
 
+  TAG* aux = t->f; // acessa o primeiro filho
+
   while (aux) {
+    printf("\n(%d)",aux->cod);
     if (aux->cod == cod) {
+      printf("\n%d",cod);
       return aux;
     }
     // caso um nó tenha filhos então é necessário verificar
     // se o elemento que está sendo buscado não está ali dentro
     if (tem_filhos(aux)) {
+      printf("\n%d",aux->cod);
       return busca(aux,cod);
+      return busca(aux->i,cod);
+      return busca(aux->f,cod);
     }
     aux = aux->i; // navega pelos irmãos
   }
+  printf("\nnão achou %d",cod);
   return t;
 }
 
@@ -30,7 +65,7 @@ void imprimir_status_filhos(TAG *t) {
   printf("\n===> PAI");
   imprimir_status_arvore(t);
   TAG* aux = t->f;
-  int k = 0;
+  int k = 1;
   while(aux) {
     printf("\n===> Filho (%d)\n",k);
     imprimir_status_arvore(aux);

@@ -8,6 +8,7 @@ Toda vez que um filho é inserido em um determinado nó, é necessário acessar 
 
 O nó abaixo possui 3 filhos. Para navegar por todos eles é necessário primeiro acessar a variável f e apartir do segundo elemento deve-se navegar pela lista de irmãos, uma vez que o segundo elemento pode ter filhos, logo, a variável f do primeiro filho representam os seus filhos e não os seus irmãos!
 
+```
 +----------------------+
 | Cod         : 1
 | Tipo        : q
@@ -16,7 +17,7 @@ O nó abaixo possui 3 filhos. Para navegar por todos eles é necessário primeir
 | Area Filhos : 71.80
 | Area Total  : 87.80
 +-----------------------+
-
+```
 
 ## Compilar
 

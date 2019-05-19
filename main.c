@@ -11,10 +11,9 @@ void processar_entrada();
 int main() {
 
   processar_entrada();
-  imprime_semi_bonito(t);
   printf("\n=============\n\n");
-  imprimir_status_filhos(busca(t,3));
-  printf("\n%d\n",total_nos(busca(t,3)->f));
+  imprime_semi_bonito(t);
+  //imprimir_status_arvore(busca(t,3));
   /*
 
   // cria o primeiro nó da árvore

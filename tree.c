@@ -50,11 +50,15 @@ TAG* busca(TAG* t, int cod) {
     // caso um nó tenha filhos então é necessário verificar
     // se o elemento que está sendo buscado não está ali dentro
     if (tem_filhos(aux)) {
-      return busca(aux,cod);
+      TAG* x = busca(aux,cod);
+      if (x) return x;
     }
+
+    // esse cara nunca está sendo executado
     aux = aux->i; // navega pelos irmãos
   }
 }
+
 
 
 TAG* cria_arvore(int cod, TDADO* fig) {
@@ -268,6 +272,14 @@ void imprimir_como_dir(TAG *t, int nivel) {
   }
 }
 
+/*
+  Recebe como parâmetro primeiro filho de um nó.
+  Se quero saber quantos nós estão abaixo do nó 2
+  é necessário achar o nós busca(t,2)->f para pegar
+  os seus filhos
+
+  O nó PAI não é contato;
+*/
 int total_nos(TAG *t) {
 
   int k = 1;

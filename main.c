@@ -97,6 +97,9 @@ void processar_entrada() {
       if (strcmp(tipo,"TRI") == 0) {
         t = cria_arvore(cod,cria_triangulo(v1,v2));
       }
+      if (strcmp(tipo,"TRA") == 0) {
+        t = cria_arvore(cod,cria_trapezio(v1,v2,v3));
+      }
     }
 
     if (pai > 0) {
@@ -115,7 +118,11 @@ void processar_entrada() {
       if (strcmp(tipo,"TRI") == 0) {
         insere_filho_triangulo(busca(t,pai),cod,v1,v2);
       }
+
+      if (strcmp(tipo,"TRA") == 0) {
+        insere_filho_trapezio(busca(t,pai),cod,v1,v2,v3);
+      }
     }
-    printf("\n %d %d %s %d %d %d \n",cod,pai,tipo,v1,v2,v3);
+    //printf("\n %d %d %s %d %d %d \n",cod,pai,tipo,v1,v2,v3);
   }
 }

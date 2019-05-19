@@ -2,6 +2,7 @@
 #define TIPO_CIRCULO 2
 #define TIPO_RETANGULO 3
 #define TIPO_TRIANGULO 4
+#define TIPO_TRAPEZIO 5
 
 typedef struct dado {
   int tipo;
@@ -26,6 +27,12 @@ typedef struct triangulo {
   float b;
   float a;
 }TTRIANGULO;
+
+typedef struct trapezio {
+  float b1;
+  float b2;
+  float h;
+}TTRAPEZIO;
 
 typedef struct ag {
   int cod;
@@ -68,6 +75,9 @@ TAG* insere_filho_retangulo(TAG *t, int cod, float l, float a);
 
 TDADO *cria_triangulo(float b, float a);
 TAG* insere_filho_triangulo(TAG *t, int cod, float b, float a);
+
+TDADO *cria_trapezio(float b1, float b2, float h);
+TAG* insere_filho_trapezio(TAG *t, int cod, float b1, float b2, float h);
 
 TAG* busca(TAG* t, int cod);
 

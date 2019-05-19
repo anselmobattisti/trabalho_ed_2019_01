@@ -54,16 +54,19 @@ void imprimir_status_arvore(TAG *t) {
 char* nome_tipo(int tipo) {
   switch (tipo){
     case TIPO_QUADRADO:
-      return "q";
+      return "qua";
       break;
     case TIPO_CIRCULO:
-      return "c";
+      return "cir";
       break;
     case TIPO_RETANGULO:
-      return "r";
+      return "ret";
       break;
     case TIPO_TRIANGULO:
-      return "t";
+      return "tri";
+      break;
+    case TIPO_TRAPEZIO:
+      return "tra";
       break;
     default:
       break;
@@ -77,6 +80,18 @@ TAG* cria_arvore(int cod, TDADO* fig) {
   aux->cod = cod;
   aux->fig = fig;
   return aux;
+}
+
+TDADO *cria_trapezio(float b1, float b2, float h) {
+  TTRAPEZIO *t = (TTRAPEZIO*) malloc(sizeof(TTRAPEZIO));
+  t->b1 = b1;
+  t->b2 = b2;
+  t->h = h;
+  TDADO *d = (TDADO*) malloc(sizeof(TDADO));
+  d->tipo = TIPO_TRAPEZIO;
+  d->fig = t;
+  d->area = ((b1+b2)/2)*h;
+  return d;
 }
 
 TDADO *cria_triangulo(float b, float a) {
@@ -149,9 +164,15 @@ TAG* insere_filho(TAG *t, int cod, void* fig) {
 }
 
 TAG* insere_filho_circulo(TAG *t, int cod, float r) {
-  //if (!t) return NULL;
+  if (!t) return NULL;
   TDADO *c = cria_circulo(r);
   return insere_filho(t,cod,c);
+}
+
+TAG* insere_filho_trapezio(TAG *t, int cod, float b1, float b2, float l) {
+  if (!t) return NULL;
+  TDADO *trap = cria_trapezio(b1, b2, l);
+  return insere_filho(t,cod,trap);
 }
 
 TAG* insere_filho_quadrado(TAG *t, int cod, float l) {

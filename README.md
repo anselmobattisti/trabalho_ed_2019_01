@@ -69,8 +69,8 @@ onde es é o arquivo no formato dela
 
 ## O que precisa fazer
 
-* Implementar um menu para chamar as funções
-* Implementar o remover
+* Implementar um menu para chamar as funções (flavio)
+* Implementar o remover (andré)
 * Implementar a função que transforma essa árvore em uma árvore binária de busca pelos ids (tenho uma ideia)
-* imprimir bonitinho
+* Imprimir bonitinho (flavio)
 *

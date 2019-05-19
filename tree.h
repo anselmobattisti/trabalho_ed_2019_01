@@ -88,7 +88,7 @@ do nó e dos seus filhos
 */
 void imprimir_status_arvore(TAG *t);
 void imprimir_status_filhos(TAG *t);
-void imprimir_como_dir(TAG *t, int nivel, int* total);
+void imprimir_como_dir(TAG *t, int nivel);
 
 /*
   Função auxiliar que retorna o nome do tipo da figura
@@ -112,3 +112,5 @@ float area_total (TAG* t);
   Imprime em formato de árvore de diretório
 */
 void imprime_semi_bonito(TAG *t);
+
+int total_nos(TAG *t);

@@ -240,14 +240,14 @@ void imprimir_status_arvore(TAG *t) {
 void imprime_semi_bonito(TAG *t) {
   printf("\nÁrvore Completa\n");
   int total = 0;
-  imprimir_como_dir(t, 1, &total);
-  printf("\nTotal: %d",total);
+  imprimir_como_dir(t, 1);
+  printf("\nTotal: %d",total_nos(t));
 }
 
 /*
   @todo: ainda não esta legal
 */
-void imprimir_como_dir(TAG *t, int nivel, int* total) {
+void imprimir_como_dir(TAG *t, int nivel) {
   *total = *total + 1;
   int passo = 2;
   for (int i = 0; i < nivel; i++) {
@@ -269,4 +269,15 @@ void imprimir_como_dir(TAG *t, int nivel, int* total) {
     }
     aux = aux->i; // navega pelos irmãos
   }
+}
+
+int total_nos(TAG *t) {
+
+  int k = 1;
+  if (t->i)
+    k += total_nos(t->i);
+  if (t->f)
+    k += total_nos(t->f);
+
+  return k;
 }

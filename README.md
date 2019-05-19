@@ -73,4 +73,3 @@ onde es é o arquivo no formato dela
 * Implementar o remover (andré)
 * Implementar a função que transforma essa árvore em uma árvore binária de busca pelos ids (tenho uma ideia)
 * Imprimir bonitinho (flavio)
-*

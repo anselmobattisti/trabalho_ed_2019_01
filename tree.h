@@ -107,3 +107,8 @@ float area_filhos(TAG *t);
   Retorna a área total de todas as figuras da árvre
 */
 float area_total (TAG* t);
+
+/*
+  Imprime em formato de árvore de diretório
+*/
+void imprime_semi_bonito(TAG *t);

@@ -237,23 +237,31 @@ void imprimir_status_arvore(TAG *t) {
   printf("\n+-----------------------+\n");
 }
 
+void imprime_semi_bonito(TAG *t) {
+  printf("\nÁrvore Completa\n");
+  imprimir_como_dir(t, 1);
+}
 
 /*
   @todo: ainda não esta legal
 */
 void imprimir_como_dir(TAG *t, int nivel) {
-  /*
+  int passo = 2;
   for (int i = 0; i < nivel; i++) {
     printf("-");
   }
   printf("> %d\n",t->cod);
-  */
+
   TAG* aux = t->f; // acessa o primeiro filho
-  printf("> %d\n",t->cod);
+
   while (aux) {
-    printf("> %d\n",t->cod);
     if (tem_filhos(aux)) {
-      imprimir_como_dir(aux,nivel+2);
+      imprimir_como_dir(aux,nivel+passo);
+    } else {
+      for (int i = 0; i < nivel + passo; i++) {
+        printf("-");
+      }
+      printf("> %d\n",aux->cod);
     }
     aux = aux->i; // navega pelos irmãos
   }

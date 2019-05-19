@@ -11,8 +11,9 @@ void processar_entrada();
 int main() {
 
   processar_entrada();
-  //imprimir_status_filhos(busca(t,1));
-  imprimir_como_dir(t,1);
+  imprime_semi_bonito(t);
+  printf("\n=============\n\n");
+  imprimir_status_filhos(busca(t,3));
 
   /*
 
@@ -159,6 +160,7 @@ void processar_entrada() {
         insere_filho_trapezio(busca(t,pai),cod,v1,v2,v3);
       }
     }
-    printf("\n %d %d %s %d %d %d \n",cod,pai,tipo,v1,v2,v3);
+    // descomente se quiser ver os valores de entrada
+    // printf("\n %d %d %s %d %d %d \n",cod,pai,tipo,v1,v2,v3);
   }
 }

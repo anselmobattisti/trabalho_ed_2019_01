@@ -2,7 +2,46 @@
 #include <stdio.h>
 #include "tree.h"
 
+TAG* busca(TAG* t, int cod) {
+  if (!t) return NULL;
+
+  TAG* aux = t->f;
+
+  while (aux) {
+    if (aux->cod == cod) {
+      return aux;
+    }
+    if (tem_filhos(aux)) {
+      return busca(aux,cod);
+    }
+    aux = aux->i;
+  }
+
+  return t;
+  /*
+  if (!t) return NULL;
+  TAG* aux = t->f;
+  while(aux) {
+    TAG* aux2 = aux->f->i;
+    while(aux2) {
+      if (aux2->cod == cod) {
+        printf("------ %d ----%d ----\n",aux2->cod, cod);
+        return aux2;
+      }
+      printf(" (%d, %d) \n",aux->cod,tem_filhos(aux));
+      if (tem_filhos(aux)) {
+        printf("| %d %d |",aux->cod, cod);
+        busca(aux->i, cod);
+      }
+      aux2 = aux2->i;
+    }
+    aux = aux->f;
+  }
+  */
+}
+
 void imprimir_status_filhos(TAG *t) {
+  if (!t) return;
   imprimir_status_arvore(t);
   TAG* aux = t->f;
   while(aux) {
@@ -95,36 +134,8 @@ TAG* insere_filho_circulo(TAG *t, int cod, float r) {
 }
 
 TAG* insere_filho_quadrado(TAG *t, int cod, float l) {
-
-  // cria o dado
   TDADO *q = cria_quadrado(l);
   return insere_filho(t,cod,q);
-/*
-  // cria a nova árvore
-  TAG *nova_arvore = (TAG*) malloc(sizeof(TAG));
-  nova_arvore->cod = cod;
-  nova_arvore->fig = q;
-  nova_arvore->f = NULL;
-  nova_arvore->i = NULL;
-
-  // olha para o primeiro filho
-  TAG *aux = t->f;
-  TAG *ultimo_filho = NULL;
-  while (aux) {
-    ultimo_filho = aux;
-    aux = aux->i; // navega pelos irmãos
-  }
-
-  // se for o primeiro filho do nó
-  if (ultimo_filho == NULL) {
-    // é o primeiro filho
-    t->f = nova_arvore;
-  } else {
-    ultimo_filho->i = nova_arvore;
-  }
-  return t;
-*/
-
 }
 
 int tem_filhos(TAG *t) {

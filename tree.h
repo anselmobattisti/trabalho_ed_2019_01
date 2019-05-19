@@ -29,8 +29,12 @@ int tem_filhos();
 int tem_irmaos();
 
 
+TAG* busca(TAG* t, int cod);
+
 TAG* cria_arvore(int cod, TDADO* fig);
+
 TDADO *cria_quadrado(int l);
+TDADO *cria_circulo(float r);
 
 void imprimir_status_arvore(TAG *t);
 void imprimir_status_filhos(TAG *t);

@@ -39,57 +39,21 @@ TAG* insere_filho(TAG *t, int cod, void* fig) {
 }
 
 TAG* busca(TAG* t, int cod) {
-
-  /* QUASE
-  // se estiver no nó pai
-  printf("cod %d -> busca %d\n",t->cod, cod);
-  if (t->cod == cod) {
-    printf("\n(%d)",cod);
-    return t;
-  }
-
-  // percorre os irmãos
-  TAG *irmaos = t;
-  while (irmaos) {
-    printf("Irmão de %d\n",irmaos->cod);
-    return busca(irmaos,cod);
-
-    // percorre os filhos
-    TAG *filhos = irmaos;
-    while (filhos) {
-      printf("Filhos de %d\n",filhos->cod);
-      return busca(filhos,cod);
-      filhos = filhos->i;
-    }
-
-    irmaos = irmaos->i;
-  }
-  */
-
   if (t->cod == cod) {
     return t;
   }
-
   TAG* aux = t->f; // acessa o primeiro filho
-
   while (aux) {
-    //printf("\n(%d)",aux->cod);
     if (aux->cod == cod) {
-      // printf("\nachou %d",cod);
       return aux;
     }
     // caso um nó tenha filhos então é necessário verificar
     // se o elemento que está sendo buscado não está ali dentro
     if (tem_filhos(aux)) {
-      // printf("Entrou %d",aux->cod);
-      // imprimir_status_arvore(aux);
       return busca(aux,cod);
     }
-
     aux = aux->i; // navega pelos irmãos
   }
-  // printf("\nnão achou %d",cod);
-  // return t;
 }
 
 
@@ -156,7 +120,6 @@ TDADO *cria_circulo(float r) {
   return d;
 }
 
-
 TAG* insere_filho_circulo(TAG *t, int cod, float r) {
   if (!t) return NULL;
   TDADO *c = cria_circulo(r);
@@ -195,7 +158,6 @@ int tem_filhos(TAG *t) {
 
   TAG *aux = t->f;
   while(aux) {
-    //printf("\n -->> %d",aux->cod);
     c++;
     aux = aux->i;
   }
@@ -280,17 +242,16 @@ void imprimir_status_arvore(TAG *t) {
   @todo: ainda não esta legal
 */
 void imprimir_como_dir(TAG *t, int nivel) {
+  /*
   for (int i = 0; i < nivel; i++) {
     printf("-");
   }
   printf("> %d\n",t->cod);
+  */
   TAG* aux = t->f; // acessa o primeiro filho
+  printf("> %d\n",t->cod);
   while (aux) {
-    for (int i = 0; i < nivel; i++) {
-      printf("-");
-    }
-    printf("> %d\n",aux->cod);
-
+    printf("> %d\n",t->cod);
     if (tem_filhos(aux)) {
       imprimir_como_dir(aux,nivel+2);
     }

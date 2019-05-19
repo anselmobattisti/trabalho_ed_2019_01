@@ -72,3 +72,5 @@ onde es é o arquivo no formato dela
 * Implementar um menu para chamar as funções
 * Implementar o remover
 * Implementar a função que transforma essa árvore em uma árvore binária de busca pelos ids (tenho uma ideia)
+* imprimir bonitinho
+*

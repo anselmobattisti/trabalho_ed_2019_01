@@ -11,7 +11,8 @@ void processar_entrada();
 int main() {
 
   processar_entrada();
-  imprimir_status_filhos(busca(t,1));
+  //imprimir_status_filhos(busca(t,1));
+  imprimir_como_dir(t,1);
 
   /*
 

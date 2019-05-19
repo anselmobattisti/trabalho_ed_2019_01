@@ -88,7 +88,7 @@ do nó e dos seus filhos
 */
 void imprimir_status_arvore(TAG *t);
 void imprimir_status_filhos(TAG *t);
-void imprimir_como_dir(TAG *t, int nivel);
+void imprimir_como_dir(TAG *t, int nivel, int* total);
 
 /*
   Função auxiliar que retorna o nome do tipo da figura

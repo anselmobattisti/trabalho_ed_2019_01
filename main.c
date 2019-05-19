@@ -13,8 +13,8 @@ int main() {
   processar_entrada();
   imprime_semi_bonito(t);
   printf("\n=============\n\n");
-  imprimir_status_filhos(busca(t,2));
-
+  imprimir_status_filhos(busca(t,3));
+  printf("\n%d\n",total_nos(busca(t,3)->f));
   /*
 
   // cria o primeiro nó da árvore

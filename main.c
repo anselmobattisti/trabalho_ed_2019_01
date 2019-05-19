@@ -3,8 +3,18 @@
 #include <string.h>
 #include "tree.h"
 
+TAG *t;
+
+void processar_entrada();
+
+
+
 int main() {
 
+  processar_entrada();
+  imprimir_status_filhos(t);
+
+  /*
   // cria o primeiro nó da árvore
   TAG* big = cria_arvore(1,cria_quadrado(10));
 
@@ -32,4 +42,66 @@ int main() {
   // imprimir_filhos(big);
 
   return 0;
+  */
+}
+
+void processar_entrada() {
+  char s[1000];
+
+  while(fgets(s, 200, stdin)){
+    int cod = 0;
+    int pai = 0;
+    char *tipo;
+    int v1 = 0;
+    int v2 = 0;
+    int v3 = 0;
+
+    char *pch = strtok (s," /");
+    int k = 0;
+    while(pch != NULL) {
+      if (k == 0) {
+        cod = atoi(pch);
+      }
+      if (k == 1) {
+        pai = atoi(pch);
+      }
+      if (k == 2) {
+        tipo = pch;
+      }
+
+      if (k == 3) {
+        v1 = atoi(pch);
+      }
+
+      if (k == 4) {
+        v2 = atoi(pch);
+      }
+
+      if (k == 5) {
+        v3 = atoi(pch);
+      }
+
+      pch = strtok (NULL," /");
+      k++;
+    }
+
+
+    if (pai == 0 && strcmp(tipo,"QUA") == 0) {
+      t = cria_arvore(cod,cria_quadrado(v1));
+    }
+
+    if (pai == 0 && strcmp(tipo,"CIR") == 0) {
+      t = cria_arvore(cod,cria_quadrado(v1));
+    }
+
+    if (pai > 0 && strcmp(tipo,"QUA") == 0) {
+      insere_filho_quadrado(busca(t,pai),cod,v1);
+    }
+
+    if (pai > 0 && strcmp(tipo,"CIR") == 0) {
+      insere_filho_circulo(busca(t,pai),cod,v1);
+    }
+
+    //printf("\n %d %d %s %d %d %d \n",cod,pai,tipo,v1,v2,v3);
+  }
 }

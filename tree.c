@@ -57,6 +57,7 @@ void imprimir_status_arvore(TAG *t) {
   printf("\n| Filhos      : %d",tem_filhos(t));
   printf("\n| Area        : %.2f",t->fig->area);
   printf("\n| Area Filhos : %.2f", area_filhos(t));
+  printf("\n| Area Total  : %.2f", t->fig->area + area_filhos(t));
   printf("\n+-----------------------+\n");
 }
 

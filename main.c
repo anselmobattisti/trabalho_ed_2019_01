@@ -11,8 +11,36 @@ void processar_entrada();
 int main() {
 
   processar_entrada();
+  imprimir_status_filhos(busca(t,1));
 
-  imprimir_status_filhos(t);
+  /*
+
+  // cria o primeiro nó da árvore
+  TAG* big = cria_arvore(1,cria_quadrado(10));
+
+  insere_filho_quadrado(big,2,2);
+  insere_filho_circulo(big,3,3);
+  insere_filho_circulo(big,5,4);
+  insere_filho_quadrado(busca(big,3),4,4);
+  insere_filho_quadrado(busca(big,3),8,4);
+  insere_filho_quadrado(busca(big,4),7,4);
+
+  TAG *e3 = busca(big,7);
+  imprimir_status_filhos(e3);
+
+  // insere_filho_quadrado(busca(big,3), 4, 4);
+
+
+  insere_filho_quadrado(big->f->i->f,7,1);
+
+  imprimir_status_filhos(big->f->i->f);
+
+  processar_entrada();
+
+  printf("\n----");
+  imprimir_status_filhos(busca(t,3));
+
+  // imprimir_status_filhos(t->f->i);
   // imprimir_status_filhos(busca(t,4));
   // imprimir_como_dir(t,1);
   // printf("\n%.2f\n",area_total(t));
@@ -130,6 +158,6 @@ void processar_entrada() {
         insere_filho_trapezio(busca(t,pai),cod,v1,v2,v3);
       }
     }
-    //printf("\n %d %d %s %d %d %d \n",cod,pai,tipo,v1,v2,v3);
+    printf("\n %d %d %s %d %d %d \n",cod,pai,tipo,v1,v2,v3);
   }
 }

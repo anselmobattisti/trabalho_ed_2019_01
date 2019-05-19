@@ -2,111 +2,96 @@
 #include <stdio.h>
 #include "tree.h"
 
-/*
-  @todo: ainda não esta legal
-*/
-void imprimir_como_dir(TAG *t, int nivel) {
-  for (int i = 0; i < nivel; i++) {
-    printf("-");
-  }
-  printf("> %d\n",t->cod);
-  TAG* aux = t->f; // acessa o primeiro filho
-  while (aux) {
-    for (int i = 0; i < nivel; i++) {
-      printf("-");
-    }
-    printf("> %d\n",aux->cod);
+TAG* insere_filho(TAG *t, int cod, void* fig) {
+  // cria a nova árvore
+  TAG *nova_arvore = (TAG*) malloc(sizeof(TAG));
+  nova_arvore->cod = cod;
+  nova_arvore->fig = fig;
+  nova_arvore->f = NULL;
+  nova_arvore->i = NULL;
 
-    if (tem_filhos(aux)) {
-      imprimir_como_dir(aux,nivel+2);
-    }
+  // olha para o primeiro filho
+  TAG *aux = t->f;
+  TAG *ultimo_filho = NULL;
+  while (aux) {
+    ultimo_filho = aux;
     aux = aux->i; // navega pelos irmãos
   }
-}
 
-float area_total (TAG* t) {
-  if (!t) return 0;
-  return t->fig->area+area_total(t->i)+area_total(t->f);
+  // se for o primeiro filho do nó
+  if (ultimo_filho == NULL) {
+    // ver o nó vazio
+    // printf("vazia");
+    // imprimir_status_arvore(t);
+    // é o primeiro filho
+    t->f = nova_arvore;
+  } else {
+    // ver quem é o último
+    // imprimir_status_arvore(t);
+    // imprimir_status_arvore(ultimo_filho);
+    // printf("Cod: %d",cod);
+    ultimo_filho->i = nova_arvore;
+    //imprimir_status_arvore(t->f);
+  }
+
+  return nova_arvore;
+  // return t;
 }
 
 TAG* busca(TAG* t, int cod) {
-  if (!t) return NULL;
 
+  /* QUASE
   // se estiver no nó pai
+  printf("cod %d -> busca %d\n",t->cod, cod);
   if (t->cod == cod) {
-    printf("\n%d",cod);
+    printf("\n(%d)",cod);
+    return t;
+  }
+
+  // percorre os irmãos
+  TAG *irmaos = t;
+  while (irmaos) {
+    printf("Irmão de %d\n",irmaos->cod);
+    return busca(irmaos,cod);
+
+    // percorre os filhos
+    TAG *filhos = irmaos;
+    while (filhos) {
+      printf("Filhos de %d\n",filhos->cod);
+      return busca(filhos,cod);
+      filhos = filhos->i;
+    }
+
+    irmaos = irmaos->i;
+  }
+  */
+
+  if (t->cod == cod) {
     return t;
   }
 
   TAG* aux = t->f; // acessa o primeiro filho
 
   while (aux) {
-    printf("\n(%d)",aux->cod);
+    //printf("\n(%d)",aux->cod);
     if (aux->cod == cod) {
-      printf("\n%d",cod);
+      // printf("\nachou %d",cod);
       return aux;
     }
     // caso um nó tenha filhos então é necessário verificar
     // se o elemento que está sendo buscado não está ali dentro
     if (tem_filhos(aux)) {
-      printf("\n%d",aux->cod);
+      // printf("Entrou %d",aux->cod);
+      // imprimir_status_arvore(aux);
       return busca(aux,cod);
-      return busca(aux->i,cod);
-      return busca(aux->f,cod);
     }
+
     aux = aux->i; // navega pelos irmãos
   }
-  printf("\nnão achou %d",cod);
-  return t;
+  // printf("\nnão achou %d",cod);
+  // return t;
 }
 
-void imprimir_status_filhos(TAG *t) {
-  if (!t) return;
-  printf("\n===> PAI");
-  imprimir_status_arvore(t);
-  TAG* aux = t->f;
-  int k = 1;
-  while(aux) {
-    printf("\n===> Filho (%d)\n",k);
-    imprimir_status_arvore(aux);
-    aux = aux->i;
-    k++;
-  }
-}
-
-void imprimir_status_arvore(TAG *t) {
-  if (!t) return;
-  printf("\n+----------------------+");
-  printf("\n| Cod         : %d",t->cod);
-  printf("\n| Tipo        : %s",nome_tipo(t->fig->tipo));
-  printf("\n| Filhos      : %d",tem_filhos(t));
-  printf("\n| Area        : %.2f",t->fig->area);
-  printf("\n| Area Filhos : %.2f", area_filhos(t));
-  printf("\n| Area Total  : %.2f", t->fig->area + area_filhos(t));
-  printf("\n+-----------------------+\n");
-}
-
-char* nome_tipo(int tipo) {
-  switch (tipo){
-    case TIPO_QUADRADO:
-      return "qua";
-      break;
-    case TIPO_CIRCULO:
-      return "cir";
-      break;
-    case TIPO_RETANGULO:
-      return "ret";
-      break;
-    case TIPO_TRIANGULO:
-      return "tri";
-      break;
-    case TIPO_TRAPEZIO:
-      return "tra";
-      break;
-    default:
-      break;
-  }
-}
 
 TAG* cria_arvore(int cod, TDADO* fig) {
   TAG *aux = (TAG*) malloc(sizeof(TAG));
@@ -171,32 +156,6 @@ TDADO *cria_circulo(float r) {
   return d;
 }
 
-TAG* insere_filho(TAG *t, int cod, void* fig) {
-  // cria a nova árvore
-  TAG *nova_arvore = (TAG*) malloc(sizeof(TAG));
-  nova_arvore->cod = cod;
-  nova_arvore->fig = fig;
-  nova_arvore->f = NULL;
-  nova_arvore->i = NULL;
-
-  // olha para o primeiro filho
-  TAG *aux = t->f;
-  TAG *ultimo_filho = NULL;
-  while (aux) {
-    ultimo_filho = aux;
-    aux = aux->i; // navega pelos irmãos
-  }
-
-  // se for o primeiro filho do nó
-  if (ultimo_filho == NULL) {
-    // é o primeiro filho
-    t->f = nova_arvore;
-  } else {
-    ultimo_filho->i = nova_arvore;
-  }
-  return NULL;
-  //return t;
-}
 
 TAG* insere_filho_circulo(TAG *t, int cod, float r) {
   if (!t) return NULL;
@@ -258,4 +217,83 @@ int tem_irmaos(TAG *t) {
     return 0;
   }
   return 1;
+}
+
+char* nome_tipo(int tipo) {
+  switch (tipo){
+    case TIPO_QUADRADO:
+      return "qua";
+      break;
+    case TIPO_CIRCULO:
+      return "cir";
+      break;
+    case TIPO_RETANGULO:
+      return "ret";
+      break;
+    case TIPO_TRIANGULO:
+      return "tri";
+      break;
+    case TIPO_TRAPEZIO:
+      return "tra";
+      break;
+    default:
+      break;
+  }
+}
+
+/*
+  ERRO
+*/
+float area_total (TAG* t) {
+  if (!t) return 0;
+  return t->fig->area+area_total(t->i)+area_total(t->f);
+}
+
+void imprimir_status_filhos(TAG *t) {
+  if (!t) return;
+  printf("\n===> PAI");
+  imprimir_status_arvore(t);
+  TAG* aux = t->f;
+  int k = 1;
+  while(aux) {
+    printf("\n===> Filho (%d)\n",k);
+    imprimir_status_arvore(aux);
+    aux = aux->i;
+    k++;
+  }
+}
+
+void imprimir_status_arvore(TAG *t) {
+  if (!t) return;
+  printf("\n+----------------------+");
+  printf("\n| Cod         : %d",t->cod);
+  printf("\n| Tipo        : %s",nome_tipo(t->fig->tipo));
+  printf("\n| Filhos      : %d",tem_filhos(t));
+  printf("\n| Area        : %.2f",t->fig->area);
+  printf("\n| Area Filhos : %.2f", area_filhos(t));
+  printf("\n| Area Total  : %.2f", t->fig->area + area_filhos(t));
+  printf("\n+-----------------------+\n");
+}
+
+
+/*
+  @todo: ainda não esta legal
+*/
+void imprimir_como_dir(TAG *t, int nivel) {
+  for (int i = 0; i < nivel; i++) {
+    printf("-");
+  }
+  printf("> %d\n",t->cod);
+  TAG* aux = t->f; // acessa o primeiro filho
+  while (aux) {
+    for (int i = 0; i < nivel; i++) {
+      printf("-");
+    }
+    printf("> %d\n",aux->cod);
+
+    if (tem_filhos(aux)) {
+      imprimir_como_dir(aux,nivel+2);
+    }
+    aux = aux->i; // navega pelos irmãos
+  }
 }

@@ -1,0 +1,68 @@
+
+ 1 0 QUA 4 0 0 
+
+ 2 1 CIR 4 0 0 
+
+ 3 1 QUA 3 0 0 
+
+ 4 1 QUA 1 0 0 
+
+ 5 4 QUA 4 0 0 
+
+ 6 4 QUA 4 0 0 
+
+ 7 1 TRI 8 0 0 
+
+===> PAI
++----------------------+
+| Cod         : 1
+| Tipo        : q
+| Filhos      : 4
+| Area        : 16.00
+| Area Filhos : 60.24
+| Area Total  : 76.24
++-----------------------+
+
+===> Filho (0)
+
++----------------------+
+| Cod         : 2
+| Tipo        : c
+| Filhos      : 0
+| Area        : 50.24
+| Area Filhos : 0.00
+| Area Total  : 50.24
++-----------------------+
+
+===> Filho (1)
+
++----------------------+
+| Cod         : 3
+| Tipo        : q
+| Filhos      : 0
+| Area        : 9.00
+| Area Filhos : 0.00
+| Area Total  : 9.00
++-----------------------+
+
+===> Filho (2)
+
++----------------------+
+| Cod         : 4
+| Tipo        : q
+| Filhos      : 2
+| Area        : 1.00
+| Area Filhos : 32.00
+| Area Total  : 33.00
++-----------------------+
+
+===> Filho (3)
+
++----------------------+
+| Cod         : 7
+| Tipo        : t
+| Filhos      : 0
+| Area        : 0.00
+| Area Filhos : 0.00
+| Area Total  : 0.00
++-----------------------+

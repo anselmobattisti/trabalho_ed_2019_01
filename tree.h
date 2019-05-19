@@ -1,5 +1,7 @@
 #define TIPO_QUADRADO 1
 #define TIPO_CIRCULO 2
+#define TIPO_RETANGULO 3
+#define TIPO_TRIANGULO 4
 
 typedef struct dado {
   int tipo;
@@ -15,6 +17,16 @@ typedef struct circulo {
   float r;
 }TCIRCULO;
 
+typedef struct retangulo {
+  float l;
+  float a;
+}TRETANGULO;
+
+typedef struct triangulo {
+  float b;
+  float a;
+}TTRIANGULO;
+
 typedef struct ag {
   int cod;
   TDADO *fig;
@@ -22,25 +34,60 @@ typedef struct ag {
   struct ag *i; // lista de irmãos
 }TAG;
 
-TAG* insere_filho_quadrado(TAG *t, int cod, float l);
-TAG* insere_filho_circulo(TAG *t, int cod, float r);
+/*
+Cria uma nova árvore. Para cada filho inserido é necessário
+criar a sua árvore uma vez que cada nó pode ter
+seus próprios filhos
+*/
+TAG* cria_arvore(int cod, TDADO* fig);
 
+/*
+  Retorna o número de filhos, se 0 não tem filhos
+*/
 int tem_filhos();
+/*
+@todo precisa ser feita
+*/
 int tem_irmaos();
 
+/*
+  Cria um objetivo do tipo quadrado
+*/
+TDADO *cria_quadrado(int l);
+
+/*
+  Insere em uma determinada árvore um novo nó que é um quadrado
+*/
+TAG* insere_filho_quadrado(TAG *t, int cod, float l);
+
+TDADO *cria_circulo(float r);
+TAG* insere_filho_circulo(TAG *t, int cod, float r);
+
+TDADO *cria_retangulo(float l, float a);
+TAG* insere_filho_retangulo(TAG *t, int cod, float l, float a);
+
+TDADO *cria_triangulo(float b, float a);
+TAG* insere_filho_triangulo(TAG *t, int cod, float b, float a);
 
 TAG* busca(TAG* t, int cod);
 
-TAG* cria_arvore(int cod, TDADO* fig);
 
-TDADO *cria_quadrado(int l);
-TDADO *cria_circulo(float r);
-
+/*
+Dado um nó da árvore ele imprime os dados
+do nó e dos seus filhos
+*/
 void imprimir_status_arvore(TAG *t);
 void imprimir_status_filhos(TAG *t);
 
-void imprimir_filhos(TAG *t);
-
+/*
+  Função auxiliar que retorna o nome do tipo da figura
+  #define TIPO_QUADRADO 1
+  #define TIPO_CIRCULO 2
+*/
 char* nome_tipo(int tipo);
 
+/*
+  Soma todas as áreas dos nós filhos (apenas o primeiro nível)
+  de um determinado nó
+*/
 float area_filhos(TAG *t);

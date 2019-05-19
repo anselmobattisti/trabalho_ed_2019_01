@@ -4,53 +4,43 @@
 
 TAG* busca(TAG* t, int cod) {
   if (!t) return NULL;
+  TAG* aux = t->f; // acessa o primeiro filho
 
-  TAG* aux = t->f;
+  // se estiver no nó pai
+  if (t->cod == cod) {
+    return t;
+  }
 
   while (aux) {
     if (aux->cod == cod) {
       return aux;
     }
+    // caso um nó tenha filhos então é necessário verificar
+    // se o elemento que está sendo buscado não está ali dentro
     if (tem_filhos(aux)) {
       return busca(aux,cod);
     }
-    aux = aux->i;
+    aux = aux->i; // navega pelos irmãos
   }
-
   return t;
-  /*
-  if (!t) return NULL;
-  TAG* aux = t->f;
-  while(aux) {
-    TAG* aux2 = aux->f->i;
-    while(aux2) {
-      if (aux2->cod == cod) {
-        printf("------ %d ----%d ----\n",aux2->cod, cod);
-        return aux2;
-      }
-      printf(" (%d, %d) \n",aux->cod,tem_filhos(aux));
-      if (tem_filhos(aux)) {
-        printf("| %d %d |",aux->cod, cod);
-        busca(aux->i, cod);
-      }
-      aux2 = aux2->i;
-    }
-    aux = aux->f;
-  }
-  */
 }
 
 void imprimir_status_filhos(TAG *t) {
   if (!t) return;
+  printf("\n===> PAI");
   imprimir_status_arvore(t);
   TAG* aux = t->f;
+  int k = 0;
   while(aux) {
+    printf("\n===> Filho (%d)\n",k);
     imprimir_status_arvore(aux);
     aux = aux->i;
+    k++;
   }
 }
 
 void imprimir_status_arvore(TAG *t) {
+  if (!t) return;
   printf("\n+----------------------+");
   printf("\n| Cod         : %d",t->cod);
   printf("\n| Tipo        : %s",nome_tipo(t->fig->tipo));
@@ -69,6 +59,12 @@ char* nome_tipo(int tipo) {
     case TIPO_CIRCULO:
       return "c";
       break;
+    case TIPO_RETANGULO:
+      return "r";
+      break;
+    case TIPO_TRIANGULO:
+      return "t";
+      break;
     default:
       break;
   }
@@ -81,6 +77,28 @@ TAG* cria_arvore(int cod, TDADO* fig) {
   aux->cod = cod;
   aux->fig = fig;
   return aux;
+}
+
+TDADO *cria_triangulo(float b, float a) {
+  TTRIANGULO *t = (TTRIANGULO*) malloc(sizeof(TTRIANGULO));
+  t->b = b;
+  t->a = a;
+  TDADO *d = (TDADO*) malloc(sizeof(TDADO));
+  d->tipo = TIPO_TRIANGULO;
+  d->fig = t;
+  d->area = (b*a)/2;
+  return d;
+}
+
+TDADO *cria_retangulo(float l, float a) {
+  TRETANGULO *r = (TRETANGULO*) malloc(sizeof(TRETANGULO));
+  r->l = l;
+  r->a = a;
+  TDADO *d = (TDADO*) malloc(sizeof(TDADO));
+  d->tipo = TIPO_RETANGULO;
+  d->fig = r;
+  d->area = l*a;
+  return d;
 }
 
 TDADO *cria_quadrado(int l) {
@@ -126,17 +144,32 @@ TAG* insere_filho(TAG *t, int cod, void* fig) {
   } else {
     ultimo_filho->i = nova_arvore;
   }
-  return t;
+  return NULL;
+  //return t;
 }
 
 TAG* insere_filho_circulo(TAG *t, int cod, float r) {
+  //if (!t) return NULL;
   TDADO *c = cria_circulo(r);
   return insere_filho(t,cod,c);
 }
 
 TAG* insere_filho_quadrado(TAG *t, int cod, float l) {
+  if (!t) return NULL;
   TDADO *q = cria_quadrado(l);
   return insere_filho(t,cod,q);
+}
+
+TAG* insere_filho_retangulo(TAG *t, int cod, float l, float a) {
+  if (!t) return NULL;
+  TDADO *r = cria_retangulo(l,a);
+  return insere_filho(t,cod,r);
+}
+
+TAG* insere_filho_triangulo(TAG *t, int cod, float b, float a) {
+  if (!t) return NULL;
+  TDADO *tri = cria_triangulo(b,a);
+  return insere_filho(t,cod,tri);
 }
 
 int tem_filhos(TAG *t) {
@@ -169,29 +202,4 @@ int tem_irmaos(TAG *t) {
     return 0;
   }
   return 1;
-}
-
-void imprimir_filhos(TAG *t) {
-  if (!t) return;
-  if (!tem_filhos(t)) {
-    printf(".... não");
-  } else {
-    TAG *aux = t->f;
-    while (aux) {
-      switch (aux->fig->tipo){
-        case TIPO_QUADRADO:
-          //TQUADRADO *q = (TQUADRADO*) aux->info->fig;
-          printf("Q: L:%.2f A:%.2f",10.0,aux->fig->area);
-          break;
-        case TIPO_CIRCULO:
-          //TQUADRADO *q = (TQUADRADO*) aux->info->fig;
-          printf("C: r:%.2f A:%.2f",10.0,aux->fig->area);
-          break;
-        default:
-          printf("não implementado");
-          break;
-      }
-      aux = aux->i;
-    }
-  }
 }

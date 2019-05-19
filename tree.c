@@ -239,7 +239,6 @@ void imprimir_status_arvore(TAG *t) {
 
 void imprime_semi_bonito(TAG *t) {
   printf("\nÁrvore Completa\n");
-  int total = 0;
   imprimir_como_dir(t, 1);
   printf("\nTotal: %d",total_nos(t));
 }
@@ -248,7 +247,6 @@ void imprime_semi_bonito(TAG *t) {
   @todo: ainda não esta legal
 */
 void imprimir_como_dir(TAG *t, int nivel) {
-  *total = *total + 1;
   int passo = 2;
   for (int i = 0; i < nivel; i++) {
     printf("-");
@@ -259,9 +257,8 @@ void imprimir_como_dir(TAG *t, int nivel) {
 
   while (aux) {
     if (tem_filhos(aux)) {
-      imprimir_como_dir(aux,nivel+passo, total);
+      imprimir_como_dir(aux,nivel+passo);
     } else {
-      *total = *total + 1;
       for (int i = 0; i < nivel + passo; i++) {
         printf("-");
       }

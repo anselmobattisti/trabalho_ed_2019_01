@@ -13,7 +13,7 @@ int main() {
   processar_entrada();
   imprime_semi_bonito(t);
   printf("\n=============\n\n");
-  imprimir_status_filhos(busca(t,5));
+  imprimir_status_filhos(busca(t,2));
 
   /*
 

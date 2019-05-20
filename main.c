@@ -26,8 +26,8 @@ int main() {
   //print_tree(avl,"Balanceada");
   // imprime_semi_bonito(t);
   imprimir_status_filhos(t);
-  altera_filho_circulo(t, 2, 10);
-  imprimir_status_filhos(t);
+  //altera_filho_circulo(t, 2, 10);
+  //imprimir_status_filhos(t);
 
 
   /*

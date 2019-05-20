@@ -271,11 +271,50 @@ void imprimir_status_filhos(TAG *t) {
   }
 }
 
+char* dimensoes_tipo(TDADO* fig) {
+  char* s = (char*) malloc(sizeof(char)*100);
+  TQUADRADO *aux_q;
+  TCIRCULO *aux_c;
+  TRETANGULO *aux_r;
+  TTRIANGULO *aux_tri;
+  TTRAPEZIO *aux_tra;
+  switch (fig->tipo){
+      case TIPO_QUADRADO:
+        aux_q = fig->fig;
+        sprintf(s, "L: %.2f", aux_q->l);
+        return s;
+        break;
+      case TIPO_CIRCULO:
+        aux_c = fig->fig;
+        sprintf(s, "R: %.2f", aux_c->r);
+        return s;
+        break;
+      case TIPO_RETANGULO:
+        aux_r = fig->fig;
+        sprintf(s, "L1: %.2f, L2: %.2f", aux_r->l, aux_r->a);
+        return s;
+        break;
+      case TIPO_TRIANGULO:
+        aux_tri = fig->fig;
+        sprintf(s, "B: %.2f, A: %.2f", aux_tri->b, aux_tri->a);
+        return s;
+        break;
+      case TIPO_TRAPEZIO:
+        aux_tra = fig->fig;
+        sprintf(s, "B1: %.2f, B2: %.2f, A: %.2f", aux_tra->b1, aux_tra->b2, aux_tra->h);
+        return s;
+        break;
+      default:
+        break;
+    }
+}
+
 void imprimir_status_arvore(TAG *t) {
   if (!t) return;
   printf("\n+----------------------+");
   printf("\n| Cod               : %d",t->cod);
   printf("\n| Tipo              : %s",nome_tipo(t->fig->tipo));
+  printf("\n| Dimensões         : %s",dimensoes_tipo(t->fig));
   printf("\n| N. Filhos         : %d",tem_filhos(t));
   printf("\n| N. Descendentes   : %d",num_descendentes(t->f));
   printf("\n| Área do Nó        : %.2f",t->fig->area);

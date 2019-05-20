@@ -38,7 +38,6 @@ int main() {
 
   // insere_filho_quadrado(busca(big,3), 4, 4);
 
-
   insere_filho_quadrado(big->f->i->f,7,1);
 
   imprimir_status_filhos(big->f->i->f);

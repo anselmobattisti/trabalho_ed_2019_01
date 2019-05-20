@@ -90,3 +90,4 @@ Trabalho Computacional: implementação das funções de árvores genéricas no 
 * Implementar o remover (andré)
 * Implementar a função que transforma essa árvore em uma árvore binária de busca pelos ids (tenho uma ideia)
 * Imprimir bonitinho (flavio)
+* Colocar na impressão dos nós os dados dos campos da figura geométrica e não apenas da área (anselmo)

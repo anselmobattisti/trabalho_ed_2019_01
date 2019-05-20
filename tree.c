@@ -154,6 +154,7 @@ TAG* altera_filho_circulo(TAG *t, int cod, float r) {
   if (!t) return NULL;
   TAG* aux = busca(t,cod);
   TDADO *tc = cria_circulo(r);
+  free(aux->fig);
   aux->fig = tc;
   return aux;
 }

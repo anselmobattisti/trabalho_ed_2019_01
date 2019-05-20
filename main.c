@@ -2,19 +2,26 @@
 #include <stdlib.h>
 #include <string.h>
 #include "tree.h"
+#include "avl.h"
 
 // árvore principal do programa
 TAG *t;
+node* avl;
 
 void processar_entrada();
+void gerar_arvore_balanceada(TAG* t);
 
 int main() {
 
   processar_entrada();
-  printf("\n=============\n\n");
+  gerar_arvore_balanceada(t);
+  print_tree(avl,"Balanceada");
   imprime_semi_bonito(t);
-  imprimir_status_arvore(t);
+
   /*
+  printf("\n=============\n\n");
+  imprimir_status_arvore(t);
+
 
   // cria o primeiro nó da árvore
   TAG* big = cria_arvore(1,cria_quadrado(10));
@@ -161,5 +168,19 @@ void processar_entrada() {
     }
     // descomente se quiser ver os valores de entrada
     // printf("\n %d %d %s %d %d %d \n",cod,pai,tipo,v1,v2,v3);
+  }
+}
+
+/*
+ Percorre a árvore genérica e inserer na árvore AVL
+*/
+void gerar_arvore_balanceada(TAG* t) {
+  if (!t) return;
+  avl = insert(avl,t->cod,t);
+  if (t->f) {
+    gerar_arvore_balanceada(t->f);
+  }
+  if (t->i) {
+    gerar_arvore_balanceada(t->i);
   }
 }

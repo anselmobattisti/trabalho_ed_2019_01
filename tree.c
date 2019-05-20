@@ -278,7 +278,7 @@ void imprimir_status_arvore(TAG *t) {
 void imprime_semi_bonito(TAG *t) {
   printf("\nÁrvore Completa\n----------------\n");
   imprimir_como_dir(t, 1);
-  printf("----------------\nTotal: %d\n----------------\n",num_descendentes(t->f));
+  printf("----------------\nTotal: %d\n----------------\n",num_descendentes(t->f)+1);
 }
 
 /*

@@ -55,7 +55,9 @@ O nó abaixo possui 3 filhos. Para navegar por todos eles é necessário primeir
 
 ## Compilar
 
-`` gcc -o prog main.c tree.c
+```
+  gcc -o prog main.c tree.c avl.c
+```
 
 Para rodar o programa basta executar
 

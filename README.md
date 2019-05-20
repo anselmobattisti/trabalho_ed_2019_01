@@ -67,6 +67,21 @@ onde es é o arquivo no formato dela
 
 ## Escopo
 
+Trabalho Computacional: implementação das funções de árvores genéricas no número de filhos, árvores n-árias, e no tipo de informação armazenada, testando com as seguintes figuras geométricas: círculo, quadrado, retângulo, trapézio e triângulo: deve ser permitido ao usuário do sistema:
+
+1  - OK (a) buscar figuras geométricas, por meio de um código único;
+2  - OK (b) imprimir informações relevantes, tanto da árvore, quanto das figuras, incluindo-se sua área;
+3  - OK (c) inserir novas figuras;
+4  -(d) retirar figuras, passando seus descendentes para outro pai;
+5  -(e) destruir a árvore; e
+6  -(f) alterar as dimensões de figuras;
+7  - OK transformar a árvore genérica numa árvore binária de busca balanceada, baseando-se no código único;
+8  - Converter a árvore genérica numa árvore B, baseando-se no código único;
+9  - OK a entrada será fornecida por meio de arquivos texto. O arquivo texto será composto das seguintes informações, separadas por '/': código único, código único do pai (sendo que a raiz tem código do pai igual a zero) e as figuras geométricas, incluindo seu nome;
+10 - OK as dimensões das figuras geométricas obedecerão ao seguinte padrão: (a) se a figura for um círculo ou um quadrado, uma única dimensão será informada (ou o raio, ou o lado, respectivamente); (b) se a figura for um triângulo ou um retângulo, as duas dimensões informadas serão a base e a altura; e, por fim, (c) se a figura for um trapézio, três dimensões serão informadas, nessa ordem, base menor, base maior e altura;
+11 - OK exemplo de arquivo fornecido. PORÉM, SEU CÓDIGO DEVE FUNCIONAR COM QUALQUER ENTRADA QUE SEGUE O PADRÃO SUPRACITADO;
+12 - A estrutura deve ser totalmente destruída pelo seu programa antes da execução ser finalizada;
+
 ## Informações Importante
 
 ## O que precisa fazer

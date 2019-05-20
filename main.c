@@ -13,7 +13,7 @@ int main() {
   processar_entrada();
   printf("\n=============\n\n");
   imprime_semi_bonito(t);
-  //imprimir_status_arvore(busca(t,3));
+  imprimir_status_arvore(t);
   /*
 
   // cria o primeiro nó da árvore

@@ -42,6 +42,28 @@ TAG* busca(TAG* t, int cod) {
   if (t->cod == cod) {
     return t;
   }
+
+  if (t->f) {
+    TAG* aux = busca(t->f,cod);
+    if (aux)
+      return aux;
+  }
+
+  if (t->i) {
+    TAG* aux = busca(t->i,cod);
+    if (aux)
+      return aux;
+  }
+}
+/*
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  NÃO APAGAR, ESSA FUNÇÃO TBM FUNCIONA
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+*/
+TAG* busca_it(TAG* t, int cod) {
+  if (t->cod == cod) {
+    return t;
+  }
   TAG* aux = t->f; // acessa o primeiro filho
   while (aux) {
     if (aux->cod == cod) {
@@ -58,8 +80,6 @@ TAG* busca(TAG* t, int cod) {
     aux = aux->i; // navega pelos irmãos
   }
 }
-
-
 
 TAG* cria_arvore(int cod, TDADO* fig) {
   TAG *aux = (TAG*) malloc(sizeof(TAG));
@@ -168,16 +188,6 @@ int tem_filhos(TAG *t) {
   return c;
 }
 
-float area_filhos(TAG *t) {
-  float area_total = 0;
-  TAG *aux = t->f;
-  while(aux) {
-    area_total += aux->fig->area;
-    aux = aux->i;
-  }
-  return area_total;
-}
-
 int tem_irmaos(TAG *t) {
   if (!t->i) {
     return 0;
@@ -207,12 +217,35 @@ char* nome_tipo(int tipo) {
   }
 }
 
+float area_filhos(TAG *t) {
+  float area_total = 0;
+  TAG *aux = t->f;
+  while(aux) {
+    area_total += aux->fig->area;
+    aux = aux->i;
+  }
+  return area_total;
+}
+
 /*
-  ERRO
+  Tem que passar o busca(t,3)->f
+
+  mesmo caso da impressão, se não fizer isso vai pegar os
+  irmaos do nó de origem, quando na verdade só se quer
+  os nós internos
 */
 float area_total (TAG* t) {
   if (!t) return 0;
-  return t->fig->area+area_total(t->i)+area_total(t->f);
+  float at = t->fig->area;
+  if (t->f) {
+    at += area_total(t->f);
+  }
+
+  if (t->i) {
+    at += area_total(t->i);
+  }
+
+  return at;
 }
 
 void imprimir_status_filhos(TAG *t) {
@@ -232,19 +265,20 @@ void imprimir_status_filhos(TAG *t) {
 void imprimir_status_arvore(TAG *t) {
   if (!t) return;
   printf("\n+----------------------+");
-  printf("\n| Cod         : %d",t->cod);
-  printf("\n| Tipo        : %s",nome_tipo(t->fig->tipo));
-  printf("\n| Filhos      : %d",tem_filhos(t));
-  printf("\n| Area        : %.2f",t->fig->area);
-  printf("\n| Area Filhos : %.2f", area_filhos(t));
-  printf("\n| Area Total  : %.2f", t->fig->area + area_filhos(t));
+  printf("\n| Cod               : %d",t->cod);
+  printf("\n| Tipo              : %s",nome_tipo(t->fig->tipo));
+  printf("\n| N. Filhos         : %d",tem_filhos(t));
+  printf("\n| N. Descendentes   : %d",num_descendentes(t->f));
+  printf("\n| Área do Nó        : %.2f",t->fig->area);
+  printf("\n| Área Só Filhos    : %.2f", area_filhos(t));
+  printf("\n| Área Descendentes : %.2f", area_total(t->f));
   printf("\n+-----------------------+\n");
 }
 
 void imprime_semi_bonito(TAG *t) {
-  printf("\nÁrvore Completa\n");
+  printf("\nÁrvore Completa\n----------------\n");
   imprimir_como_dir(t, 1);
-  printf("\nTotal: %d",total_nos(t));
+  printf("----------------\nTotal: %d\n----------------\n",num_descendentes(t->f));
 }
 
 /*
@@ -255,7 +289,7 @@ void imprimir_como_dir(TAG *t, int nivel) {
   for (int i = 0; i < nivel; i++) {
     printf("-");
   }
-  printf("> %d\n",t->cod);
+  printf("> %d (%s,%.2f)\n",t->cod,nome_tipo(t->fig->tipo), t->fig->area);
 
   TAG* aux = t->f; // acessa o primeiro filho
 
@@ -266,7 +300,7 @@ void imprimir_como_dir(TAG *t, int nivel) {
       for (int i = 0; i < nivel + passo; i++) {
         printf("-");
       }
-      printf("> %d\n",aux->cod);
+      printf("> %d (%s,%.2f)\n",aux->cod,nome_tipo(aux->fig->tipo), t->fig->area);
     }
     aux = aux->i; // navega pelos irmãos
   }
@@ -280,13 +314,13 @@ void imprimir_como_dir(TAG *t, int nivel) {
 
   O nó PAI não é contato;
 */
-int total_nos(TAG *t) {
+int num_descendentes(TAG *t) {
 
   int k = 1;
   if (t->i)
-    k += total_nos(t->i);
+    k += num_descendentes(t->i);
   if (t->f)
-    k += total_nos(t->f);
+    k += num_descendentes(t->f);
 
   return k;
 }

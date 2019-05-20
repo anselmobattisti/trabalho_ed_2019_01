@@ -80,7 +80,7 @@ TDADO *cria_trapezio(float b1, float b2, float h);
 TAG* insere_filho_trapezio(TAG *t, int cod, float b1, float b2, float h);
 
 TAG* busca(TAG* t, int cod);
-
+TAG* busca_it(TAG* t, int cod);
 
 /*
 Dado um nó da árvore ele imprime os dados
@@ -113,4 +113,4 @@ float area_total (TAG* t);
 */
 void imprime_semi_bonito(TAG *t);
 
-int total_nos(TAG *t);
+int num_descendentes(TAG *t);

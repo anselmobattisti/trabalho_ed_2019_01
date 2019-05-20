@@ -311,16 +311,17 @@ char* dimensoes_tipo(TDADO* fig) {
 
 void imprimir_status_arvore(TAG *t) {
   if (!t) return;
-  printf("\n+----------------------+");
+  printf("\n+-------------------------------------------------+");
   printf("\n| Cod               : %d",t->cod);
   printf("\n| Tipo              : %s",nome_tipo(t->fig->tipo));
   printf("\n| Dimensões         : %s",dimensoes_tipo(t->fig));
   printf("\n| N. Filhos         : %d",tem_filhos(t));
   printf("\n| N. Descendentes   : %d",num_descendentes(t->f));
   printf("\n| Área do Nó        : %.2f",t->fig->area);
-  printf("\n| Área Só Filhos    : %.2f", area_filhos(t));
   printf("\n| Área Descendentes : %.2f", area_total(t->f));
-  printf("\n+-----------------------+\n");
+  printf("\n| Área Total        : %.2f",t->fig->area+area_total(t->f));
+  printf("\n| Área Apenas Filhos: %.2f", area_filhos(t));
+  printf("\n+-------------------------------------------------+\n");
 }
 
 void imprime_semi_bonito(TAG *t) {

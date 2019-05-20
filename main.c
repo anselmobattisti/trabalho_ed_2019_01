@@ -20,15 +20,18 @@ void gerar_arvore_balanceada(TAG* t);
 int menu();
 
 int main() {
-    menu();
-    //processar_entrada();
+    //menu();
+    processar_entrada();
   //gerar_arvore_balanceada(t);
   //print_tree(avl,"Balanceada");
-  //imprime_semi_bonito(t);
+  // imprime_semi_bonito(t);
+  imprimir_status_filhos(t);
+  altera_filho_circulo(t, 2, 10);
+  imprimir_status_filhos(t);
+
 
   /*
   printf("\n=============\n\n");
-  imprimir_status_arvore(t);
 
 
   // cria o primeiro nó da árvore

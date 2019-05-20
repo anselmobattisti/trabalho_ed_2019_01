@@ -69,6 +69,7 @@ TAG* insere_filho_quadrado(TAG *t, int cod, float l);
 
 TDADO *cria_circulo(float r);
 TAG* insere_filho_circulo(TAG *t, int cod, float r);
+TAG* altera_filho_circulo(TAG *t, int cod, float r);
 
 TDADO *cria_retangulo(float l, float a);
 TAG* insere_filho_retangulo(TAG *t, int cod, float l, float a);

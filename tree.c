@@ -150,6 +150,14 @@ TAG* insere_filho_circulo(TAG *t, int cod, float r) {
   return insere_filho(t,cod,c);
 }
 
+TAG* altera_filho_circulo(TAG *t, int cod, float r) {
+  if (!t) return NULL;
+  TAG* aux = busca(t,cod);
+  TDADO *tc = cria_circulo(r);
+  aux->fig = tc;
+  return aux;
+}
+
 TAG* insere_filho_trapezio(TAG *t, int cod, float b1, float b2, float l) {
   if (!t) return NULL;
   TDADO *trap = cria_trapezio(b1, b2, l);
@@ -315,7 +323,7 @@ void imprimir_como_dir(TAG *t, int nivel) {
   O nó PAI não é contato;
 */
 int num_descendentes(TAG *t) {
-
+  if (!t) return 0;
   int k = 1;
   if (t->i)
     k += num_descendentes(t->i);

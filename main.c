@@ -3,6 +3,13 @@
 #include <string.h>
 #include "tree.h"
 #include "avl.h"
+#define COLOR_RED     "\x1b[31m"
+#define COLOR_GREEN   "\x1b[32m"
+#define COLOR_YELLOW  "\x1b[33m"
+#define COLOR_BLUE    "\x1b[34m"
+#define COLOR_MAGENTA "\x1b[35m"
+#define COLOR_CYAN    "\x1b[36m"
+#define COLOR_RESET   "\x1b[0m"
 
 // árvore principal do programa
 TAG *t;
@@ -10,13 +17,14 @@ node* avl;
 
 void processar_entrada();
 void gerar_arvore_balanceada(TAG* t);
+int menu();
 
 int main() {
-
-  processar_entrada();
-  gerar_arvore_balanceada(t);
-  print_tree(avl,"Balanceada");
-  imprime_semi_bonito(t);
+    menu();
+    //processar_entrada();
+  //gerar_arvore_balanceada(t);
+  //print_tree(avl,"Balanceada");
+  //imprime_semi_bonito(t);
 
   /*
   printf("\n=============\n\n");
@@ -182,4 +190,78 @@ void gerar_arvore_balanceada(TAG* t) {
   if (t->i) {
     gerar_arvore_balanceada(t->i);
   }
+}
+
+//sobre os integrantes do grupo
+void sobre(){
+    system("clear");
+    for(int i=0;i<79;i++)
+        printf("%c",'#');
+    printf("\n\n");
+    printf(COLOR_YELLOW"Trabalho sobre Arvores de EDA - 2019.1\n\n"COLOR_RESET);
+    printf(COLOR_RED"Professora Isabel Rosseti\n"COLOR_RESET);
+    printf("Integrantes do grupo:\n");
+    printf("Andre\n");
+    printf("Anselmo Battisti\n");
+    printf("Flavio Miranda de Farias\n\n");
+}
+//menu principal
+int menu(){
+    sobre();
+    printf(COLOR_GREEN"Carregando a Base em Texto...\nCriando uma Arvore Generica...\n\n"COLOR_RESET);
+    printf(COLOR_BLUE"Base carregada\nArvore criada\n\n\n"COLOR_RESET);
+    printf("Tecle ENTER para continuar\n\n");
+    for(int i=0;i<79;i++)
+        printf("%c",'#');
+    printf("\n");
+    printf(COLOR_BLUE"---> "COLOR_RESET);
+    getchar();
+    setbuf(stdin,NULL);
+    int op;
+    do{
+        system("clear");
+        for(int i=0;i<79;i++)
+            printf("%c",'#');
+        printf("\n\n");
+        printf(COLOR_YELLOW"Trabalho sobre Arvores de EDA - 2019.1\n\n"COLOR_RESET);
+        printf(COLOR_RED"Digite o valor do menu a baixo\n\n"COLOR_RESET);
+        printf("1 - Imprimir Arvore Generica Completa\n");
+        printf("2 - Inserir na Arvore Generica\n");
+        printf("3 - Buscar na Arvore Generica\n");
+        printf("4 - Retirar da Arvore Generica\n");
+        printf("5 - Migrar Informacoes para Arvore de Busca Binaria\n");
+        printf("9 - Sobre o Grupo\n");
+        printf("0 - Para sair\n\n");
+        printf("\n");
+        for(int i=0;i<79;i++)
+            printf("%c",'#');
+        printf("\n");
+        printf(COLOR_BLUE"---> "COLOR_RESET);
+        scanf("%d",&op);
+        switch(op){
+        case 1:
+            printf("\n\n");
+                //CHAMAR FUNCAO AQUI!!!!!!!!!!!
+            getchar();
+            break;
+        case 9:
+            sobre();
+            printf("Tecle ENTER para continuar\n\n");
+            printf("\n");
+            for(int i=0;i<79;i++)
+                printf("%c",'#');
+            printf("\n");
+            printf(COLOR_BLUE"---> "COLOR_RESET);
+            setbuf(stdin,NULL);
+            getchar();
+            break;
+        case 0:
+            system("clear");
+            printf(COLOR_BLUE"SAINDO...\n"COLOR_RESET);
+            exit(0);
+        default:
+            break;
+        }
+        setbuf(stdin,NULL);
+    }while(op!=0);
 }

@@ -434,14 +434,20 @@ void print2DUtilGen(TAG *root, int space){
 
 void gerar_dot_arvore_generica(TAG* t) {
 
-  printf("digraph  G {\n");
-  gerar_dot_arvore_generica_no(t, t->cod, 0);
-  printf("\n}\n");
+  printf("\nÁrvore no formato DOT.\n");
+  printf("-----------------------\n");
+  printf("Para visualizar acesse: http://www.webgraphviz.com/ e cole as linhas abaixo.\n");
+  printf("-----------------------\n\n");
+  printf("digraph  G {  subgraph cluster_legend { {rank=cluster_legend}label = \"Legenda\";N1 [shape=square]N2 [shape=square]I  [shape=square]F  [shape=square]{ rank=same N1 F}{ rank=same N2 I}N1->F [label=\"  Pai\" color=\"red\"]N2->I [label=\"  Irmão\" color=\"blue\"]}\n");
+  gerar_dot_arvore_generica_no(t->f, t->cod, 0);
+  printf("\n}\n\n\n");
 
 }
 
 
 void gerar_dot_arvore_generica_no(TAG* t, int pai, int tipo) {
+
+  if (!t) return;
 
   char* cor = "[color=\"blue\"];";
 
@@ -450,14 +456,10 @@ void gerar_dot_arvore_generica_no(TAG* t, int pai, int tipo) {
 
   printf("%d[shape=%s]\n",t->cod,nome_tipo_grafico(t->fig->tipo));
 
-  if (t->i) {
-    printf("%d -> %d  %s \n",pai, t->i->cod,cor);
-    gerar_dot_arvore_generica_no(t->i, t->i->cod, 0);
-  }
 
-  if (t->f) {
-    printf("%d -> %d %s \n",pai, t->f->cod, cor);
-    gerar_dot_arvore_generica_no(t->f, t->f->cod, 0);
-  }
+  printf("%d -> %d  %s \n",pai, t->cod,cor);
+
+  gerar_dot_arvore_generica_no(t->i, t->cod, 1);
+  gerar_dot_arvore_generica_no(t->f, t->cod, 0);
 
 }

@@ -20,12 +20,18 @@ void gerar_arvore_balanceada(TAG* t);
 int menu();
 
 int main() {
-    //menu();
-    processar_entrada();
-  //gerar_arvore_balanceada(t);
-  //print_tree(avl,"Balanceada");
-  // imprime_semi_bonito(t);
-  imprimir_status_filhos(t);
+  processar_entrada();
+
+  gerar_dot_arvore_generica(t);
+
+  /*
+  imprime_semi_bonito(t);
+  imprime_arvore_generica_como_binaria(t,"Bin");
+  gerar_arvore_balanceada(t);
+  print_tree(avl,"Balanceada");
+
+  //menu();
+  //imprimir_status_filhos(t);
   //altera_filho_circulo(t, 2, 10);
   //imprimir_status_filhos(t);
 

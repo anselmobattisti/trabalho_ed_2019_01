@@ -87,6 +87,12 @@ TAG* busca_it(TAG* t, int cod);
 Dado um nó da árvore ele imprime os dados
 do nó e dos seus filhos
 */
+void gerar_dot_arvore_generica(TAG* t);
+/*
+  o tipo indica se o próximo nó é um pai ou filho
+  usado para criar setas com cores diferentes.
+*/
+void gerar_dot_arvore_generica_no(TAG* t, int pai, int tipo);
 void imprimir_status_arvore(TAG *t);
 void imprimir_status_filhos(TAG *t);
 void imprimir_como_dir(TAG *t, int nivel);

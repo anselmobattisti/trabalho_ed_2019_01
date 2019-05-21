@@ -226,6 +226,28 @@ char* nome_tipo(int tipo) {
   }
 }
 
+char* nome_tipo_grafico(int tipo) {
+  switch (tipo){
+    case TIPO_QUADRADO:
+      return "box";
+      break;
+    case TIPO_CIRCULO:
+      return "circle";
+      break;
+    case TIPO_RETANGULO:
+      return "rect";
+      break;
+    case TIPO_TRIANGULO:
+      return "triangle";
+      break;
+    case TIPO_TRAPEZIO:
+      return "trapezium";
+      break;
+    default:
+      break;
+  }
+}
+
 float area_filhos(TAG *t) {
   float area_total = 0;
   TAG *aux = t->f;
@@ -408,4 +430,34 @@ void print2DUtilGen(TAG *root, int space){
 
     // Process left child
     print2DUtilGen(root->i, space);
+}
+
+void gerar_dot_arvore_generica(TAG* t) {
+
+  printf("digraph  G {\n");
+  gerar_dot_arvore_generica_no(t, t->cod, 0);
+  printf("\n}\n");
+
+}
+
+
+void gerar_dot_arvore_generica_no(TAG* t, int pai, int tipo) {
+
+  char* cor = "[color=\"blue\"];";
+
+  if (!tipo)
+    cor = "[color=\"red\"];";
+
+  printf("%d[shape=%s]\n",t->cod,nome_tipo_grafico(t->fig->tipo));
+
+  if (t->i) {
+    printf("%d -> %d  %s \n",pai, t->i->cod,cor);
+    gerar_dot_arvore_generica_no(t->i, t->i->cod, 0);
+  }
+
+  if (t->f) {
+    printf("%d -> %d %s \n",pai, t->f->cod, cor);
+    gerar_dot_arvore_generica_no(t->f, t->f->cod, 0);
+  }
+
 }

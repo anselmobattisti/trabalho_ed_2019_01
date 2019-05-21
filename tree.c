@@ -229,7 +229,7 @@ char* nome_tipo(int tipo) {
 char* nome_tipo_grafico(int tipo) {
   switch (tipo){
     case TIPO_QUADRADO:
-      return "box";
+      return "square";
       break;
     case TIPO_CIRCULO:
       return "circle";

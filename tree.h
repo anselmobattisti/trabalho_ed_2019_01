@@ -90,6 +90,8 @@ do nó e dos seus filhos
 void imprimir_status_arvore(TAG *t);
 void imprimir_status_filhos(TAG *t);
 void imprimir_como_dir(TAG *t, int nivel);
+void imprime_arvore_generica_como_binaria(TAG* t, char* title);
+void print2DUtilGen(TAG *root, int space);
 
 /*
   Função auxiliar que retorna o nome do tipo da figura

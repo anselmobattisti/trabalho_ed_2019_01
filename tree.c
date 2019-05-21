@@ -373,3 +373,39 @@ int num_descendentes(TAG *t) {
 
   return k;
 }
+
+
+
+/*
+  Só a impressão que muda
+*/
+void imprime_arvore_generica_como_binaria(TAG* t, char* title) {
+  printf("\n --> %s",title);
+  print2DUtilGen(t,0);
+  printf("\n <--\n");
+}
+
+// Function to print binary tree in 2D
+// It does reverse inorder traversal
+void print2DUtilGen(TAG *root, int space){
+    // Base case
+    if (root == NULL)
+        return;
+
+    // Increase distance between levels
+    space += 10;
+
+    // Process right child first
+    print2DUtilGen(root->f, space);
+
+    // Print current node after space
+    // count
+    printf("\n");
+    for (int i = 3; i < space; i++)
+        printf(" ");
+    //TAG* aux_node = (TAG*) root->fig;
+    printf("->%d\n", root->cod);
+
+    // Process left child
+    print2DUtilGen(root->i, space);
+}

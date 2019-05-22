@@ -30,6 +30,10 @@ void teste_busca();
 void teste_tem_filhos();
 void teste_num_descendentes();
 
+void teste_area_total();
+void teste_area_filhos();
+void teste_dimensoes_tipo();
+
 int main() {
   printf("Casos de teste\n");
   printf("--------------");
@@ -54,6 +58,10 @@ int main() {
   teste_insere_filho_triangulo();
   teste_insere_filho_retangulo();
 
+  teste_area_total();
+  teste_area_filhos();
+
+  teste_dimensoes_tipo();
 }
 
 void teste_num_descendentes() {
@@ -408,6 +416,7 @@ void teste_insere_filho_triangulo() {
     return;
   }
 }
+
 void teste_insere_filho_retangulo() {
   printf("\nInserção do Retângulo\n");
   t = cria_arvore(1,cria_circulo(1));
@@ -429,3 +438,112 @@ void teste_insere_filho_retangulo() {
   }
 }
 
+void teste_area_total() {
+  printf("\nÁrea Total\n");
+  t = cria_arvore(1,cria_quadrado(1));
+  insere_filho_quadrado(t,2,1);
+  insere_filho_retangulo(t,3,2,3);
+
+  TAG* f = busca(t,2);
+  insere_filho_triangulo(f,4,1,2);
+
+  TAG* f1 = busca(t,4);
+  insere_filho_triangulo(f1,5,1,2);
+
+  if (area_total(t) == 10) {
+    printf(COLOR_GREEN"[OK] -> 1. Área total vários filhos.\n"COLOR_RESET);
+  } else {
+    printf(COLOR_RED"[ERRO] -> 2. Área total deveria ser 10 e foi %.2f.\n"COLOR_RESET,area_total(t));
+  }
+
+  if (area_total(f1) == 2) {
+    printf(COLOR_GREEN"[OK] -> 3. Área total com 1 filho .\n"COLOR_RESET);
+  } else {
+    printf(COLOR_RED"[ERRO] -> 4. Área total deveria ser 1 e foi %.2f.\n"COLOR_RESET,area_total(f1));
+  }
+
+  TAG* f2 = busca(t,5);
+  if (area_total(f2) == 1) {
+    printf(COLOR_GREEN"[OK] -> 5. Área sem filhos .\n"COLOR_RESET);
+  } else {
+    printf(COLOR_RED"[ERRO] -> 6. Área total deveria ser 0 e foi %.2f.\n"COLOR_RESET,area_total(f2));
+  }
+}
+
+void teste_area_filhos() {
+  printf("\nÁrea dos Filhos\n");
+  t = cria_arvore(1,cria_quadrado(1));
+  insere_filho_quadrado(t,2,1);
+  insere_filho_retangulo(t,3,2,3);
+
+  TAG* f = busca(t,2);
+  insere_filho_triangulo(f,4,1,2);
+
+  TAG* f1 = busca(t,4);
+  insere_filho_triangulo(f1,5,1,2);
+
+  if (area_filhos(t) == 7) {
+    printf(COLOR_GREEN"[OK] -> 1. Área total com vários filhos.\n"COLOR_RESET);
+  } else {
+    printf(COLOR_RED"[ERRO] -> 2. Área total deveria ser 7 e foi %.2f.\n"COLOR_RESET,area_filhos(t));
+  }
+
+  if (area_filhos(f1) == 1) {
+    printf(COLOR_GREEN"[OK] -> 3. Área total com 1 filhos.\n"COLOR_RESET);
+  } else {
+    printf(COLOR_RED"[ERRO] -> 4. Área total deveria ser 0 e foi %.2f.\n"COLOR_RESET,area_filhos(f1));
+  }
+
+  TAG* f2 = busca(t,5);
+  if (area_filhos(f2) == 0) {
+    printf(COLOR_GREEN"[OK] -> 3. Área total sem filhos.\n"COLOR_RESET);
+  } else {
+    printf(COLOR_RED"[ERRO] -> 4. Área total deveria ser 0 e foi %.2f.\n"COLOR_RESET,area_filhos(f2));
+  }
+}
+
+void teste_dimensoes_tipo() {
+  printf("\nTestar Dimensões\n");
+
+  TDADO* aux_q = cria_quadrado(1);
+  TDADO* aux_c = cria_circulo(1);
+  TDADO* aux_r = cria_retangulo(1,2);
+  TDADO* aux_tri = cria_triangulo(1,2);
+  TDADO* aux_tra = cria_trapezio(1,2,3);
+
+  char s_aux_q[] = "L: 1.00";
+  char s_aux_c[] = "R: 1.00";
+  char s_aux_r[] = "L1: 1.00, L2: 2.00";
+  char s_aux_tri[] = "B: 1.00, A: 2.00";
+  char s_aux_tra[] = "B1: 1.00, B2: 2.00, A: 3.00";
+
+  if (strcmp(dimensoes_tipo(aux_q),s_aux_q) == 0) {
+    printf(COLOR_GREEN"[OK] -> 1. Quadrado.\n"COLOR_RESET);
+  } else {
+    printf(COLOR_RED"[ERRO] -> 2. Erro quadrado.\n"COLOR_RESET);
+  }
+
+  if (strcmp(dimensoes_tipo(aux_c),s_aux_c) == 0) {
+    printf(COLOR_GREEN"[OK] -> 3. Círculo.\n"COLOR_RESET);
+  } else {
+    printf(COLOR_RED"[ERRO] -> 4. Erro Círculo.\n"COLOR_RESET);
+  }
+
+  if (strcmp(dimensoes_tipo(aux_r),s_aux_r) == 0) {
+    printf(COLOR_GREEN"[OK] -> 5. Retângulo.\n"COLOR_RESET);
+  } else {
+    printf(COLOR_RED"[ERRO] -> 6. Erro Retângulo.\n"COLOR_RESET);
+  }
+
+  if (strcmp(dimensoes_tipo(aux_tri),s_aux_tri) == 0) {
+    printf(COLOR_GREEN"[OK] -> 7. Triângulo.\n"COLOR_RESET);
+  } else {
+    printf(COLOR_RED"[ERRO] -> 8. Erro Triângulo.\n"COLOR_RESET);
+  }
+
+  if (strcmp(dimensoes_tipo(aux_tra),s_aux_tra) == 0) {
+    printf(COLOR_GREEN"[OK] -> 9. Trapézio.\n"COLOR_RESET);
+  } else {
+    printf(COLOR_RED"[ERRO] -> 10. Erro Trapézio.\n"COLOR_RESET);
+  }
+}

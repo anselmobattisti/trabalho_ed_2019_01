@@ -123,3 +123,5 @@ float area_total (TAG* t);
 void imprime_semi_bonito(TAG *t);
 
 int num_descendentes(TAG *t);
+
+char* dimensoes_tipo(TDADO* fig);

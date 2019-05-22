@@ -20,6 +20,7 @@ void gerar_arvore_balanceada(TAG* t);
 int menu();
 
 int main() {
+
   processar_entrada();
 
   gerar_dot_arvore_generica(t);

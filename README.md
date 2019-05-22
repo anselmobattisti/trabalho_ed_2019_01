@@ -65,6 +65,14 @@ Para rodar o programa basta executar
 
 onde es é o arquivo no formato dela
 
+## Casos de Teste
+
+Estão na pasta testes
+
+```
+gcc -o test test.c ../tree.c ../avl.c
+```
+
 ## Escopo
 
 Trabalho Computacional: implementação das funções de árvores genéricas no número de filhos, árvores n-árias, e no tipo de informação armazenada, testando com as seguintes figuras geométricas: círculo, quadrado, retângulo, trapézio e triângulo: deve ser permitido ao usuário do sistema:

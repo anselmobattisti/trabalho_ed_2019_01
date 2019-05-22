@@ -389,8 +389,6 @@ int num_descendentes(TAG *t) {
   return k;
 }
 
-
-
 /*
   Só a impressão que muda
 */
@@ -426,7 +424,6 @@ void print2DUtilGen(TAG *root, int space){
 }
 
 void gerar_dot_arvore_generica(TAG* t) {
-
   printf("\nÁrvore no formato DOT.\n");
   printf("-----------------------\n");
   printf("Para visualizar acesse: http://www.webgraphviz.com/ e cole as linhas abaixo.\n");
@@ -434,7 +431,6 @@ void gerar_dot_arvore_generica(TAG* t) {
   printf("digraph  G {  subgraph cluster_legend { {rank=cluster_legend}label = \"Legenda\";N1 [shape=square]N2 [shape=square]I  [shape=square]F  [shape=square]{ rank=same N1 F}{ rank=same N2 I}N1->F [label=\"  Pai\" color=\"red\"]N2->I [label=\"  Irmão\" color=\"blue\"]}\n");
   gerar_dot_arvore_generica_no(t->f, t->cod, 0);
   printf("\n}\n\n\n");
-
 }
 
 

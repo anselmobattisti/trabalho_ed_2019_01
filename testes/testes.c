@@ -17,12 +17,13 @@ void processar_testes() {
   teste_criacao_triangulo();
   teste_criacao_quadrado();
   teste_criacao_circulo();
+  getchar();
 
   teste_criacao_arvore();
-
   teste_busca();
   teste_tem_filhos();
   teste_num_descendentes();
+  getchar();
 
   // testes de inserção
   teste_insere_filho_trapezio();
@@ -30,6 +31,8 @@ void processar_testes() {
   teste_insere_filho_quadrado();
   teste_insere_filho_triangulo();
   teste_insere_filho_retangulo();
+
+  getchar();
   teste_area_total();
   teste_area_filhos();
   teste_dimensoes_tipo();

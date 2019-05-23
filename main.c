@@ -322,19 +322,18 @@ void menuInsercoes(){
             scanf("%d",&pai);
             TAG *no_pai = busca(t,pai);
             if (!no_pai) {
-              printf(COLOR_RED"O nó %d não foi localizado!"COLOR_RESET,pai);
+              printf(COLOR_RED"O nó com o código \033[1m'%d'\033[m "COLOR_RED"não foi localizado!"COLOR_RESET,pai);
             } else {
               printf("\nDigite o Código do novo nó: ");
               scanf("%d",&cod);
               // veriica se já existe um nó com esse código
               TAG *novo_no = busca(t,cod);
               if (novo_no) {
-                printf(COLOR_RED"Já existe um nó com o código %d!"COLOR_RESET,cod);
+                printf(COLOR_RED"Já existe um nó com o código \033[1m'%d'\033[0m!"COLOR_RESET,cod);
               } else {
                 printf("\nDigite o Lado do Quadrado: ");
                 printf(COLOR_BLUE"\n---> "COLOR_RESET);
                 scanf("%f",&v1);
-
                 insere_filho_quadrado(no_pai,cod,v1);
                 imprimir_status_filhos(no_pai);
               }

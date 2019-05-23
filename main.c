@@ -3,6 +3,8 @@
 #include <string.h>
 #include "tree.h"
 #include "avl.h"
+#include "./testes/testes.h"
+
 #define COLOR_RED     "\x1b[31m"
 #define COLOR_GREEN   "\x1b[32m"
 #define COLOR_YELLOW  "\x1b[33m"
@@ -374,6 +376,7 @@ void menuInsercoes(){
 //menu de impressões
 void menuImpressoes(){
     int op;
+    int cod_no;
     while(op!='0'){
         setbuf(stdin,NULL);
         system("clear");
@@ -383,10 +386,11 @@ void menuImpressoes(){
         printf(COLOR_YELLOW"Trabalho sobre Arvores de EDA - 2019.1\n\n"COLOR_RESET);
         printf(COLOR_RED"Digite o valor do menu a baixo para: "COLOR_RESET);
         printf(COLOR_GREEN"O Tipo de Impressao\n\n"COLOR_RESET);
-        printf("1 - Impressao de status dos filhos da raiz\n");
-        printf("2 - Impressao da arvore generica\n");
-        printf("3 - Impressao da arvore Binaria Balanceada\n");
-        printf("4 - Gerar DOT para impressao externa (extra)\n");
+        printf("1 - Impressao de status de um nó\n");
+        printf("2 - Impressao da arvore generica formato dir\n");
+        printf("3 - Impressao da arvore generica formato arvore\n");
+        printf("4 - Impressao da arvore Binaria Balanceada\n");
+        printf("5 - Gerar DOT para impressao externa (extra)\n");
         printf("0 - Para retornar\n\n");
         printf("\n");
         for(int i=0;i<79;i++)
@@ -396,15 +400,27 @@ void menuImpressoes(){
         scanf("%d",&op);
         switch(op){
         case 1:
-            imprimir_status_filhos(t);
+            printf("\nDigite o código do nó: ");
+            printf(COLOR_BLUE"\n---> "COLOR_RESET);
+            scanf("%d",&cod_no);
+            TAG *aux = busca(t, cod_no);
+            if (!aux) {
+              printf(COLOR_RED"O nó %d não foi localizado!"COLOR_RESET,cod_no);
+            } else {
+              imprimir_status_filhos(aux);
+            }
             break;
         case 2:
             imprime_semi_bonito(t);
             break;
         case 3:
-            imprime_arvore_generica_como_binaria(t,"Bin");
+            imprime_arvore_generica_como_binaria(t,"Árvore genérica binária");
             break;
         case 4:
+            gerar_arvore_balanceada(t);
+            print_tree(avl,"Árvore Balanceada (AVL)");
+            break;
+        case 5:
             gerar_dot_arvore_generica(t);
             break;
         case 0:
@@ -500,6 +516,9 @@ int menu(){
             setbuf(stdin,NULL);
             getchar();
             setbuf(stdin,NULL);
+            break;
+        case 51:
+            processar_testes();
             break;
         case 9:
             menuSobre();

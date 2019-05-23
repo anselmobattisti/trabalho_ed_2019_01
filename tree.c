@@ -200,19 +200,19 @@ int tem_irmaos(TAG *t) {
 char* nome_tipo(int tipo) {
   switch (tipo){
     case TIPO_QUADRADO:
-      return "qua";
+      return "Quadrado";
       break;
     case TIPO_CIRCULO:
-      return "cir";
+      return "Círculo";
       break;
     case TIPO_RETANGULO:
-      return "ret";
+      return "Retângulo";
       break;
     case TIPO_TRIANGULO:
-      return "tri";
+      return "Triângulo";
       break;
     case TIPO_TRAPEZIO:
-      return "tra";
+      return "Trapézio";
       break;
     default:
       break;
@@ -342,7 +342,7 @@ void imprimir_status_arvore(TAG *t) {
 void imprime_semi_bonito(TAG *t) {
   printf("\nÁrvore Completa\n----------------\n");
   imprimir_como_dir(t, 1);
-  printf("----------------\nTotal: %d\n----------------\n",num_descendentes(t->f)+1);
+  printf("----------------\nTotal de nós: %d\n----------------\n",num_descendentes(t->f)+1);
 }
 
 /*

@@ -124,6 +124,7 @@ void imprime_semi_bonito(TAG *t);
 
 int num_descendentes(TAG *t);
 
+<<<<<<< HEAD
 /*
 Destroi a arvore todinha
 */
@@ -133,3 +134,6 @@ void destruir_arvore(TAG *t);
 Removendo um nó
 */
 void retira(TAG*t, int cod);
+=======
+char* dimensoes_tipo(TDADO* fig);
+>>>>>>> e532b53b907499e02f785d05fd7e937fcfa35479

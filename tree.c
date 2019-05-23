@@ -71,7 +71,7 @@ TAG* busca_it(TAG* t, int cod) {
     }
     // caso um nó tenha filhos então é necessário verificar
     // se o elemento que está sendo buscado não está ali dentro
-    if (tem_filhos(aux)) {
+    if (tem_filhos(aux->f)) {
       TAG* x = busca(aux,cod);
       if (x) return x;
     }
@@ -184,17 +184,10 @@ TAG* insere_filho_triangulo(TAG *t, int cod, float b, float a) {
 }
 
 int tem_filhos(TAG *t) {
-  if (!t->f) {
-    return 0;
-  }
-  int c = 0;
+  if (!t) return 0;
+  if (!t->i) return 1;
 
-  TAG *aux = t->f;
-  while(aux) {
-    c++;
-    aux = aux->i;
-  }
-  return c;
+  return tem_filhos(t->i)+1;
 }
 
 int tem_irmaos(TAG *t) {
@@ -337,7 +330,7 @@ void imprimir_status_arvore(TAG *t) {
   printf("\n| Cod               : %d",t->cod);
   printf("\n| Tipo              : %s",nome_tipo(t->fig->tipo));
   printf("\n| Dimensões         : %s",dimensoes_tipo(t->fig));
-  printf("\n| N. Filhos         : %d",tem_filhos(t));
+  printf("\n| N. Filhos         : %d",tem_filhos(t->f));
   printf("\n| N. Descendentes   : %d",num_descendentes(t->f));
   printf("\n| Área do Nó        : %.2f",t->fig->area);
   printf("\n| Área Descendentes : %.2f", area_total(t->f));
@@ -365,7 +358,7 @@ void imprimir_como_dir(TAG *t, int nivel) {
   TAG* aux = t->f; // acessa o primeiro filho
 
   while (aux) {
-    if (tem_filhos(aux)) {
+    if (tem_filhos(aux->f)) {
       imprimir_como_dir(aux,nivel+passo);
     } else {
       for (int i = 0; i < nivel + passo; i++) {
@@ -395,8 +388,6 @@ int num_descendentes(TAG *t) {
 
   return k;
 }
-
-
 
 /*
   Só a impressão que muda
@@ -433,7 +424,6 @@ void print2DUtilGen(TAG *root, int space){
 }
 
 void gerar_dot_arvore_generica(TAG* t) {
-
   printf("\nÁrvore no formato DOT.\n");
   printf("-----------------------\n");
   printf("Para visualizar acesse: http://www.webgraphviz.com/ e cole as linhas abaixo.\n");
@@ -441,7 +431,6 @@ void gerar_dot_arvore_generica(TAG* t) {
   printf("digraph  G {  subgraph cluster_legend { {rank=cluster_legend}label = \"Legenda\";N1 [shape=square]N2 [shape=square]I  [shape=square]F  [shape=square]{ rank=same N1 F}{ rank=same N2 I}N1->F [label=\"  Pai\" color=\"red\"]N2->I [label=\"  Irmão\" color=\"blue\"]}\n");
   gerar_dot_arvore_generica_no(t->f, t->cod, 0);
   printf("\n}\n\n\n");
-
 }
 
 

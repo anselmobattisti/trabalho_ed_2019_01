@@ -61,9 +61,15 @@ O nó abaixo possui 3 filhos. Para navegar por todos eles é necessário primeir
 
 Para rodar o programa basta executar
 
-./prog < es.txt
+./prog
 
-onde es é o arquivo no formato dela
+## Casos de Teste
+
+Estão na pasta testes
+
+```
+gcc -o prog main_testes.c ../tree.c ../avl.c testes.c
+```
 
 ## Escopo
 

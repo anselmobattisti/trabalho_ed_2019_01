@@ -293,6 +293,8 @@ void menuBusca(){
 //menu de insercoes
 void menuInsercoes(){
     int op;
+    int pai;
+    int cod;
     float v1=0,v2=0,v3=0;
     while(op!='0'){
         setbuf(stdin,NULL);
@@ -316,10 +318,27 @@ void menuInsercoes(){
         scanf("%d",&op);
         switch(op){
         case 1:
-            printf("\nDigite o Lado do Quadrado: ");
-            printf(COLOR_BLUE"\n---> "COLOR_RESET);
-            scanf("%f",&v1);
-            //insere_filho_quadrado(busca(t,pai),cod,v1);
+            printf("\nDigite o Código do Pai: ");
+            scanf("%d",&pai);
+            TAG *no_pai = busca(t,pai);
+            if (!no_pai) {
+              printf(COLOR_RED"O nó %d não foi localizado!"COLOR_RESET,pai);
+            } else {
+              printf("\nDigite o Código do novo nó: ");
+              scanf("%d",&cod);
+              // veriica se já existe um nó com esse código
+              TAG *novo_no = busca(t,cod);
+              if (novo_no) {
+                printf(COLOR_RED"Já existe um nó com o código %d!"COLOR_RESET,cod);
+              } else {
+                printf("\nDigite o Lado do Quadrado: ");
+                printf(COLOR_BLUE"\n---> "COLOR_RESET);
+                scanf("%f",&v1);
+
+                insere_filho_quadrado(no_pai,cod,v1);
+                imprimir_status_filhos(no_pai);
+              }
+            }
             break;
         case 2:
             printf("\nDigite o Lado do Circulo: ");

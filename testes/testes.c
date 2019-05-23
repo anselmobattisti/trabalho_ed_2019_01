@@ -3,41 +3,14 @@
 #include <stdlib.h>
 #include "../tree.h"
 #include "../avl.h"
+#include "./testes.h"
 #define COLOR_RED     "\x1b[31m"
 #define COLOR_GREEN   "\x1b[32m"
 #define COLOR_RESET   "\x1b[0m"
 
-TAG *t;
-node* avl;
-
-// criação das figuas
-void teste_criacao_circulo();
-void teste_criacao_triangulo();
-void teste_criacao_retangulo();
-void teste_criacao_quadrado();
-void teste_criacao_trapezio();
-
-void teste_criacao_arvore();
-
-// inserção as figuras
-void teste_insere_filho_trapezio();
-void teste_insere_filho_circulo();
-void teste_insere_filho_quadrado();
-void teste_insere_filho_triangulo();
-void teste_insere_filho_retangulo();
-
-void teste_busca();
-void teste_tem_filhos();
-void teste_num_descendentes();
-
-void teste_area_total();
-void teste_area_filhos();
-void teste_dimensoes_tipo();
-
-int main() {
+void processar_testes() {
   printf("Casos de teste\n");
   printf("--------------");
-
   teste_criacao_trapezio();
   teste_criacao_quadrado();
   teste_criacao_retangulo();
@@ -57,16 +30,14 @@ int main() {
   teste_insere_filho_quadrado();
   teste_insere_filho_triangulo();
   teste_insere_filho_retangulo();
-
   teste_area_total();
   teste_area_filhos();
-
   teste_dimensoes_tipo();
 }
 
 void teste_num_descendentes() {
   printf("\nNúmero de Descendentes\n");
-  t = cria_arvore(1,cria_circulo(1));
+  TAG* t = cria_arvore(1,cria_circulo(1));
   insere_filho_circulo(t,2,1);
 
   TAG* f2 = busca(t,2);
@@ -104,7 +75,7 @@ void teste_num_descendentes() {
 
 void teste_tem_filhos() {
   printf("\nTem filhos\n");
-  t = cria_arvore(1,cria_circulo(1));
+  TAG* t = cria_arvore(1,cria_circulo(1));
   insere_filho_circulo(t,2,1);
 
   TAG* f2 = busca(t,2);
@@ -142,7 +113,7 @@ void teste_tem_filhos() {
 
 void teste_busca() {
   printf("\nBusca\n");
-  t = cria_arvore(1,cria_circulo(1));
+  TAG* t = cria_arvore(1,cria_circulo(1));
   insere_filho_circulo(t,2,1);
   insere_filho_circulo(t,3,1);
   insere_filho_circulo(t,4,1);
@@ -319,7 +290,7 @@ void teste_criacao_retangulo() {
 
 void teste_criacao_arvore() {
   printf("\nCriação da Árvore\n");
-  t = cria_arvore(1,cria_circulo(1));
+  TAG* t = cria_arvore(1,cria_circulo(1));
 
   if (!t) {
     printf(COLOR_RED"[ERROR] -> 1. Árvore não foi criada com sucesso.\n"COLOR_RESET);
@@ -335,7 +306,7 @@ void teste_criacao_arvore() {
 
 void teste_insere_filho_trapezio() {
   printf("\nInserção do Trapézio\n");
-  t = cria_arvore(1,cria_circulo(1));
+  TAG* t = cria_arvore(1,cria_circulo(1));
 
   insere_filho_trapezio(t,2,1,2,3);
   TAG* f = busca(t,2);
@@ -356,7 +327,7 @@ void teste_insere_filho_trapezio() {
 
 void teste_insere_filho_circulo() {
   printf("\nInserção do Círculo\n");
-  t = cria_arvore(1,cria_circulo(1));
+  TAG* t = cria_arvore(1,cria_circulo(1));
 
   insere_filho_circulo(t,2,1);
   TAG* f = busca(t,2);
@@ -377,7 +348,7 @@ void teste_insere_filho_circulo() {
 
 void teste_insere_filho_quadrado() {
   printf("\nInserção do Quadrado\n");
-  t = cria_arvore(1,cria_circulo(1));
+  TAG* t = cria_arvore(1,cria_circulo(1));
 
   insere_filho_quadrado(t,2,1);
   TAG* f = busca(t,2);
@@ -398,7 +369,7 @@ void teste_insere_filho_quadrado() {
 
 void teste_insere_filho_triangulo() {
   printf("\nInserção do Triângulo\n");
-  t = cria_arvore(1,cria_circulo(1));
+  TAG* t = cria_arvore(1,cria_circulo(1));
 
   insere_filho_triangulo(t,2,1,2);
   TAG* f = busca(t,2);
@@ -419,7 +390,7 @@ void teste_insere_filho_triangulo() {
 
 void teste_insere_filho_retangulo() {
   printf("\nInserção do Retângulo\n");
-  t = cria_arvore(1,cria_circulo(1));
+  TAG* t = cria_arvore(1,cria_circulo(1));
 
   insere_filho_retangulo(t,2,1,2);
   TAG* f = busca(t,2);
@@ -440,7 +411,7 @@ void teste_insere_filho_retangulo() {
 
 void teste_area_total() {
   printf("\nÁrea Total\n");
-  t = cria_arvore(1,cria_quadrado(1));
+  TAG* t = cria_arvore(1,cria_quadrado(1));
   insere_filho_quadrado(t,2,1);
   insere_filho_retangulo(t,3,2,3);
 
@@ -472,7 +443,7 @@ void teste_area_total() {
 
 void teste_area_filhos() {
   printf("\nÁrea dos Filhos\n");
-  t = cria_arvore(1,cria_quadrado(1));
+  TAG* t = cria_arvore(1,cria_quadrado(1));
   insere_filho_quadrado(t,2,1);
   insere_filho_retangulo(t,3,2,3);
 

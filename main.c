@@ -22,7 +22,8 @@ int menu();
 int main() {
 
   processar_entrada();
-  imprime_semi_bonito(t);
+  //imprime_semi_bonito(t);
+  menu();
 
   // gerar_dot_arvore_generica(t);
 
@@ -31,7 +32,6 @@ int main() {
   gerar_arvore_balanceada(t);
   print_tree(avl,"Balanceada");
 
-  //menu();
   //imprimir_status_filhos(t);
   //altera_filho_circulo(t, 2, 10);
   //imprimir_status_filhos(t);

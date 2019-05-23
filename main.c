@@ -24,6 +24,13 @@ int main() {
 
   gerar_dot_arvore_generica(t);
 
+  //printf("\n\nRetirando cod 6...\n\n");
+  //retira(t, 6);
+  //gerar_dot_arvore_generica(t);
+  
+  printf(COLOR_CYAN "\nDestruindo arvore generica...\n\n");
+  destruir_arvore(t);
+  printf(COLOR_CYAN "Arvore destruida com sucesso!\n\n");
   /*
   imprime_semi_bonito(t);
   imprime_arvore_generica_como_binaria(t,"Bin");
@@ -210,7 +217,7 @@ void sobre(){
     printf(COLOR_YELLOW"Trabalho sobre Arvores de EDA - 2019.1\n\n"COLOR_RESET);
     printf(COLOR_RED"Professora Isabel Rosseti\n"COLOR_RESET);
     printf("Integrantes do grupo:\n");
-    printf("Andre\n");
+    printf("Andre Montevecchi\n");
     printf("Anselmo Battisti\n");
     printf("Flavio Miranda de Farias\n\n");
 }

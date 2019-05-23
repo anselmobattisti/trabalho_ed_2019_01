@@ -22,11 +22,11 @@ int menu();
 int main() {
 
   processar_entrada();
+  imprime_semi_bonito(t);
 
-  gerar_dot_arvore_generica(t);
+  // gerar_dot_arvore_generica(t);
 
   /*
-  imprime_semi_bonito(t);
   imprime_arvore_generica_como_binaria(t,"Bin");
   gerar_arvore_balanceada(t);
   print_tree(avl,"Balanceada");
@@ -107,7 +107,14 @@ int main() {
 void processar_entrada() {
   char s[1000];
 
-  while(fgets(s, 200, stdin)){
+  static const char filename[] = "entrada.txt";
+  FILE *file = fopen ( filename, "r" );
+  if ( file == NULL ) {
+    printf("Erro ao ler arquivo.");
+    return;
+  }
+
+  while ( fgets ( s, sizeof s, file ) != NULL ) {
     int cod = 0;
     int pai = 0;
     char *tipo;

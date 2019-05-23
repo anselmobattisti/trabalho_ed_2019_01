@@ -26,10 +26,7 @@ int main() {
   //printf("\n\nRetirando cod 6...\n\n");
   //retira(t, 6);
   //gerar_dot_arvore_generica(t);
-  
-  printf(COLOR_CYAN "\nDestruindo arvore generica...\n\n");
-  destruir_arvore(t);
-  printf(COLOR_CYAN "Arvore destruida com sucesso!\n\n");
+
   /*
   processar_entrada();
   imprime_semi_bonito(t);
@@ -285,8 +282,7 @@ void menuBusca(){
         printf("\n");
         for(int i=0;i<79;i++)
             printf("%c",'#');
-        printf("\n");
-        printf(COLOR_BLUE"---> "COLOR_RESET);
+        printf(COLOR_BLUE"\n---> "COLOR_RESET);
         setbuf(stdin,NULL);
         getchar();
         setbuf(stdin,NULL);
@@ -294,7 +290,8 @@ void menuBusca(){
 }
 //menu de insercoes
 void menuInsercoes(){
-    int op,v1=0,v2=0,v3=0;
+    int op;
+    float v1=0,v2=0,v3=0;
     while(op!='0'){
         setbuf(stdin,NULL);
         system("clear");
@@ -319,43 +316,43 @@ void menuInsercoes(){
         case 1:
             printf("\nDigite o Lado do Quadrado: ");
             printf(COLOR_BLUE"\n---> "COLOR_RESET);
-            scanf("%d",&v1);
+            scanf("%f",&v1);
             //insere_filho_quadrado(busca(t,pai),cod,v1);
             break;
         case 2:
             printf("\nDigite o Lado do Circulo: ");
             printf(COLOR_BLUE"\n---> "COLOR_RESET);
-            scanf("%d",&v1);
+            scanf("%f",&v1);
             //insere_filho_circulo(busca(t,pai),cod,v1);
             break;
         case 3:
             printf("\nDigite o Primeiro Lado do Retangulo: ");
             printf(COLOR_BLUE"\n---> "COLOR_RESET);
-            scanf("%d",&v1);
+            scanf("%f",&v1);
             printf("\nDigite o Segundo Lado do Retangulo: ");
             printf(COLOR_BLUE"\n---> "COLOR_RESET);
-            scanf("%d",&v2);
+            scanf("%f",&v2);
             //insere_filho_retangulo(busca(t,pai),cod,v1,v2);
             break;
         case 4:
             printf("\nDigite o Primeiro Lado do Triangulo: ");
             printf(COLOR_BLUE"\n---> "COLOR_RESET);
-            scanf("%d",&v1);
+            scanf("%f",&v1);
             printf("\nDigite o Segundo Lado do Triangulo: ");
             printf(COLOR_BLUE"\n---> "COLOR_RESET);
-            scanf("%d",&v2);
+            scanf("%f",&v2);
             //insere_filho_triangulo(busca(t,pai),cod,v1,v2);
             break;
         case 5:
             printf("\nDigite o Primeiro Lado do Trapezio: ");
             printf(COLOR_BLUE"\n---> "COLOR_RESET);
-            scanf("%d",&v1);
+            scanf("%f",&v1);
             printf("\nDigite o Segundo Lado do Trapezio: ");
             printf(COLOR_BLUE"\n---> "COLOR_RESET);
-            scanf("%d",&v2);
+            scanf("%f",&v2);
             printf("\nDigite o Terceiro Lado do Trapezio: ");
             printf(COLOR_BLUE"\n---> "COLOR_RESET);
-            scanf("%d",&v3);
+            scanf("%f",&v3);
             //insere_filho_trapezio(busca(t,pai),cod,v1,v2,v3);
             break;
         case 0:
@@ -368,8 +365,7 @@ void menuInsercoes(){
         printf("\n");
         for(int i=0;i<79;i++)
             printf("%c",'#');
-        printf("\n");
-        printf(COLOR_BLUE"---> "COLOR_RESET);
+        printf(COLOR_BLUE"\n---> "COLOR_RESET);
         setbuf(stdin,NULL);
         getchar();
         setbuf(stdin,NULL);
@@ -510,7 +506,10 @@ int menu(){
             break;
         case 0:
             system("clear");
-            printf(COLOR_BLUE"SAINDO...\n"COLOR_RESET);
+            printf(COLOR_CYAN "\nDestruindo arvore generica...\n\n"COLOR_RESET);
+            destruir_arvore(t);
+            printf(COLOR_CYAN "Arvore destruida com sucesso!\n\n"COLOR_RESET);
+            printf(COLOR_BLUE"SAINDO...\n\n"COLOR_RESET);
             exit(0);
         default:
             break;

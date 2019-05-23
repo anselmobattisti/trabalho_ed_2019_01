@@ -70,7 +70,7 @@ onde es é o arquivo no formato dela
 Estão na pasta testes
 
 ```
-gcc -o test test.c ../tree.c ../avl.c
+gcc -o prog main_testes.c ../tree.c ../avl.c testes.c
 ```
 
 ## Escopo

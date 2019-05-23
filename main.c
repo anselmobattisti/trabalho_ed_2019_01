@@ -250,7 +250,7 @@ void menuRemover(){
 }
 //menu de insercoes
 void menuBusca(){
-    int op,v1=0;
+    int op,cod=0;
     while(op!='0'){
         setbuf(stdin,NULL);
         system("clear");
@@ -271,8 +271,13 @@ void menuBusca(){
         case 1:
             printf("\nDigite o Codigo da Busca: ");
             printf(COLOR_BLUE"\n---> "COLOR_RESET);
-            scanf("%d",&v1);
-            busca(t,v1);
+            scanf("%d",&cod);
+            TAG *aux = busca(t,cod);
+            if(aux) {
+              imprimir_status_arvore(busca(t,cod));
+            } else {
+              printf(COLOR_RED"O nó com o código \033[1m'%d'\033[m "COLOR_RED"não foi localizado!"COLOR_RESET,cod);
+            }
             break;
         case 0:
             menu();
@@ -524,8 +529,7 @@ int menu(){
         case 6:
             //ATENÇÃO PARA ESTE MENU
             gerar_arvore_balanceada(t);
-            printf("\nArvore balanceada Gerada\n");
-            imprime_arvore_generica_como_binaria(t,"Bin");
+            print_tree(avl,"Árvore Balanceada (AVL)");
             printf("\nTecle ENTER para continuar\n\n");
             printf("\n");
             for(int i=0;i<79;i++)

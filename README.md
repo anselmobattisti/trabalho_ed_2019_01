@@ -61,9 +61,7 @@ O nó abaixo possui 3 filhos. Para navegar por todos eles é necessário primeir
 
 Para rodar o programa basta executar
 
-./prog < es.txt
-
-onde es é o arquivo no formato dela
+./prog
 
 ## Casos de Teste
 

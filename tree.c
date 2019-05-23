@@ -452,3 +452,19 @@ void gerar_dot_arvore_generica_no(TAG* t, int pai, int tipo) {
   gerar_dot_arvore_generica_no(t->f, t->cod, 0);
 
 }
+void destruir_arvore(TAG* t){
+  if(t){
+    destruir_arvore(t->f);
+    destruir_arvore(t->i);
+    free(t);
+  }
+}
+void retira(TAG* t, int cod){
+  if(!t) return;
+  // TAG* p = busca(t->f, cod);
+  // if(p)
+  //   p->f = NULL;
+  TAG *aux = busca(t, cod);
+  if(aux)
+    free(aux);
+}

@@ -124,4 +124,13 @@ void imprime_semi_bonito(TAG *t);
 
 int num_descendentes(TAG *t);
 
+/*
+Destroi a arvore todinha
+*/
+void destruir_arvore(TAG *t);
+
+/*
+Removendo um nó
+*/
+void retira(TAG*t, int cod);
 char* dimensoes_tipo(TDADO* fig);

@@ -17,7 +17,6 @@ TAG* insere_filho(TAG *t, int cod, void* fig) {
     ultimo_filho = aux;
     aux = aux->i; // navega pelos irmãos
   }
-
   // se for o primeiro filho do nó
   if (ultimo_filho == NULL) {
     // ver o nó vazio
@@ -33,7 +32,6 @@ TAG* insere_filho(TAG *t, int cod, void* fig) {
     ultimo_filho->i = nova_arvore;
     //imprimir_status_arvore(t->f);
   }
-
   return nova_arvore;
   // return t;
 }
@@ -42,13 +40,11 @@ TAG* busca(TAG* t, int cod) {
   if (t->cod == cod) {
     return t;
   }
-
   if (t->f) {
     TAG* aux = busca(t->f,cod);
     if (aux)
       return aux;
   }
-
   if (t->i) {
     TAG* aux = busca(t->i,cod);
     if (aux)
@@ -150,15 +146,6 @@ TAG* insere_filho_circulo(TAG *t, int cod, float r) {
   return insere_filho(t,cod,c);
 }
 
-TAG* altera_filho_circulo(TAG *t, int cod, float r) {
-  if (!t) return NULL;
-  TAG* aux = busca(t,cod);
-  TDADO *tc = cria_circulo(r);
-  free(aux->fig);
-  aux->fig = tc;
-  return aux;
-}
-
 TAG* insere_filho_trapezio(TAG *t, int cod, float b1, float b2, float l) {
   if (!t) return NULL;
   TDADO *trap = cria_trapezio(b1, b2, l);
@@ -183,6 +170,56 @@ TAG* insere_filho_triangulo(TAG *t, int cod, float b, float a) {
   return insere_filho(t,cod,tri);
 }
 
+TAG* altera_filho_quadrado(TAG *t, int cod, float l) {
+  if (!t) return NULL;
+  TAG* aux = busca(t,cod);
+  if (!aux) return NULL;
+  TDADO *tc = cria_quadrado(l);
+  free(aux->fig);
+  aux->fig = tc;
+  return aux;
+}
+
+TAG* altera_filho_circulo(TAG *t, int cod, float r) {
+  if (!t) return NULL;
+  TAG* aux = busca(t,cod);
+  if (!aux) return NULL;
+  TDADO *tc = cria_circulo(r);
+  free(aux->fig);
+  aux->fig = tc;
+  return aux;
+}
+
+TAG* altera_filho_retangulo(TAG *t, int cod, float l, float a) {
+  if (!t) return NULL;
+  TAG* aux = busca(t,cod);
+  if (!aux) return NULL;
+  TDADO *tc = cria_retangulo(l,a);
+  free(aux->fig);
+  aux->fig = tc;
+  return aux;
+}
+
+TAG* altera_filho_triangulo(TAG *t, int cod, float b, float a) {
+  if (!t) return NULL;
+  TAG* aux = busca(t,cod);
+  if (!aux) return NULL;
+  TDADO *tc = cria_triangulo(b,a);
+  free(aux->fig);
+  aux->fig = tc;
+  return aux;
+}
+
+TAG* altera_filho_trapezio(TAG *t, int cod, float b1, float b2, float h) {
+  if (!t) return NULL;
+  TAG* aux = busca(t,cod);
+  if (!aux) return NULL;
+  TDADO *tc = cria_trapezio(b1,b2,h);
+  free(aux->fig);
+  aux->fig = tc;
+  return aux;
+}
+
 int tem_filhos(TAG *t) {
   if (!t) return 0;
   if (!t->i) return 1;
@@ -191,9 +228,7 @@ int tem_filhos(TAG *t) {
 }
 
 int tem_irmaos(TAG *t) {
-  if (!t->i) {
-    return 0;
-  }
+  if (!t->i) return 0;
   return 1;
 }
 

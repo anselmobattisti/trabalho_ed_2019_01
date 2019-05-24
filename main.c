@@ -19,6 +19,12 @@ node* avl;
 
 void processar_entrada();
 void gerar_arvore_balanceada(TAG* t);
+TAG* altera_filho_quadrado(TAG *t, int cod, float l);
+TAG* altera_filho_circulo(TAG *t, int cod, float r);
+TAG* altera_filho_retangulo(TAG *t, int cod, float l, float a);
+TAG* altera_filho_triangulo(TAG *t, int cod, float b, float a);
+TAG* altera_filho_trapezio(TAG *t, int cod, float b1, float b2, float h);
+
 int menu();
 
 int main() {
@@ -161,10 +167,58 @@ void gerar_arvore_balanceada(TAG* t) {
   }
 }
 
-//menu de buscar
+void edita_figura(int fig, int cod, TAG *no){
+    float v1, v2, v3;
+    TAG *novo;
+    if(fig==1){
+        printf("\nDigite o Lado do Quadrado: ");
+        printf(COLOR_BLUE"\n---> "COLOR_RESET);
+        scanf("%f",&v1);
+        altera_filho_quadrado(no,cod,v1);
+    }
+    if(fig==2){
+        printf("\nDigite o Lado do Círculo: ");
+        printf(COLOR_BLUE"\n---> "COLOR_RESET);
+        scanf("%f",&v1);
+        altera_filho_circulo(no,cod,v1);
+    }
+    if(fig==3){
+        printf("\nDigite o Primeiro Lado do Retângulo: ");
+        printf(COLOR_BLUE"\n---> "COLOR_RESET);
+        scanf("%f",&v1);
+        printf("\nDigite o Segundo Lado do Retângulo: ");
+        printf(COLOR_BLUE"\n---> "COLOR_RESET);
+        scanf("%f",&v2);
+        altera_filho_retangulo(no,cod,v1,v2);
+    }
+    if(fig==4){
+        printf("\nDigite o Primeiro Lado do Triângulo: ");
+        printf(COLOR_BLUE"\n---> "COLOR_RESET);
+        scanf("%f",&v1);
+        printf("\nDigite o Segundo Lado do Triângulo: ");
+        printf(COLOR_BLUE"\n---> "COLOR_RESET);
+        scanf("%f",&v2);
+        altera_filho_triangulo(no,cod,v1,v2);
+    }
+    if(fig==5){
+        printf("\nDigite o Primeiro Lado do Trapézio: ");
+        printf(COLOR_BLUE"\n---> "COLOR_RESET);
+        scanf("%f",&v1);
+        printf("\nDigite o Segundo Lado do Trapézio: ");
+        printf(COLOR_BLUE"\n---> "COLOR_RESET);
+        scanf("%f",&v2);
+        printf("\nDigite o Terceiro Lado do Trapézio: ");
+        printf(COLOR_BLUE"\n---> "COLOR_RESET);
+        scanf("%f",&v3);
+        altera_filho_trapezio(no,cod,v1,v2,v3);
+    }
+    imprimir_status_filhos(no);
+    printf(COLOR_BLUE"\nO nó com o código "COLOR_GREEN"%d "COLOR_BLUE"foi Alterado!\n"COLOR_RESET,cod);
+}
+//menu de editar
 void menuEditar(){
-    int op,v1=0;
-    while(op!='0'){
+    int op1,op2,cod=0;
+    while(op1!='0'){
         setbuf(stdin,NULL);
         system("clear");
         for(int i=0;i<79;i++)
@@ -173,19 +227,41 @@ void menuEditar(){
         printf(COLOR_YELLOW"Trabalho sobre Árvores de EDA - 2019.1\n\n"COLOR_RESET);
         printf(COLOR_RED"Digite o valor do menu a baixo para: "COLOR_RESET);
         printf(COLOR_GREEN"Editar os Dados\n\n"COLOR_RESET);
-        printf("1 - Editar por um Código\n");
+        printf("1 - Para Editar\n");
         printf("0 - Para retornar\n\n");
         printf("\n");
         for(int i=0;i<79;i++)
             printf("%c",'#');
         printf(COLOR_BLUE"\n---> "COLOR_RESET);
-        scanf("%d",&op);
-        switch(op){
+        scanf("%d",&op1);
+        switch(op1){
         case 1:
-            printf("\nDigite o Código a ser Editado: ");
+            printf("\nDigite o Código da Busca: ");
             printf(COLOR_BLUE"\n---> "COLOR_RESET);
-            scanf("%d",&v1);
-            //Para inserir a Busca e Edição
+            scanf("%d",&cod);
+            TAG *aux = busca(t,cod);
+            imprimir_status_arvore(aux);
+            if(aux) {
+                setbuf(stdin,NULL);
+                printf(COLOR_GREEN"\nEscolha uma das opções\n\n"COLOR_RESET);
+                printf("1 - Alterar para um Quadrado\n");
+                printf("2 - Alterar para um Círculo\n");
+                printf("3 - Alterar para um Retângulo\n");
+                printf("4 - Alterar para um Triângulo\n");
+                printf("5 - Alterar para um Trapézio\n");
+                printf("0 - Para retornar\n\n");
+                printf(COLOR_BLUE"\n---> "COLOR_RESET);
+                scanf("%d",&op2);
+                switch(op2){
+                    case 0:
+                        menu();
+                        break;
+                    default:
+                        edita_figura(op2,cod,aux);
+                        break;
+                }
+            } else
+                printf(COLOR_RED"\nO nó com o código "COLOR_GREEN"%d "COLOR_RED"não foi localizado!\n"COLOR_RESET,cod);
             break;
         case 0:
             menu();
@@ -193,8 +269,7 @@ void menuEditar(){
         default:
             break;
         }
-        printf("\nTecle ENTER para continuar\n\n");
-        printf("\n");
+        printf("\nTecle "COLOR_YELLOW"ENTER"COLOR_RESET" para continuar\n\n");
         for(int i=0;i<79;i++)
             printf("%c",'#');
         printf("\n");
@@ -204,7 +279,18 @@ void menuEditar(){
         setbuf(stdin,NULL);
     }
 }
-//menu de buscar
+
+void remover_no(TAG *no, int cod){
+
+    //ANDRÉ, PODE CHAMAR SUA FUNÇÃO AQUI PRA SEGUIR O ESQUEMA DOS OUTROS MENUS SE PREFERIR
+
+    if(no){
+        printf(COLOR_RED"\nO nó com o código "COLOR_GREEN"%d "COLOR_RED"foi Removido!\n"COLOR_RESET,cod);
+    }else{
+        printf(COLOR_RED"\nNão foi possivel Remover o nó com o código "COLOR_GREEN"%d\n"COLOR_RESET,cod);
+    }
+}
+//menu de remover
 void menuRemover(){
     int op,cod;
     while(op!='0'){
@@ -216,28 +302,31 @@ void menuRemover(){
         printf(COLOR_YELLOW"Trabalho sobre Árvores de EDA - 2019.1\n\n"COLOR_RESET);
         printf(COLOR_RED"Digite o valor do menu a baixo para: "COLOR_RESET);
         printf(COLOR_GREEN"Remover um Nó\n\n"COLOR_RESET);
-        printf("1 - Remover por um Código\n");
+        printf("1 - Para Remover\n");
         printf("0 - Para retornar\n\n");
-        printf("\n");
         for(int i=0;i<79;i++)
             printf("%c",'#');
         printf(COLOR_BLUE"\n---> "COLOR_RESET);
         scanf("%d",&op);
         switch(op){
-        case 1:
-            printf("\nDigite o Código a ser Removido: ");
-            printf(COLOR_BLUE"\n---> "COLOR_RESET);
-            scanf("%d",&cod);
-            //Para inserir a busca e Remoção
-            break;
-        case 0:
-            menu();
-            break;
-        default:
-            break;
+            case 1:
+                printf("\nDigite o Código a ser Removido: ");
+                printf(COLOR_BLUE"\n---> "COLOR_RESET);
+                scanf("%d",&cod);
+                TAG *aux = busca(t,cod);
+                if(aux){
+                  imprimir_status_arvore(aux);
+                  remover_no(aux,cod);
+                } else
+                     printf(COLOR_RED"\nO nó com o código "COLOR_GREEN"%d "COLOR_RED"não foi localizado!\n"COLOR_RESET,cod);
+                break;
+            case 0:
+                menu();
+                break;
+            default:
+                break;
         }
-        printf("\nTecle ENTER para continuar\n\n");
-        printf("\n");
+        printf("\nTecle "COLOR_YELLOW"ENTER"COLOR_RESET" para continuar\n\n");
         for(int i=0;i<79;i++)
             printf("%c",'#');
         printf("\n");
@@ -247,7 +336,7 @@ void menuRemover(){
         setbuf(stdin,NULL);
     }
 }
-//menu de insercoes
+//menu de busca
 void menuBusca(){
     int op,cod;
     while(op!='0'){
@@ -259,7 +348,7 @@ void menuBusca(){
         printf(COLOR_YELLOW"Trabalho sobre Árvores de EDA - 2019.1\n\n"COLOR_RESET);
         printf(COLOR_RED"Digite o valor do menu a baixo para: "COLOR_RESET);
         printf(COLOR_GREEN"Gerar uma Busca\n\n"COLOR_RESET);
-        printf("1 - Buscar por um Código\n");
+        printf("1 - Para Buscar por um Nó\n");
         printf("0 - Para retornar\n\n");
         printf("\n");
         for(int i=0;i<79;i++)
@@ -267,25 +356,23 @@ void menuBusca(){
         printf(COLOR_BLUE"\n---> "COLOR_RESET);
         scanf("%d",&op);
         switch(op){
-        case 1:
-            printf("\nDigite o Código da Busca: ");
-            printf(COLOR_BLUE"\n---> "COLOR_RESET);
-            scanf("%d",&cod);
-            TAG *aux = busca(t,cod);
-            if(aux) {
-              imprimir_status_arvore(busca(t,cod));
-            } else {
-              printf(COLOR_RED"\nO nó com o código \033[1m'%d'\033[m "COLOR_RED"não foi localizado!\n"COLOR_RESET,cod);
-            }
-            break;
-        case 0:
-            menu();
-            break;
-        default:
-            break;
+            case 1:
+                printf("\nDigite o Código da Busca: ");
+                printf(COLOR_BLUE"\n---> "COLOR_RESET);
+                scanf("%d",&cod);
+                TAG *aux = busca(t,cod);
+                if(aux)
+                    imprimir_status_arvore(busca(t,cod));
+                else
+                     printf(COLOR_RED"\nO nó com o código "COLOR_GREEN"%d "COLOR_RED"não foi localizado!\n"COLOR_RESET,cod);
+                break;
+            case 0:
+                menu();
+                break;
+            default:
+                break;
         }
-        printf("\nTecle ENTER para continuar\n\n");
-        printf("\n");
+        printf("\nTecle "COLOR_YELLOW"ENTER"COLOR_RESET" para continuar\n\n");
         for(int i=0;i<79;i++)
             printf("%c",'#');
         printf(COLOR_BLUE"\n---> "COLOR_RESET);
@@ -298,18 +385,20 @@ void insere_figura(int fig){
     int pai, cod;
     float v1, v2, v3;
     printf("\nDigite o Código do Pai: ");
+    printf(COLOR_BLUE"\n---> "COLOR_RESET);
     scanf("%d",&pai);
     TAG *no_pai = busca(t,pai);
-    if (!no_pai) {
-        printf(COLOR_RED"\nO nó com o código \033[1m'%d'\033[m "COLOR_RED"não foi localizado!\n"COLOR_RESET,pai);
-    } else {
+    if (!no_pai)
+        printf(COLOR_RED"\nO nó com o código "COLOR_GREEN"%d "COLOR_RED"não foi localizado!\n"COLOR_RESET,pai);
+    else {
         printf("\nDigite o Código do novo nó: ");
+        printf(COLOR_BLUE"\n---> "COLOR_RESET);
         scanf("%d",&cod);
         // veriica se já existe um nó com esse código
         TAG *novo_no = busca(t,cod);
-        if (novo_no) {
-            printf(COLOR_RED"\nJá existe um nó com o código \033[1m'%d'\033[0m\n"COLOR_RESET,cod);
-        } else {
+        if (novo_no)
+            printf(COLOR_RED"\nJá existe um nó com o código "COLOR_GREEN"%d"COLOR_RESET,cod);
+        else {
             if(fig==1){
                 printf("\nDigite o Lado do Quadrado: ");
                 printf(COLOR_BLUE"\n---> "COLOR_RESET);
@@ -368,11 +457,11 @@ void menuInsercoes(){
         printf(COLOR_YELLOW"Trabalho sobre Árvores de EDA - 2019.1\n\n"COLOR_RESET);
         printf(COLOR_RED"Digite o valor do menu a baixo para: "COLOR_RESET);
         printf(COLOR_GREEN"O Tipo de Inserção\n\n"COLOR_RESET);
-        printf("1 - Inserir um Quadrado\n");
-        printf("2 - Inserir um Círculo\n");
-        printf("3 - Inserir um Retângulo\n");
-        printf("4 - Inserir um Triângulo\n");
-        printf("5 - Inserir um Trapézio\n");
+        printf("1 - Para Inserir um Quadrado\n");
+        printf("2 - Para Inserir um Círculo\n");
+        printf("3 - Para Inserir um Retângulo\n");
+        printf("4 - Para Inserir um Triângulo\n");
+        printf("5 - Para Inserir um Trapézio\n");
         printf("0 - Para retornar\n\n");
         printf("\n");
         for(int i=0;i<79;i++)
@@ -380,28 +469,14 @@ void menuInsercoes(){
         printf(COLOR_BLUE"\n---> "COLOR_RESET);
         scanf("%d",&op);
         switch(op){
-        case 1:
-            insere_figura(op);
-            break;
-        case 2:
-            insere_figura(op);
-            break;
-        case 3:
-            insere_figura(op);
-            break;
-        case 4:
-            insere_figura(op);
-            break;
-        case 5:
-            insere_figura(op);
-            break;
         case 0:
             menu();
             break;
         default:
+            insere_figura(op);
             break;
         }
-        printf("\nTecle ENTER para continuar\n\n");
+        printf("\nTecle "COLOR_YELLOW"ENTER"COLOR_RESET" para continuar\n\n");
         for(int i=0;i<79;i++)
             printf("%c",'#');
         printf(COLOR_BLUE"\n---> "COLOR_RESET);
@@ -422,11 +497,11 @@ void menuImpressoes(){
         printf(COLOR_YELLOW"Trabalho sobre Árvores de EDA - 2019.1\n\n"COLOR_RESET);
         printf(COLOR_RED"Digite o valor do menu a baixo para: "COLOR_RESET);
         printf(COLOR_GREEN"O Tipo de Impressão\n\n"COLOR_RESET);
-        printf("1 - Impressão de status de um nó\n");
-        printf("2 - Impressão da árvore generica formato dir\n");
-        printf("3 - Impressão da árvore generica formato arvore\n");
-        printf("4 - Impressão da árvore Binaria Balanceada\n");
-        printf("5 - Gerar DOT para impressão externa (extra)\n");
+        printf("1 - Para Impressão de status de um nó\n");
+        printf("2 - Para Impressão da árvore generica formato dir\n");
+        printf("3 - Para Impressão da árvore generica formato arvore\n");
+        printf("4 - Para Impressão da árvore Binaria Balanceada\n");
+        printf("5 - Para Gerar DOT para impressão externa (extra)\n");
         printf("0 - Para retornar\n\n");
         printf("\n");
         for(int i=0;i<79;i++)
@@ -463,7 +538,7 @@ void menuImpressoes(){
         default:
             break;
         }
-        printf("\nTecle ENTER para continuar\n\n");
+        printf("\nTecle "COLOR_YELLOW"ENTER"COLOR_RESET" para continuar\n\n");
         for(int i=0;i<79;i++)
             printf("%c",'#');
         printf(COLOR_BLUE"\n---> "COLOR_RESET);
@@ -485,7 +560,7 @@ void menuSobre(){
     printf("Andre Montevecchi\n");
     printf("Anselmo Battisti\n");
     printf("Flávio Miranda de Farias\n\n");
-    printf("Tecle ENTER para continuar\n\n");
+    printf("\nTecle "COLOR_YELLOW"ENTER"COLOR_RESET" para continuar\n\n");
     for(int i=0;i<79;i++)
         printf("%c",'#');
     printf(COLOR_BLUE"\n---> "COLOR_RESET);
@@ -535,19 +610,15 @@ int menu(){
             menuEditar();
             break;
         case 6:
-            //ATENÇÃO PARA ESTE MENU
             gerar_arvore_balanceada(t);
             print_tree(avl,"Árvore Balanceada (AVL)");
-            printf("\nTecle ENTER para continuar\n\n");
+            printf("\nTecle "COLOR_YELLOW"ENTER"COLOR_RESET" para continuar\n\n");
             for(int i=0;i<79;i++)
                 printf("%c",'#');
             printf(COLOR_BLUE"\n---> "COLOR_RESET);
             setbuf(stdin,NULL);
             getchar();
             setbuf(stdin,NULL);
-            break;
-        case 51:
-            //processar_testes();
             break;
         case 9:
             menuSobre();
@@ -556,7 +627,7 @@ int menu(){
             system("clear");
             printf(COLOR_CYAN "\nDestruindo arvore genérica...\n\n"COLOR_RESET);
             destruir_arvore(t);
-            printf(COLOR_CYAN "Árvore destruida com sucesso!\n\n"COLOR_RESET);
+            printf(COLOR_CYAN "Árvore destruida com sucesso!\n"COLOR_RESET);
             printf(COLOR_BLUE"\nSAINDO...\n\n"COLOR_RESET);
             exit(0);
         default:

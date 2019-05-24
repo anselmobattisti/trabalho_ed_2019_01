@@ -276,7 +276,7 @@ void menuBusca(){
             if(aux) {
               imprimir_status_arvore(busca(t,cod));
             } else {
-              printf(COLOR_RED"O nó com o código \033[1m'%d'\033[m "COLOR_RED"não foi localizado!"COLOR_RESET,cod);
+              printf(COLOR_RED"\nO nó com o código \033[1m'%d'\033[m "COLOR_RED"não foi localizado!\n"COLOR_RESET,cod);
             }
             break;
         case 0:
@@ -295,12 +295,71 @@ void menuBusca(){
         setbuf(stdin,NULL);
     }
 }
+void insere_figura(int fig){
+    int pai, cod;
+    float v1, v2, v3;
+    printf("\nDigite o Código do Pai: ");
+    scanf("%d",&pai);
+    TAG *no_pai = busca(t,pai);
+    if (!no_pai) {
+        printf(COLOR_RED"\nO nó com o código \033[1m'%d'\033[m "COLOR_RED"não foi localizado!\n"COLOR_RESET,pai);
+    } else {
+        printf("\nDigite o Código do novo nó: ");
+        scanf("%d",&cod);
+        // veriica se já existe um nó com esse código
+        TAG *novo_no = busca(t,cod);
+        if (novo_no) {
+            printf(COLOR_RED"\nJá existe um nó com o código \033[1m'%d'\033[0m\n"COLOR_RESET,cod);
+        } else {
+            if(fig==1){
+                printf("\nDigite o Lado do Quadrado: ");
+                printf(COLOR_BLUE"\n---> "COLOR_RESET);
+                scanf("%f",&v1);
+                insere_filho_quadrado(no_pai,cod,v1);
+            }
+            if(fig==2){
+                printf("\nDigite o Lado do Círculo: ");
+                printf(COLOR_BLUE"\n---> "COLOR_RESET);
+                scanf("%f",&v1);
+                insere_filho_circulo(no_pai,cod,v1);
+            }
+            if(fig==3){
+                printf("\nDigite o Primeiro Lado do Retângulo: ");
+                printf(COLOR_BLUE"\n---> "COLOR_RESET);
+                scanf("%f",&v1);
+                printf("\nDigite o Segundo Lado do Retângulo: ");
+                printf(COLOR_BLUE"\n---> "COLOR_RESET);
+                scanf("%f",&v2);
+                insere_filho_retangulo(no_pai,cod,v1,v2);
+            }
+            if(fig==4){
+                printf("\nDigite o Primeiro Lado do Triângulo: ");
+                printf(COLOR_BLUE"\n---> "COLOR_RESET);
+                scanf("%f",&v1);
+                printf("\nDigite o Segundo Lado do Triângulo: ");
+                printf(COLOR_BLUE"\n---> "COLOR_RESET);
+                scanf("%f",&v2);
+                insere_filho_triangulo(no_pai,cod,v1,v2);
+            }
+            if(fig==5){
+                printf("\nDigite o Primeiro Lado do Trapézio: ");
+                printf(COLOR_BLUE"\n---> "COLOR_RESET);
+                scanf("%f",&v1);
+                printf("\nDigite o Segundo Lado do Trapézio: ");
+                printf(COLOR_BLUE"\n---> "COLOR_RESET);
+                scanf("%f",&v2);
+                printf("\nDigite o Terceiro Lado do Trapézio: ");
+                printf(COLOR_BLUE"\n---> "COLOR_RESET);
+                scanf("%f",&v3);
+                insere_filho_trapezio(no_pai,cod,v1,v2,v3);
+            }
+            imprimir_status_filhos(no_pai);
+        }
+    }
+}
 //menu de insercoes
 void menuInsercoes(){
     int op;
-    int pai;
-    int cod;
-    float v1=0,v2=0,v3=0;
     while(op!='0'){
         setbuf(stdin,NULL);
         system("clear");
@@ -323,62 +382,19 @@ void menuInsercoes(){
         scanf("%d",&op);
         switch(op){
         case 1:
-            printf("\nDigite o Código do Pai: ");
-            scanf("%d",&pai);
-            TAG *no_pai = busca(t,pai);
-            if (!no_pai) {
-              printf(COLOR_RED"O nó com o código \033[1m'%d'\033[m "COLOR_RED"não foi localizado!"COLOR_RESET,pai);
-            } else {
-              printf("\nDigite o Código do novo nó: ");
-              scanf("%d",&cod);
-              // veriica se já existe um nó com esse código
-              TAG *novo_no = busca(t,cod);
-              if (novo_no) {
-                printf(COLOR_RED"Já existe um nó com o código \033[1m'%d'\033[0m!"COLOR_RESET,cod);
-              } else {
-                printf("\nDigite o Lado do Quadrado: ");
-                printf(COLOR_BLUE"\n---> "COLOR_RESET);
-                scanf("%f",&v1);
-                insere_filho_quadrado(no_pai,cod,v1);
-                imprimir_status_filhos(no_pai);
-              }
-            }
+            insere_figura(op);
             break;
         case 2:
-            printf("\nDigite o Lado do Circulo: ");
-            printf(COLOR_BLUE"\n---> "COLOR_RESET);
-            scanf("%f",&v1);
-            //insere_filho_circulo(busca(t,pai),cod,v1);
+            insere_figura(op);
             break;
         case 3:
-            printf("\nDigite o Primeiro Lado do Retangulo: ");
-            printf(COLOR_BLUE"\n---> "COLOR_RESET);
-            scanf("%f",&v1);
-            printf("\nDigite o Segundo Lado do Retangulo: ");
-            printf(COLOR_BLUE"\n---> "COLOR_RESET);
-            scanf("%f",&v2);
-            //insere_filho_retangulo(busca(t,pai),cod,v1,v2);
+            insere_figura(op);
             break;
         case 4:
-            printf("\nDigite o Primeiro Lado do Triangulo: ");
-            printf(COLOR_BLUE"\n---> "COLOR_RESET);
-            scanf("%f",&v1);
-            printf("\nDigite o Segundo Lado do Triangulo: ");
-            printf(COLOR_BLUE"\n---> "COLOR_RESET);
-            scanf("%f",&v2);
-            //insere_filho_triangulo(busca(t,pai),cod,v1,v2);
+            insere_figura(op);
             break;
         case 5:
-            printf("\nDigite o Primeiro Lado do Trapezio: ");
-            printf(COLOR_BLUE"\n---> "COLOR_RESET);
-            scanf("%f",&v1);
-            printf("\nDigite o Segundo Lado do Trapezio: ");
-            printf(COLOR_BLUE"\n---> "COLOR_RESET);
-            scanf("%f",&v2);
-            printf("\nDigite o Terceiro Lado do Trapezio: ");
-            printf(COLOR_BLUE"\n---> "COLOR_RESET);
-            scanf("%f",&v3);
-            //insere_filho_trapezio(busca(t,pai),cod,v1,v2,v3);
+            insere_figura(op);
             break;
         case 0:
             menu();
@@ -387,7 +403,6 @@ void menuInsercoes(){
             break;
         }
         printf("\nTecle ENTER para continuar\n\n");
-        printf("\n");
         for(int i=0;i<79;i++)
             printf("%c",'#');
         printf(COLOR_BLUE"\n---> "COLOR_RESET);
@@ -540,7 +555,7 @@ int menu(){
             setbuf(stdin,NULL);
             break;
         case 51:
-            processar_testes();
+            //processar_testes();
             break;
         case 9:
             menuSobre();

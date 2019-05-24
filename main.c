@@ -19,11 +19,6 @@ node* avl;
 
 void processar_entrada();
 void gerar_arvore_balanceada(TAG* t);
-TAG* altera_filho_quadrado(TAG *t, int cod, float l);
-TAG* altera_filho_circulo(TAG *t, int cod, float r);
-TAG* altera_filho_retangulo(TAG *t, int cod, float l, float a);
-TAG* altera_filho_triangulo(TAG *t, int cod, float b, float a);
-TAG* altera_filho_trapezio(TAG *t, int cod, float b1, float b2, float h);
 
 int menu();
 
@@ -630,6 +625,9 @@ int menu(){
             printf(COLOR_CYAN "Árvore destruida com sucesso!\n"COLOR_RESET);
             printf(COLOR_BLUE"\nSAINDO...\n\n"COLOR_RESET);
             exit(0);
+        case 51:
+          processar_testes();
+          break;
         default:
             break;
         }

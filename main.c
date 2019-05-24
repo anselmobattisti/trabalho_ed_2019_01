@@ -161,7 +161,6 @@ void gerar_arvore_balanceada(TAG* t) {
   }
 }
 
-
 //menu de buscar
 void menuEditar(){
     int op,v1=0;
@@ -171,10 +170,10 @@ void menuEditar(){
         for(int i=0;i<79;i++)
             printf("%c",'#');
         printf("\n\n");
-        printf(COLOR_YELLOW"Trabalho sobre Arvores de EDA - 2019.1\n\n"COLOR_RESET);
+        printf(COLOR_YELLOW"Trabalho sobre Árvores de EDA - 2019.1\n\n"COLOR_RESET);
         printf(COLOR_RED"Digite o valor do menu a baixo para: "COLOR_RESET);
         printf(COLOR_GREEN"Editar os Dados\n\n"COLOR_RESET);
-        printf("1 - Editar por um Codigo\n");
+        printf("1 - Editar por um Código\n");
         printf("0 - Para retornar\n\n");
         printf("\n");
         for(int i=0;i<79;i++)
@@ -183,7 +182,7 @@ void menuEditar(){
         scanf("%d",&op);
         switch(op){
         case 1:
-            printf("\nDigite o Codigo a ser Editado: ");
+            printf("\nDigite o Código a ser Editado: ");
             printf(COLOR_BLUE"\n---> "COLOR_RESET);
             scanf("%d",&v1);
             //Para inserir a Busca e Edição
@@ -207,17 +206,17 @@ void menuEditar(){
 }
 //menu de buscar
 void menuRemover(){
-    int op,v1=0;
+    int op,cod;
     while(op!='0'){
         setbuf(stdin,NULL);
         system("clear");
         for(int i=0;i<79;i++)
             printf("%c",'#');
         printf("\n\n");
-        printf(COLOR_YELLOW"Trabalho sobre Arvores de EDA - 2019.1\n\n"COLOR_RESET);
+        printf(COLOR_YELLOW"Trabalho sobre Árvores de EDA - 2019.1\n\n"COLOR_RESET);
         printf(COLOR_RED"Digite o valor do menu a baixo para: "COLOR_RESET);
-        printf(COLOR_GREEN"Remover um No\n\n"COLOR_RESET);
-        printf("1 - Remover por um Codigo\n");
+        printf(COLOR_GREEN"Remover um Nó\n\n"COLOR_RESET);
+        printf("1 - Remover por um Código\n");
         printf("0 - Para retornar\n\n");
         printf("\n");
         for(int i=0;i<79;i++)
@@ -226,9 +225,9 @@ void menuRemover(){
         scanf("%d",&op);
         switch(op){
         case 1:
-            printf("\nDigite o Codigo a ser Removido: ");
+            printf("\nDigite o Código a ser Removido: ");
             printf(COLOR_BLUE"\n---> "COLOR_RESET);
-            scanf("%d",&v1);
+            scanf("%d",&cod);
             //Para inserir a busca e Remoção
             break;
         case 0:
@@ -250,17 +249,17 @@ void menuRemover(){
 }
 //menu de insercoes
 void menuBusca(){
-    int op,cod=0;
+    int op,cod;
     while(op!='0'){
         setbuf(stdin,NULL);
         system("clear");
         for(int i=0;i<79;i++)
             printf("%c",'#');
         printf("\n\n");
-        printf(COLOR_YELLOW"Trabalho sobre Arvores de EDA - 2019.1\n\n"COLOR_RESET);
+        printf(COLOR_YELLOW"Trabalho sobre Árvores de EDA - 2019.1\n\n"COLOR_RESET);
         printf(COLOR_RED"Digite o valor do menu a baixo para: "COLOR_RESET);
         printf(COLOR_GREEN"Gerar uma Busca\n\n"COLOR_RESET);
-        printf("1 - Buscar por um Codigo\n");
+        printf("1 - Buscar por um Código\n");
         printf("0 - Para retornar\n\n");
         printf("\n");
         for(int i=0;i<79;i++)
@@ -269,7 +268,7 @@ void menuBusca(){
         scanf("%d",&op);
         switch(op){
         case 1:
-            printf("\nDigite o Codigo da Busca: ");
+            printf("\nDigite o Código da Busca: ");
             printf(COLOR_BLUE"\n---> "COLOR_RESET);
             scanf("%d",&cod);
             TAG *aux = busca(t,cod);
@@ -366,14 +365,14 @@ void menuInsercoes(){
         for(int i=0;i<79;i++)
             printf("%c",'#');
         printf("\n\n");
-        printf(COLOR_YELLOW"Trabalho sobre Arvores de EDA - 2019.1\n\n"COLOR_RESET);
+        printf(COLOR_YELLOW"Trabalho sobre Árvores de EDA - 2019.1\n\n"COLOR_RESET);
         printf(COLOR_RED"Digite o valor do menu a baixo para: "COLOR_RESET);
-        printf(COLOR_GREEN"O Tipo de Insercao\n\n"COLOR_RESET);
+        printf(COLOR_GREEN"O Tipo de Inserção\n\n"COLOR_RESET);
         printf("1 - Inserir um Quadrado\n");
-        printf("2 - Inserir um Circulo\n");
-        printf("3 - Inserir um Retangulo\n");
-        printf("4 - Inserir um Triangulo\n");
-        printf("5 - Inserir um Trapezio\n");
+        printf("2 - Inserir um Círculo\n");
+        printf("3 - Inserir um Retângulo\n");
+        printf("4 - Inserir um Triângulo\n");
+        printf("5 - Inserir um Trapézio\n");
         printf("0 - Para retornar\n\n");
         printf("\n");
         for(int i=0;i<79;i++)
@@ -413,28 +412,26 @@ void menuInsercoes(){
 }
 //menu de impressões
 void menuImpressoes(){
-    int op;
-    int cod_no;
+    int op, cod_no;
     while(op!='0'){
         setbuf(stdin,NULL);
         system("clear");
         for(int i=0;i<79;i++)
             printf("%c",'#');
         printf("\n\n");
-        printf(COLOR_YELLOW"Trabalho sobre Arvores de EDA - 2019.1\n\n"COLOR_RESET);
+        printf(COLOR_YELLOW"Trabalho sobre Árvores de EDA - 2019.1\n\n"COLOR_RESET);
         printf(COLOR_RED"Digite o valor do menu a baixo para: "COLOR_RESET);
-        printf(COLOR_GREEN"O Tipo de Impressao\n\n"COLOR_RESET);
-        printf("1 - Impressao de status de um nó\n");
-        printf("2 - Impressao da arvore generica formato dir\n");
-        printf("3 - Impressao da arvore generica formato arvore\n");
-        printf("4 - Impressao da arvore Binaria Balanceada\n");
-        printf("5 - Gerar DOT para impressao externa (extra)\n");
+        printf(COLOR_GREEN"O Tipo de Impressão\n\n"COLOR_RESET);
+        printf("1 - Impressão de status de um nó\n");
+        printf("2 - Impressão da árvore generica formato dir\n");
+        printf("3 - Impressão da árvore generica formato arvore\n");
+        printf("4 - Impressão da árvore Binaria Balanceada\n");
+        printf("5 - Gerar DOT para impressão externa (extra)\n");
         printf("0 - Para retornar\n\n");
         printf("\n");
         for(int i=0;i<79;i++)
             printf("%c",'#');
-        printf("\n");
-        printf(COLOR_BLUE"---> "COLOR_RESET);
+        printf(COLOR_BLUE"\n---> "COLOR_RESET);
         scanf("%d",&op);
         switch(op){
         case 1:
@@ -442,11 +439,10 @@ void menuImpressoes(){
             printf(COLOR_BLUE"\n---> "COLOR_RESET);
             scanf("%d",&cod_no);
             TAG *aux = busca(t, cod_no);
-            if (!aux) {
+            if (!aux)
               printf(COLOR_RED"O nó %d não foi localizado!"COLOR_RESET,cod_no);
-            } else {
+            else
               imprimir_status_filhos(aux);
-            }
             break;
         case 2:
             imprime_semi_bonito(t);
@@ -468,7 +464,6 @@ void menuImpressoes(){
             break;
         }
         printf("\nTecle ENTER para continuar\n\n");
-        printf("\n");
         for(int i=0;i<79;i++)
             printf("%c",'#');
         printf(COLOR_BLUE"\n---> "COLOR_RESET);
@@ -484,14 +479,13 @@ void menuSobre(){
     for(int i=0;i<79;i++)
         printf("%c",'#');
     printf("\n\n");
-    printf(COLOR_YELLOW"Trabalho sobre Arvores de EDA - 2019.1\n\n"COLOR_RESET);
+    printf(COLOR_YELLOW"Trabalho sobre Árvores de EDA - 2019.1\n\n"COLOR_RESET);
     printf(COLOR_RED"Professora Isabel Rosseti\n"COLOR_RESET);
     printf("Integrantes do grupo:\n");
     printf("Andre Montevecchi\n");
     printf("Anselmo Battisti\n");
-    printf("Flavio Miranda de Farias\n\n");
+    printf("Flávio Miranda de Farias\n\n");
     printf("Tecle ENTER para continuar\n\n");
-    printf("\n");
     for(int i=0;i<79;i++)
         printf("%c",'#');
     printf(COLOR_BLUE"\n---> "COLOR_RESET);
@@ -508,22 +502,21 @@ int menu(){
         for(int i=0;i<79;i++)
             printf("%c",'#');
         printf("\n\n");
-        printf(COLOR_YELLOW"Trabalho sobre Arvores de EDA - 2019.1\n\n"COLOR_RESET);
+        printf(COLOR_YELLOW"Trabalho sobre Árvores de EDA - 2019.1\n\n"COLOR_RESET);
         printf(COLOR_RED"Digite o valor do menu a baixo para: "COLOR_RESET);
-        printf(COLOR_GREEN"Arvore Generica\n\n"COLOR_RESET);
-        printf("1 - Impressoes\n");
-        printf("2 - Insercao\n");
+        printf(COLOR_GREEN"Árvore Genérica\n\n"COLOR_RESET);
+        printf("1 - Impressões\n");
+        printf("2 - Inserção\n");
         printf("3 - Buscar\n");
         printf("4 - Remover\n");
         printf("5 - Editar\n");
-        printf("6 - Gerar Arvore de Busca Balanceada\n");
+        printf("6 - Gerar Árvore de Busca Balanceada\n");
         printf("9 - Sobre o Grupo\n");
         printf("0 - Para sair\n\n");
         printf("\n");
         for(int i=0;i<79;i++)
             printf("%c",'#');
-        printf("\n");
-        printf(COLOR_BLUE"---> "COLOR_RESET);
+        printf(COLOR_BLUE"\n---> "COLOR_RESET);
         scanf("%d",&op);
         switch(op){
         case 1:
@@ -546,7 +539,6 @@ int menu(){
             gerar_arvore_balanceada(t);
             print_tree(avl,"Árvore Balanceada (AVL)");
             printf("\nTecle ENTER para continuar\n\n");
-            printf("\n");
             for(int i=0;i<79;i++)
                 printf("%c",'#');
             printf(COLOR_BLUE"\n---> "COLOR_RESET);
@@ -562,10 +554,10 @@ int menu(){
             break;
         case 0:
             system("clear");
-            printf(COLOR_CYAN "\nDestruindo arvore generica...\n\n"COLOR_RESET);
+            printf(COLOR_CYAN "\nDestruindo arvore genérica...\n\n"COLOR_RESET);
             destruir_arvore(t);
-            printf(COLOR_CYAN "Arvore destruida com sucesso!\n\n"COLOR_RESET);
-            printf(COLOR_BLUE"SAINDO...\n\n"COLOR_RESET);
+            printf(COLOR_CYAN "Árvore destruida com sucesso!\n\n"COLOR_RESET);
+            printf(COLOR_BLUE"\nSAINDO...\n\n"COLOR_RESET);
             exit(0);
         default:
             break;

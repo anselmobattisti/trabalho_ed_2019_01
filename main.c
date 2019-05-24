@@ -201,13 +201,13 @@ void edita_figura(int fig, int cod, TAG *no){
         altera_filho_triangulo(no,cod,v1,v2);
     }
     if(fig==5){
-        printf("\nDigite o Primeiro Lado do Trapézio: ");
+        printf("\nDigite a Base Menor do Trapézio: ");
         printf(COLOR_BLUE"\n---> "COLOR_RESET);
         scanf("%f",&v1);
-        printf("\nDigite o Segundo Lado do Trapézio: ");
+        printf("\nDigite a Base Maior do Trapézio: ");
         printf(COLOR_BLUE"\n---> "COLOR_RESET);
         scanf("%f",&v2);
-        printf("\nDigite o Terceiro Lado do Trapézio: ");
+        printf("\nDigite a Altura do Trapézio: ");
         printf(COLOR_BLUE"\n---> "COLOR_RESET);
         scanf("%f",&v3);
         altera_filho_trapezio(no,cod,v1,v2,v3);
@@ -430,13 +430,13 @@ void insere_figura(int fig){
                 insere_filho_triangulo(no_pai,cod,v1,v2);
             }
             if(fig==5){
-                printf("\nDigite o Primeiro Lado do Trapézio: ");
+                printf("\nDigite a Base Menor do Trapézio: ");
                 printf(COLOR_BLUE"\n---> "COLOR_RESET);
                 scanf("%f",&v1);
-                printf("\nDigite o Segundo Lado do Trapézio: ");
+                printf("\nDigite a Base Maior do Trapézio: ");
                 printf(COLOR_BLUE"\n---> "COLOR_RESET);
                 scanf("%f",&v2);
-                printf("\nDigite o Terceiro Lado do Trapézio: ");
+                printf("\nDigite a Altura do Trapézio: ");
                 printf(COLOR_BLUE"\n---> "COLOR_RESET);
                 scanf("%f",&v3);
                 insere_filho_trapezio(no_pai,cod,v1,v2,v3);

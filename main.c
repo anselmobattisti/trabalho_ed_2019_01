@@ -172,7 +172,7 @@ void edita_figura(int fig, int cod, TAG *no){
         altera_filho_quadrado(no,cod,v1);
     }
     if(fig==2){
-        printf("\nDigite o Lado do Círculo: ");
+        printf("\nDigite o Raio do Círculo: ");
         printf(COLOR_BLUE"\n---> "COLOR_RESET);
         scanf("%f",&v1);
         altera_filho_circulo(no,cod,v1);
@@ -187,10 +187,10 @@ void edita_figura(int fig, int cod, TAG *no){
         altera_filho_retangulo(no,cod,v1,v2);
     }
     if(fig==4){
-        printf("\nDigite o Primeiro Lado do Triângulo: ");
+        printf("\nDigite a Base do Triângulo: ");
         printf(COLOR_BLUE"\n---> "COLOR_RESET);
         scanf("%f",&v1);
-        printf("\nDigite o Segundo Lado do Triângulo: ");
+        printf("\nDigite a Altura do Triângulo: ");
         printf(COLOR_BLUE"\n---> "COLOR_RESET);
         scanf("%f",&v2);
         altera_filho_triangulo(no,cod,v1,v2);
@@ -401,7 +401,7 @@ void insere_figura(int fig){
                 insere_filho_quadrado(no_pai,cod,v1);
             }
             if(fig==2){
-                printf("\nDigite o Lado do Círculo: ");
+                printf("\nDigite o Raio do Círculo: ");
                 printf(COLOR_BLUE"\n---> "COLOR_RESET);
                 scanf("%f",&v1);
                 insere_filho_circulo(no_pai,cod,v1);
@@ -416,10 +416,10 @@ void insere_figura(int fig){
                 insere_filho_retangulo(no_pai,cod,v1,v2);
             }
             if(fig==4){
-                printf("\nDigite o Primeiro Lado do Triângulo: ");
+                printf("\nDigite a Base do Triângulo: ");
                 printf(COLOR_BLUE"\n---> "COLOR_RESET);
                 scanf("%f",&v1);
-                printf("\nDigite o Segundo Lado do Triângulo: ");
+                printf("\nDigite a Altura do Triângulo: ");
                 printf(COLOR_BLUE"\n---> "COLOR_RESET);
                 scanf("%f",&v2);
                 insere_filho_triangulo(no_pai,cod,v1,v2);

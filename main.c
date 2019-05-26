@@ -275,16 +275,7 @@ void menuEditar(){
     }
 }
 
-void remover_no(TAG *no, int cod){
 
-    //ANDRÉ, PODE CHAMAR SUA FUNÇÃO AQUI PRA SEGUIR O ESQUEMA DOS OUTROS MENUS SE PREFERIR
-
-    if(no){
-        printf(COLOR_RED"\nO nó com o código "COLOR_GREEN"%d "COLOR_RED"foi Removido!\n"COLOR_RESET,cod);
-    }else{
-        printf(COLOR_RED"\nNão foi possivel Remover o nó com o código "COLOR_GREEN"%d\n"COLOR_RESET,cod);
-    }
-}
 //menu de remover
 void menuRemover(){
     int op,cod;
@@ -311,7 +302,7 @@ void menuRemover(){
                 TAG *aux = busca(t,cod);
                 if(aux){
                   imprimir_status_arvore(aux);
-                  remover_no(aux,cod);
+                  retira(t, t,cod);
                 } else
                      printf(COLOR_RED"\nO nó com o código "COLOR_GREEN"%d "COLOR_RED"não foi localizado!\n"COLOR_RESET,cod);
                 break;

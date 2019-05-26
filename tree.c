@@ -51,6 +51,25 @@ TAG* busca(TAG* t, int cod) {
       return aux;
   }
 }
+TAG* buscaPai(TAG* t, int cod) {
+  // if (t->cod == cod) {
+  //   return t;
+  // }
+  if (t->f) {
+    if(t->f->cod == cod){
+      printf("Entrou na funcao busca pai. Pai eh %d\n\n", cod);
+      return t;
+    }
+    TAG* aux = buscaPai(t->f,cod);
+    if (aux)
+      return aux;
+  }
+  if (t->i) {
+    TAG* aux = buscaPai(t->i,cod);
+    if (aux)
+      return aux;
+  }
+}
 /*
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   NÃO APAGAR, ESSA FUNÇÃO TBM FUNCIONA
@@ -494,12 +513,59 @@ void destruir_arvore(TAG* t){
     free(t);
   }
 }
-void retira(TAG* t, int cod){
-  if(!t) return;
-  // TAG* p = busca(t->f, cod);
-  // if(p)
-  //   p->f = NULL;
-  TAG *aux = busca(t, cod);
-  if(aux)
-    free(aux);
+
+//Nao pode remover raiz. Se cod filho e cod pai sao iguais, entao é raiz. Caso contrário, é Nutella. XD
+void retira(TAG* t, TAG* pai, int cod) {
+    if (t->cod == cod) {
+      if(t->cod == pai->cod){//éh a raiz
+        printf("\n%d eh a raiz! Nao eh possivel mata-la!", t->cod);
+        return;
+      }
+
+    imprimir_status_arvore(t);
+    printf("\n*** Pai ***\n");
+    imprimir_status_arvore(pai);
+    printf("Removendo o no %d\n", t->cod);
+      if((pai->f) && pai->f->cod == cod){
+         if(t->f){//se o nó morto tem fiote
+          pai->f = t->f;
+         }
+        if(t->i){
+          //insere no ultimo irmao do pai
+          TAG* aux = pai->f;
+          while(aux->i)
+            aux = aux->i;
+          aux->i = t->i;
+          // if(pai->f)
+          //   pai->f->i = t->i;
+        }
+       
+        if(!(t->f) && !(t->i))
+          pai->f = NULL;
+          
+      }
+     
+      if ((pai->i) && pai->i->cod == cod){
+          if(t->i)
+            pai->i = t->i;
+          if(t->f){
+            //insere no ultimo filho
+            pai->i = t->f;
+          }
+          if(!(t->f) && !(t->i))
+            pai->i = NULL;
+      }
+      free(t->fig->fig);
+      free(t->fig);
+      free(t);
+  }
+
+  if (t->f) {
+    retira(t->f, t, cod);
+  }
+
+  if (t->i) {
+    retira(t->i, t, cod);
+  }
 }
+

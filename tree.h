@@ -132,7 +132,7 @@ void destruir_arvore(TAG *t);
 /*
 Removendo um nó
 */
-void retira(TAG*t, int cod);
+void retira(TAG*t, TAG*pai, int cod);
 char* dimensoes_tipo(TDADO* fig);
 
 

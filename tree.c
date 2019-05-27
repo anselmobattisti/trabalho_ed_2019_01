@@ -550,7 +550,7 @@ void retira(TAG* t, TAG* pai, int cod) {
         free(vaimorrer->fig->fig);
         free(vaimorrer->fig);
         free(vaimorrer);
-          
+        return;  
       }
      
       if ((pai->i) && pai->i->cod == cod){
@@ -605,9 +605,9 @@ void retira(TAG* t, TAG* pai, int cod) {
           return;
       }
       
-      free(t->fig->fig);
-      free(t->fig);
-      free(t);
+      // free(t->fig->fig);
+      // free(t->fig);
+      // free(t);
   }
 
   if (t->f) {

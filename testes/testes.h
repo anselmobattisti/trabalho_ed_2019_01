@@ -21,4 +21,6 @@ void teste_num_descendentes();
 void teste_area_total();
 void teste_area_filhos();
 void teste_dimensoes_tipo();
+void teste_retira();
+
 void processar_testes();

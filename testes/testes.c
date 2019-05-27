@@ -36,6 +36,7 @@ void processar_testes() {
   teste_area_total();
   teste_area_filhos();
   teste_dimensoes_tipo();
+  teste_retira();
 }
 
 void teste_num_descendentes() {
@@ -520,4 +521,110 @@ void teste_dimensoes_tipo() {
   } else {
     printf(COLOR_RED"[ERRO] -> 10. Erro Trapézio.\n"COLOR_RESET);
   }
+}
+
+void teste_retira() {
+  TAG *b = NULL;
+  TAG *aux = NULL;
+
+  printf("\nRetirar Elemento\n");
+  TAG* t = cria_arvore(1,cria_circulo(1));
+  retira(t,t,1);
+  // Caso 0, não remover a raiz
+  b = busca(t,1);
+  if (b) {
+    printf(COLOR_GREEN"[OK] -> Não removeu a raiz, CASO 0.\n"COLOR_RESET);
+  } else {
+    printf(COLOR_RED"[ERRO] -> Removou a raiz CASO 0.\n"COLOR_RESET);
+  }
+
+
+  // 1a nó é filho único e não tem nem pai nem irmão
+  insere_filho_circulo(t,2,1);
+  retira(t,t,2);
+  b = busca(t,2);
+  if (b == NULL && t->f == NULL) {
+    printf(COLOR_GREEN"[OK] -> Removou o CASO 1a.\n"COLOR_RESET);
+  } else {
+    printf(COLOR_RED"[ERRO] -> Não removou o CASO 1a.\n"COLOR_RESET);
+  }
+
+  // 1b o nó não tem nem pai e nem irmão mas não é filho único e é o segundo filho
+  insere_filho_circulo(t,2,1);
+  insere_filho_circulo(t,4,1);
+  retira(t,t,4);
+  b = busca(t,4);
+  aux = busca(t,2);
+  if (b == NULL && aux->i == NULL) {
+    printf(COLOR_GREEN"[OK] -> Removou o CASO 1b.\n"COLOR_RESET);
+  } else {
+    printf(COLOR_RED"[ERRO] -> Não removou o CASO 1b.\n"COLOR_RESET);
+  }
+
+  // 1c o nó não tem nem pai e nem irmão mas não é filho único e é o último filho
+  insere_filho_circulo(t,4,1);
+  insere_filho_circulo(t,14,1);
+  retira(t,t,14);
+  b = busca(t,14);
+  aux = busca(t,4);
+  if (b == NULL && aux->i == NULL) {
+    printf(COLOR_GREEN"[OK] -> Removou o CASO 1c.\n"COLOR_RESET);
+  } else {
+    printf(COLOR_RED"[ERRO] -> Não removou o CASO 1c.\n"COLOR_RESET);
+  }
+
+  // CASO 2 - elemento não é filho da raiz MAS é filho único como no caso 1a
+  insere_filho_circulo(t,14,1);
+  insere_filho_circulo(busca(t,2),3,1);
+  retira(t,t,3);
+  b = busca(t,3);
+  aux = busca(t,2);
+  if (b == NULL && aux->f == NULL) {
+    printf(COLOR_GREEN"[OK] -> Removou o CASO 2.\n"COLOR_RESET);
+  } else {
+    printf(COLOR_RED"[ERRO] -> Não removou o CASO 2.\n"COLOR_RESET);
+  }
+
+  // CASO 3 - o nó está entre dois irmãos e não tem filhos
+  insere_filho_circulo(busca(t,2),3,1);
+  retira(t,t,4);
+  b = busca(t,4);
+  aux = busca(t,2);
+  if (b == NULL && aux->i->cod == 14) {
+    printf(COLOR_GREEN"[OK] -> Removou o CASO 3.\n"COLOR_RESET);
+  } else {
+    printf(COLOR_RED"[ERRO] -> Não removou o CASO 3.\n"COLOR_RESET);
+  }
+
+  // CASO 4 - o nó não tem irmãos mas tem filho
+  // CASO 4a
+  retira(t,t,14);
+  insere_filho_circulo(t,4,1);
+  insere_filho_circulo(t,14,1);
+  insere_filho_circulo(busca(t,3),5,1);
+  retira(t,t,3);
+  b = busca(t,3);
+  aux = busca(t,2);
+  if (b == NULL && aux->f->cod == 5) {
+    printf(COLOR_GREEN"[OK] -> Removou o CASO 4a.\n"COLOR_RESET);
+  } else {
+    printf(COLOR_RED"[ERRO] -> Não removou o CASO 4a.\n"COLOR_RESET);
+  }
+
+  // CASO 4b
+  retira(t,t,5);
+  insere_filho_circulo(busca(t,2),3,1);
+  insere_filho_circulo(busca(t,3),5,1);
+  insere_filho_circulo(busca(t,5),6,1);
+  retira(t,t,5);
+  aux = busca(t,3);
+  b = busca(t,5);
+
+  if (b == NULL && aux->f->cod == 6) {
+    printf(COLOR_GREEN"[OK] -> Removou o CASO 4b.\n"COLOR_RESET);
+  } else {
+    printf(COLOR_RED"[ERRO] -> Não removou o CASO 4b.\n"COLOR_RESET);
+  }
+
+
 }

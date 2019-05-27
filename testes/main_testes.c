@@ -6,5 +6,6 @@
 #include "./testes.h"
 
 int main() {
-  processar_testes();
+  // processar_testes();
+  teste_retira();
 }

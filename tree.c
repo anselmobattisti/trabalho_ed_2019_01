@@ -516,13 +516,79 @@ void destruir_arvore(TAG* t){
 
 //Nao pode remover raiz. Se cod filho e cod pai sao iguais, entao é raiz. Caso contrário, é Nutella. XD
 void retira(TAG* t, TAG* pai, int cod) {
-  
+    if (!t || !pai) return;
     if (t->cod == cod) {
+
+      /*
+      // IMPRIIR O PAI E O FILHO NESSA ORDEM
+      imprimir_status_arvore(pai);
+      imprimir_status_arvore(t);
+      */
+
+      // Caso 0, não remover a raiz
       if(t->cod == pai->cod){//éh a raiz
-        printf("\n%d eh a raiz! Nao eh possivel mata-la!", t->cod);
+        printf("\n%d eh a raiz! Nao eh possivel mata-la!\n", t->cod);
         return;
       }
 
+      // CASO 1
+      // NÃO TEM IRMÃO OU FILHO e É FILHO ÚNICO
+      if (t->f == NULL && t->i == NULL) {
+        // verificar se é filho único
+        // Caso 1a nó é filho único e não tem nem pai nem irmão
+        if (pai->f->cod == t->cod) {
+          pai->f = NULL;
+        } else {
+          // CASO 1.b e 1.c CASO 2
+          // nesse caso o elemento localizado é o último filho
+          TAG *penultimo_filho = NULL;
+          TAG *aux = pai->f;
+          while (aux->i) {
+            penultimo_filho = aux;
+            aux = aux->i;
+          }
+
+          // sempre haverá pelo menos 1 filho uma vez que
+          // se fosse filho único teria sido resolvido no if
+          // anterior
+          penultimo_filho->i = NULL;
+        }
+      }
+
+      // CASO 3 - o nó está entre dois irmãos e não tem filhos
+      if (t->f == NULL && t->i != NULL) {
+        TAG *penultimo_filho = NULL;
+        TAG *aux = pai->f;
+        while (aux->i && aux->cod != t->cod) {
+          penultimo_filho = aux;
+          aux = aux->i;
+        }
+        penultimo_filho->i = t->i;
+      }
+
+      // CASO 4a - o nó não tem irmãos mas tem filho
+      if (t->f != NULL && t->i == NULL) {
+        pai->f = t->f;
+      }
+
+      // efetivamente acaba com o nó localizado
+      free(t->fig->fig);
+      free(t->fig);
+      free(t);
+      return;
+    } else {
+      if (t->f)
+        retira(t->f, t, cod);
+
+      // se não achou então pesquisa nos irmãos
+      // nesse caso o "pai" será o pririmeiro irmão
+      if (t->i)
+        retira(t->i, pai, cod);
+    }
+}
+
+
+/*
     imprimir_status_arvore(t);
     printf("\n*** Pai ***\n");
     imprimir_status_arvore(pai);
@@ -532,7 +598,7 @@ void retira(TAG* t, TAG* pai, int cod) {
         pai->f = NULL;
          if(t->f){//se o nó morto tem fiote
           pai->f = t->f;
-         
+
          }
         if(t->i){
           //insere no ultimo irmao do pai
@@ -542,7 +608,7 @@ void retira(TAG* t, TAG* pai, int cod) {
           aux->i = t->i;
 
         }
-       
+
         if(!(t->f) && !(t->i))
           pai->f = NULL;
 
@@ -550,9 +616,9 @@ void retira(TAG* t, TAG* pai, int cod) {
         free(vaimorrer->fig->fig);
         free(vaimorrer->fig);
         free(vaimorrer);
-        return;  
+        return;
       }
-     
+
       if ((pai->i) && pai->i->cod == cod){
         TAG* vaimorrer = pai->i;
         pai->i = NULL;
@@ -594,7 +660,7 @@ void retira(TAG* t, TAG* pai, int cod) {
           //   printf("\n\nt->i: %d\n\n", t->i->cod);
           //   auxi->i = t->i;
           // }
-          
+
           if(!(t->f) && !(t->i))
             pai->i = NULL;
 
@@ -603,18 +669,10 @@ void retira(TAG* t, TAG* pai, int cod) {
           free(vaimorrer->fig);
           free(vaimorrer);
           return;
-      }    
+      }
       // free(t->fig->fig);
       // free(t->fig);
       // free(t);
   }
-
-  if (t->f) {
-    retira(t->f, t, cod);
-  }
-
-  if (t->i) {
-    retira(t->i, t, cod);
-  }
-}
+  */
 

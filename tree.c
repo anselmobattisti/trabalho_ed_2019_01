@@ -603,8 +603,7 @@ void retira(TAG* t, TAG* pai, int cod) {
           free(vaimorrer->fig);
           free(vaimorrer);
           return;
-      }
-      
+      }    
       // free(t->fig->fig);
       // free(t->fig);
       // free(t);

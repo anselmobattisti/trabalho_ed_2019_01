@@ -626,5 +626,49 @@ void teste_retira() {
     printf(COLOR_RED"[ERRO] -> Não removou o CASO 4b.\n"COLOR_RESET);
   }
 
+  // CASO 5a o nó tem irmão e filhos
+  retira(t,t,6);
+  insere_filho_circulo(busca(t,3),5,1);
+  insere_filho_circulo(busca(t,5),6,1);
+  insere_filho_circulo(busca(t,4),16,1);
+  retira(t,t,2);
+  b = busca(t,2);
+  if (b == NULL && t->f->cod == 4) {
+    printf(COLOR_GREEN"[OK] -> Removou o CASO 5a.\n"COLOR_RESET);
+  } else {
+    printf(COLOR_RED"[ERRO] -> Não removou o CASO 5a.\n"COLOR_RESET);
+  }
+
+  // CASO 5b o nó tem irmão e filhos
+  insere_filho_circulo(busca(t,3),50,1);
+  insere_filho_circulo(busca(t,3),51,1);
+  insere_filho_circulo(busca(t,3),52,1);
+  insere_filho_circulo(busca(t,14),53,1);
+  retira(t,t,14);
+
+  b = busca(t,14);
+  aux = busca(t,4);
+
+  if (b == NULL && aux->i->cod == 3) {
+    printf(COLOR_GREEN"[OK] -> Removou o CASO 5b.\n"COLOR_RESET);
+  } else {
+    printf(COLOR_RED"[ERRO] -> Não removou o CASO 5b.\n"COLOR_RESET);
+  }
+
+  retira(t,t,5);
+  b = busca(t,5);
+  aux = busca(t,3);
+  if (b == NULL && aux->f->cod == 50) {
+    printf(COLOR_GREEN"[OK] -> Removou o CASO 5c.\n"COLOR_RESET);
+  } else {
+    printf(COLOR_RED"[ERRO] -> Não removou o CASO 5c.\n"COLOR_RESET);
+  }
+
+  insere_filho_circulo(busca(t,4),54,1);
+  gerar_dot_arvore_generica(t);
+
+  retira(t,t,4);
+  gerar_dot_arvore_generica(t);
+
 
 }

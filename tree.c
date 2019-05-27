@@ -571,6 +571,43 @@ void retira(TAG* t, TAG* pai, int cod) {
         pai->f = t->f;
       }
 
+      // CASO 5 - o nó  tem irmãos e filhos
+      // o pai do nó vai apontar para o primeiro irmão
+      // o primeiro filho do nó será colocado no último filho do primeiro irmão
+      if (t->f != NULL && t->i != NULL) {
+        // achar o irmão antecessor
+        TAG* no_anterior = NULL;
+        TAG* aux = pai->f;
+        while (aux) {
+          if (aux->cod == t->cod) {
+            break;
+          }
+          no_anterior = aux;
+          aux = aux->i;
+        }
+
+        // ajusta o pai
+        if (!no_anterior) {
+          // aponta o pai para o primeiro irmão
+          pai->f = t->i;
+        } else {
+          no_anterior->i = t->i;
+        }
+
+        // coloca os filhos de t no final do primeiro irmão de t
+        TAG* ultimo_filho = NULL;
+        aux = pai->f;
+        while (aux) {
+          ultimo_filho = aux;
+          aux = aux->i;
+        }
+        if (!ultimo_filho) {
+          pai->f->i = t->f;
+        } else {
+          ultimo_filho->i = t->f;
+        }
+      }
+
       // efetivamente acaba com o nó localizado
       free(t->fig->fig);
       free(t->fig);

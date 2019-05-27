@@ -529,15 +529,15 @@ void retira(TAG* t, TAG* pai, int cod) {
       if((pai->f) && pai->f->cod == cod){
          if(t->f){//se o nó morto tem fiote
           pai->f = t->f;
+         
          }
         if(t->i){
           //insere no ultimo irmao do pai
-          TAG* aux = pai->f;
+          TAG* aux = pai;
           while(aux->i)
             aux = aux->i;
           aux->i = t->i;
-          // if(pai->f)
-          //   pai->f->i = t->i;
+
         }
        
         if(!(t->f) && !(t->i))
@@ -546,15 +546,57 @@ void retira(TAG* t, TAG* pai, int cod) {
       }
      
       if ((pai->i) && pai->i->cod == cod){
-          if(t->i)
-            pai->i = t->i;
+        TAG* vaimorrer = pai->i;
+        pai->i = NULL;
           if(t->f){
+            printf("\n\n\nEntrou no t->f do pai->i!\n\n\n");
             //insere no ultimo filho
-            pai->i = t->f;
+            //TAG*auxf = pai->f;
+            TAG*auxf = pai;
+            while(auxf->f){
+              auxf = auxf->f;
+              printf("\n\n %d \n\n", auxf->cod);
+            }
+            printf("\n\nSaiu do loop auxf->f. auxf->cod: %d\n\n", auxf->cod);
+            printf("\n\nt->f: %d\n\n", t->f->cod);
+            auxf->f = t->f;
           }
+          if(t->i){
+            printf("\n\n\nEntrou no pai->i!\n\n\n");
+            //Insere no ultimo irmao
+            TAG*auxi = pai->f;
+            while(auxi->i){
+              auxi = auxi->i;
+              printf("\n\n %d \n\n", auxi->cod);
+            }
+            printf("\n\nSaiu do loop auxi->i. aux->cod: %d\n\n", auxi->cod);
+            printf("\n\nt->i: %d\n\n", t->i->cod);
+            auxi->i= t->i;
+            //return;
+          }
+          // if(t->i){
+          //   printf("\n\n\nEntrou no pai->i!\n\n\n");
+          //   //Insere no ultimo irmao
+          //   TAG*auxi = pai->f;
+          //   while(auxi->i){
+          //     auxi = auxi->i;
+          //     printf("\n\n %d \n\n", auxi->cod);
+          //   }
+          //   printf("\n\nSaiu do loop auxi->i. aux->cod: %d\n\n", auxi->cod);
+          //   printf("\n\nt->i: %d\n\n", t->i->cod);
+          //   auxi->i = t->i;
+          // }
+          
           if(!(t->f) && !(t->i))
             pai->i = NULL;
+
+          printf("\n\n %d vai morrer!!!\n\n", vaimorrer->cod);
+          free(vaimorrer->fig->fig);
+          free(vaimorrer->fig);
+          free(vaimorrer);
+          return;
       }
+      
       free(t->fig->fig);
       free(t->fig);
       free(t);

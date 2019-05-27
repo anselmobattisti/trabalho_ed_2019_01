@@ -516,6 +516,7 @@ void destruir_arvore(TAG* t){
 
 //Nao pode remover raiz. Se cod filho e cod pai sao iguais, entao é raiz. Caso contrário, é Nutella. XD
 void retira(TAG* t, TAG* pai, int cod) {
+  
     if (t->cod == cod) {
       if(t->cod == pai->cod){//éh a raiz
         printf("\n%d eh a raiz! Nao eh possivel mata-la!", t->cod);
@@ -527,6 +528,8 @@ void retira(TAG* t, TAG* pai, int cod) {
     imprimir_status_arvore(pai);
     printf("Removendo o no %d\n", t->cod);
       if((pai->f) && pai->f->cod == cod){
+        TAG* vaimorrer = pai->f;
+        pai->f = NULL;
          if(t->f){//se o nó morto tem fiote
           pai->f = t->f;
          
@@ -542,6 +545,11 @@ void retira(TAG* t, TAG* pai, int cod) {
        
         if(!(t->f) && !(t->i))
           pai->f = NULL;
+
+        printf("\n\n %d vai morrer!!!\n\n", vaimorrer->cod);
+        free(vaimorrer->fig->fig);
+        free(vaimorrer->fig);
+        free(vaimorrer);
           
       }
      

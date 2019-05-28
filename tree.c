@@ -561,7 +561,11 @@ void retira(TAG* t, TAG* pai, int cod) {
           penultimo_filho = aux;
           aux = aux->i;
         }
-        penultimo_filho->i = t->i;
+        if (penultimo_filho) {
+          penultimo_filho->i = t->i;
+        } else {
+          pai->f = t->i;
+        }
       }
 
       // CASO 4a - o nó não tem irmãos mas tem filho

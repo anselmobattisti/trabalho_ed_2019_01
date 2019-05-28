@@ -664,11 +664,19 @@ void teste_retira() {
     printf(COLOR_RED"[ERRO] -> Não removou o CASO 5c.\n"COLOR_RESET);
   }
 
-  insere_filho_circulo(busca(t,4),54,1);
-  gerar_dot_arvore_generica(t);
 
-  retira(t,t,4);
-  gerar_dot_arvore_generica(t);
-
+  TAG* g = cria_arvore(4,cria_circulo(1));
+  insere_filho_circulo(g,5,1);
+  insere_filho_circulo(g,9,1);
+  insere_filho_circulo(busca(g,5),7,1);
+  insere_filho_circulo(busca(g,5),8,1);
+  retira(g,g,7);
+  b = busca(g,7);
+  aux = busca(g,5);
+  if (b == NULL && aux->f->cod == 8) {
+    printf(COLOR_GREEN"[OK] -> Removou o CASO 6a.\n"COLOR_RESET);
+  } else {
+    printf(COLOR_RED"[ERRO] -> Não removou o CASO 6a.\n"COLOR_RESET);
+  }
 
 }

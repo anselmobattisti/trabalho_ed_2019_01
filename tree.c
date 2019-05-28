@@ -487,7 +487,6 @@ void gerar_dot_arvore_generica(TAG* t) {
   printf("\n}\n\n\n");
 }
 
-
 void gerar_dot_arvore_generica_no(TAG* t, int pai, int tipo) {
 
   if (!t) return;
@@ -498,7 +497,6 @@ void gerar_dot_arvore_generica_no(TAG* t, int pai, int tipo) {
     cor = "[color=\"red\"];";
 
   printf("%d[shape=%s]\n",t->cod,nome_tipo_grafico(t->fig->tipo));
-
 
   printf("%d -> %d  %s \n",pai, t->cod,cor);
 
@@ -567,6 +565,7 @@ void retira(TAG* t, TAG* pai, int cod) {
       }
 
       // CASO 4a - o nó não tem irmãos mas tem filho
+      // 1 -> 2 -> 3 e quer apagar o 2 então 1 -> 3
       if (t->f != NULL && t->i == NULL) {
         pai->f = t->f;
       }
@@ -586,7 +585,7 @@ void retira(TAG* t, TAG* pai, int cod) {
           aux = aux->i;
         }
 
-        // ajusta o pai
+        // AJUSTE O PONTEIROS DOS FILHOS
         if (!no_anterior) {
           // aponta o pai para o primeiro irmão
           pai->f = t->i;
@@ -594,6 +593,7 @@ void retira(TAG* t, TAG* pai, int cod) {
           no_anterior->i = t->i;
         }
 
+        // AJUSTA O PONTEIRO DOS IRMÃOS
         // coloca os filhos de t no final do primeiro irmão de t
         TAG* ultimo_filho = NULL;
         aux = pai->f;
@@ -608,108 +608,18 @@ void retira(TAG* t, TAG* pai, int cod) {
         }
       }
 
-      // efetivamente acaba com o nó localizado
+      // efetivamente elimina o nó localizado
       free(t->fig->fig);
       free(t->fig);
       free(t);
       return;
     } else {
       if (t->f)
+        // pesquisa nos filhos e o pai será o próprio t
         retira(t->f, t, cod);
 
-      // se não achou então pesquisa nos irmãos
-      // nesse caso o "pai" será o pririmeiro irmão
-      if (t->i)
-        retira(t->i, pai, cod);
+        // pesquisa nos irmãos e nesse caso o pai será o pai do nó atual
+        if (t->i)
+          retira(t->i, pai, cod);
     }
 }
-
-
-/*
-    imprimir_status_arvore(t);
-    printf("\n*** Pai ***\n");
-    imprimir_status_arvore(pai);
-    printf("Removendo o no %d\n", t->cod);
-      if((pai->f) && pai->f->cod == cod){
-        TAG* vaimorrer = pai->f;
-        pai->f = NULL;
-         if(t->f){//se o nó morto tem fiote
-          pai->f = t->f;
-
-         }
-        if(t->i){
-          //insere no ultimo irmao do pai
-          TAG* aux = pai;
-          while(aux->i)
-            aux = aux->i;
-          aux->i = t->i;
-
-        }
-
-        if(!(t->f) && !(t->i))
-          pai->f = NULL;
-
-        printf("\n\n %d vai morrer!!!\n\n", vaimorrer->cod);
-        free(vaimorrer->fig->fig);
-        free(vaimorrer->fig);
-        free(vaimorrer);
-        return;
-      }
-
-      if ((pai->i) && pai->i->cod == cod){
-        TAG* vaimorrer = pai->i;
-        pai->i = NULL;
-          if(t->f){
-            printf("\n\n\nEntrou no t->f do pai->i!\n\n\n");
-            //insere no ultimo filho
-            //TAG*auxf = pai->f;
-            TAG*auxf = pai;
-            while(auxf->f){
-              auxf = auxf->f;
-              printf("\n\n %d \n\n", auxf->cod);
-            }
-            printf("\n\nSaiu do loop auxf->f. auxf->cod: %d\n\n", auxf->cod);
-            printf("\n\nt->f: %d\n\n", t->f->cod);
-            auxf->f = t->f;
-          }
-          if(t->i){
-            printf("\n\n\nEntrou no pai->i!\n\n\n");
-            //Insere no ultimo irmao
-            TAG*auxi = pai->f;
-            while(auxi->i){
-              auxi = auxi->i;
-              printf("\n\n %d \n\n", auxi->cod);
-            }
-            printf("\n\nSaiu do loop auxi->i. aux->cod: %d\n\n", auxi->cod);
-            printf("\n\nt->i: %d\n\n", t->i->cod);
-            auxi->i= t->i;
-            //return;
-          }
-          // if(t->i){
-          //   printf("\n\n\nEntrou no pai->i!\n\n\n");
-          //   //Insere no ultimo irmao
-          //   TAG*auxi = pai->f;
-          //   while(auxi->i){
-          //     auxi = auxi->i;
-          //     printf("\n\n %d \n\n", auxi->cod);
-          //   }
-          //   printf("\n\nSaiu do loop auxi->i. aux->cod: %d\n\n", auxi->cod);
-          //   printf("\n\nt->i: %d\n\n", t->i->cod);
-          //   auxi->i = t->i;
-          // }
-
-          if(!(t->f) && !(t->i))
-            pai->i = NULL;
-
-          printf("\n\n %d vai morrer!!!\n\n", vaimorrer->cod);
-          free(vaimorrer->fig->fig);
-          free(vaimorrer->fig);
-          free(vaimorrer);
-          return;
-      }
-      // free(t->fig->fig);
-      // free(t->fig);
-      // free(t);
-  }
-  */
-

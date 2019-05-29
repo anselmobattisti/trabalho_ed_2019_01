@@ -3,6 +3,7 @@
 #include <string.h>
 #include "tree.h"
 #include "avl.h"
+#include "arvb.h"
 #include "./testes/testes.h"
 
 #define COLOR_RED     "\x1b[31m"
@@ -13,74 +14,20 @@
 #define COLOR_CYAN    "\x1b[36m"
 #define COLOR_RESET   "\x1b[0m"
 
-// árvore principal do programa
-TAG *t;
+TAG *a;
 node* avl;
+TAB *b;
 
 void processar_entrada();
-void gerar_arvore_balanceada(TAG* t);
+void gerar_arvore_balanceada(TAG* a);
+void gerar_arvore_b(TAG* a);
 
 int menu();
 
 int main() {
     processar_entrada();
     menu();
-
-  //printf("\n\nRetirando cod 6...\n\n");
-  //retira(t, 6);
-  //gerar_dot_arvore_generica(t);
-
-  /*
-  processar_entrada();
-  imprime_semi_bonito(t);
-  imprime_arvore_generica_como_binaria(t,"Bin");
-  gerar_arvore_balanceada(t);
-  print_tree(avl,"Balanceada");
-  //imprimir_status_filhos(t);
-  //altera_filho_circulo(t, 2, 10);
-  //imprimir_status_filhos(t);
-  printf("\n=============\n\n");
-  // cria o primeiro nó da árvore
-  TAG* big = cria_arvore(1,cria_quadrado(10));
-  insere_filho_quadrado(big,2,2);
-  insere_filho_circulo(big,3,3);
-  insere_filho_circulo(big,5,4);
-  insere_filho_quadrado(busca(big,3),4,4);
-  insere_filho_quadrado(busca(big,3),8,4);
-  insere_filho_quadrado(busca(big,4),7,4);
-  TAG *e3 = busca(big,7);
-  imprimir_status_filhos(e3);
-  // insere_filho_quadrado(busca(big,3), 4, 4);
-  insere_filho_quadrado(big->f->i->f,7,1);
-  imprimir_status_filhos(big->f->i->f);
-  processar_entrada();
-  printf("\n----");
-  imprimir_status_filhos(busca(t,3));
-  // imprimir_status_filhos(t->f->i);
-  // imprimir_status_filhos(busca(t,4));
-  // imprimir_como_dir(t,1);
-  // printf("\n%.2f\n",area_total(t));
-  // cria o primeiro nó da árvore
-  TAG* big = cria_arvore(1,cria_quadrado(10));
-  insere_filho_quadrado(big,2,2);
-  insere_filho_circulo(big,3,3);
-  insere_filho_quadrado(big,4,4);
-  // inserer um quadrado como filho do segundo filho de big
-  insere_filho_quadrado(big->f->i,5,5);
-  insere_filho_quadrado(big->f->i,6,6);
-  insere_filho_circulo(busca(big,5),8,8);
-  insere_filho_circulo(busca(big,5),9,3);
-  insere_filho_circulo(busca(big,9),10,3);
-
-  TAG* b = busca(big,11);
-  imprimir_status_filhos(b);
-
-  // insere_filho_quadrado(busca(big,8),9,9);
-  // imprimir_status_filhos(big);
-  // big = insere_filho_quadrado(big,20);
-  // imprimir_filhos(big);
-  */
-  return 0;
+    return 0;
 }
 
 /*
@@ -121,45 +68,56 @@ void processar_entrada() {
     }
     if (pai == 0) {
       if (strcmp(tipo,"QUA") == 0)
-        t = cria_arvore(cod,cria_quadrado(v1));
+        a = cria_arvore(cod,cria_quadrado(v1));
       if (strcmp(tipo,"CIR") == 0)
-        t = cria_arvore(cod,cria_circulo(v1));
+        a = cria_arvore(cod,cria_circulo(v1));
       if (strcmp(tipo,"RET") == 0)
-        t = cria_arvore(cod,cria_retangulo(v1,v2));
+        a = cria_arvore(cod,cria_retangulo(v1,v2));
       if (strcmp(tipo,"TRI") == 0)
-        t = cria_arvore(cod,cria_triangulo(v1,v2));
+        a = cria_arvore(cod,cria_triangulo(v1,v2));
       if (strcmp(tipo,"TRA") == 0)
-        t = cria_arvore(cod,cria_trapezio(v1,v2,v3));
+        a = cria_arvore(cod,cria_trapezio(v1,v2,v3));
     }
     if (pai > 0) {
       if(strcmp(tipo,"QUA") == 0)
-        insere_filho_quadrado(busca(t,pai),cod,v1);
+        insere_filho_quadrado(busca(a,pai),cod,v1);
       if (strcmp(tipo,"CIR") == 0)
-        insere_filho_circulo(busca(t,pai),cod,v1);
+        insere_filho_circulo(busca(a,pai),cod,v1);
       if (strcmp(tipo,"RET") == 0)
-        insere_filho_retangulo(busca(t,pai),cod,v1,v2);
+        insere_filho_retangulo(busca(a,pai),cod,v1,v2);
       if (strcmp(tipo,"TRI") == 0)
-        insere_filho_triangulo(busca(t,pai),cod,v1,v2);
+        insere_filho_triangulo(busca(a,pai),cod,v1,v2);
       if (strcmp(tipo,"TRA") == 0)
-        insere_filho_trapezio(busca(t,pai),cod,v1,v2,v3);
+        insere_filho_trapezio(busca(a,pai),cod,v1,v2,v3);
     }
-    // descomente se quiser ver os valores de entrada
-    // printf("\n %d %d %s %d %d %d \n",cod,pai,tipo,v1,v2,v3);
   }
 }
 
 /*
  Percorre a árvore genérica e inserer na árvore AVL
 */
-void gerar_arvore_balanceada(TAG* t) {
-  if (!t) return;
-  avl = insert(avl,t->cod,t);
-  if (t->f) {
-    gerar_arvore_balanceada(t->f);
+void gerar_arvore_balanceada(TAG* a) {
+  if (!a) return;
+  avl = insert(avl,a->cod,a);
+  if (a->f) {
+    gerar_arvore_balanceada(a->f);
   }
-  if (t->i) {
-    gerar_arvore_balanceada(t->i);
+  if (a->i) {
+    gerar_arvore_balanceada(a->i);
   }
+}
+
+/*
+ Percorre a árvore genérica e inserer na árvore B
+*/
+void gerar_arvore_b(TAG* a) {
+    if (!a) return;
+        b = InsereB(b,a->cod,2);
+        //ArvB = insert(ArvB,t->cod,t);
+    if (a->f)
+        gerar_arvore_b(a->f);
+    if (a->i)
+        gerar_arvore_b(a->i);
 }
 
 void edita_figura(int fig, int cod, TAG *no){
@@ -234,7 +192,7 @@ void menuEditar(){
             printf("\nDigite o Código da Busca: ");
             printf(COLOR_BLUE"\n---> "COLOR_RESET);
             scanf("%d",&cod);
-            TAG *aux = busca(t,cod);
+            TAG *aux = busca(a,cod);
             imprimir_status_arvore(aux);
             if(aux) {
                 setbuf(stdin,NULL);
@@ -299,10 +257,10 @@ void menuRemover(){
                 printf("\nDigite o Código a ser Removido: ");
                 printf(COLOR_BLUE"\n---> "COLOR_RESET);
                 scanf("%d",&cod);
-                TAG *aux = busca(t,cod);
+                TAG *aux = busca(a,cod);
                 if(aux){
                   imprimir_status_arvore(aux);
-                  retira(t, t,cod);
+                  retira(a, a,cod);
                 } else
                      printf(COLOR_RED"\nO nó com o código "COLOR_GREEN"%d "COLOR_RED"não foi localizado!\n"COLOR_RESET,cod);
                 break;
@@ -346,9 +304,9 @@ void menuBusca(){
                 printf("\nDigite o Código da Busca: ");
                 printf(COLOR_BLUE"\n---> "COLOR_RESET);
                 scanf("%d",&cod);
-                TAG *aux = busca(t,cod);
+                TAG *aux = busca(a,cod);
                 if(aux)
-                    imprimir_status_arvore(busca(t,cod));
+                    imprimir_status_arvore(busca(a,cod));
                 else
                      printf(COLOR_RED"\nO nó com o código "COLOR_GREEN"%d "COLOR_RED"não foi localizado!\n"COLOR_RESET,cod);
                 break;
@@ -373,7 +331,7 @@ void insere_figura(int fig){
     printf("\nDigite o Código do Pai: ");
     printf(COLOR_BLUE"\n---> "COLOR_RESET);
     scanf("%d",&pai);
-    TAG *no_pai = busca(t,pai);
+    TAG *no_pai = busca(a,pai);
     if (!no_pai)
         printf(COLOR_RED"\nO nó com o código "COLOR_GREEN"%d "COLOR_RED"não foi localizado!\n"COLOR_RESET,pai);
     else {
@@ -381,7 +339,7 @@ void insere_figura(int fig){
         printf(COLOR_BLUE"\n---> "COLOR_RESET);
         scanf("%d",&cod);
         // veriica se já existe um nó com esse código
-        TAG *novo_no = busca(t,cod);
+        TAG *novo_no = busca(a,cod);
         if (novo_no)
             printf(COLOR_RED"\nJá existe um nó com o código "COLOR_GREEN"%d"COLOR_RESET,cod);
         else {
@@ -487,7 +445,8 @@ void menuImpressoes(){
         printf("2 - Para Impressão da árvore generica formato dir\n");
         printf("3 - Para Impressão da árvore generica formato arvore\n");
         printf("4 - Para Impressão da árvore Binaria Balanceada\n");
-        printf("5 - Para Gerar DOT para impressão externa (extra)\n");
+        printf("5 - Para Impressão da árvore B\n");
+        printf("6 - Para Gerar DOT para impressão externa (extra)\n");
         printf("0 - Para retornar\n\n");
         printf("\n");
         for(int i=0;i<79;i++)
@@ -499,24 +458,28 @@ void menuImpressoes(){
             printf("\nDigite o código do nó: ");
             printf(COLOR_BLUE"\n---> "COLOR_RESET);
             scanf("%d",&cod_no);
-            TAG *aux = busca(t, cod_no);
+            TAG *aux = busca(a, cod_no);
             if (!aux)
               printf(COLOR_RED"O nó %d não foi localizado!"COLOR_RESET,cod_no);
             else
               imprimir_status_filhos(aux);
             break;
         case 2:
-            imprime_semi_bonito(t);
+            imprime_semi_bonito(a);
             break;
         case 3:
-            imprime_arvore_generica_como_binaria(t,"Árvore genérica binária");
+            imprime_arvore_generica_como_binaria(a,"Árvore genérica binária");
             break;
         case 4:
-            gerar_arvore_balanceada(t);
+            gerar_arvore_balanceada(a);
             print_tree(avl,"Árvore Balanceada (AVL)");
             break;
         case 5:
-            gerar_dot_arvore_generica(t);
+            gerar_arvore_b(a);
+            ImprimeB(b,0);
+            break;
+        case 6:
+            gerar_dot_arvore_generica(a);
             break;
         case 0:
             menu();
@@ -596,7 +559,7 @@ int menu(){
             menuEditar();
             break;
         case 6:
-            gerar_arvore_balanceada(t);
+            gerar_arvore_balanceada(a);
             print_tree(avl,"Árvore Balanceada (AVL)");
             printf("\nTecle "COLOR_YELLOW"ENTER"COLOR_RESET" para continuar\n\n");
             for(int i=0;i<79;i++)
@@ -612,12 +575,12 @@ int menu(){
         case 0:
             system("clear");
             printf(COLOR_CYAN "\nDestruindo arvore genérica...\n\n"COLOR_RESET);
-            destruir_arvore(t);
+            destruir_arvore(a);
             printf(COLOR_CYAN "Árvore destruida com sucesso!\n"COLOR_RESET);
             printf(COLOR_BLUE"\nSAINDO...\n\n"COLOR_RESET);
             exit(0);
         case 51:
-          processar_testes();
+          //processar_testes();
           break;
         default:
             break;

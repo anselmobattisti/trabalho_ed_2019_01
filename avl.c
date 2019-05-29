@@ -181,3 +181,11 @@ void print2DUtil(node *root, int space){
     // Process left child
     print2DUtil(root->left, space);
 }
+
+void free_avl(node *T) {
+  if (T) {
+    free_avl(T->left);
+    free_avl(T->right);
+    free(T);
+  }
+}

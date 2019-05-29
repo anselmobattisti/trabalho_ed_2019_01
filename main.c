@@ -474,10 +474,14 @@ void menuImpressoes(){
             imprime_arvore_generica_como_binaria(a,"Árvore genérica binária");
             break;
         case 4:
+            free_avl(avl);
+            avl = NULL;
             gerar_arvore_balanceada(a);
             print_tree(avl,"Árvore Balanceada (AVL)");
             break;
         case 5:
+            Libera(b);
+            b = NULL;
             gerar_arvore_b(a);
             ImprimeB(b,0);
             break;
@@ -562,6 +566,8 @@ int menu(){
             menuEditar();
             break;
         case 6:
+            free_avl(avl);
+            avl = NULL;
             gerar_arvore_balanceada(a);
             print_tree(avl,"Árvore Balanceada (AVL)");
             printf("\nTecle "COLOR_YELLOW"ENTER"COLOR_RESET" para continuar\n\n");

@@ -259,8 +259,11 @@ void menuRemover(){
                 scanf("%d",&cod);
                 TAG *aux = busca(a,cod);
                 if(aux){
-                  imprimir_status_arvore(aux);
+                  printf("\nAntes da remoção de %d.",cod);
+                  imprime_semi_bonito(a);
                   retira(a, a,cod);
+                  printf("\nDepois da remoção de %d.",cod);
+                  imprime_semi_bonito(a);
                 } else
                      printf(COLOR_RED"\nO nó com o código "COLOR_GREEN"%d "COLOR_RED"não foi localizado!\n"COLOR_RESET,cod);
                 break;

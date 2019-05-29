@@ -70,7 +70,7 @@ Para rodar o programa basta executar
 Estão na pasta testes
 
 ```
-gcc -o prog main_testes.c ../tree.c ../avl.c testes.c
+gcc -o prog main.c tree.c avl.c testes/testes.c arvb.c
 ```
 
 ## Escopo

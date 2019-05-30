@@ -592,6 +592,8 @@ int menu(){
             gerar_arvore_b(a);
             ImprimeB(b,0);
             break;
+        case 9:
+            menuSobre();
         case 0:
             system("clear");
             printf(COLOR_CYAN "\nDestruindo arvore genérica...\n\n"COLOR_RESET);

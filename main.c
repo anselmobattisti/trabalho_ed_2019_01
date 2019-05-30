@@ -602,8 +602,6 @@ int menu(){
         case 9:
             menuSobre();
             break;
-        case 9:
-            menuSobre();
         case 0:
             system("clear");
             printf(COLOR_CYAN "\nDestruindo arvore genérica..."COLOR_RESET);

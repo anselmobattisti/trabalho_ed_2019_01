@@ -452,9 +452,9 @@ void menuImpressoes(){
         printf(COLOR_RED"Digite o valor do menu a baixo para: "COLOR_RESET);
         printf(COLOR_GREEN"O Tipo de Impressão\n\n"COLOR_RESET);
         printf("1 - Para Impressão de status de um nó\n");
-        printf("2 - Para Impressão da árvore generica formato dir\n");
-        printf("3 - Para Impressão da árvore generica formato arvore\n");
-        printf("4 - Para Impressão da árvore Binaria Balanceada\n");
+        printf("2 - Para Impressão da árvore completa (formato hierárquico)\n");
+        printf("3 - Para Impressão da árvore generica\n");
+        printf("4 - Para Impressão da árvore Binaria Balanceada (AVL)\n");
         printf("5 - Para Impressão da árvore B\n");
         printf("6 - Para Gerar DOT para impressão externa (extra)\n");
         printf("0 - Para retornar\n\n");
@@ -478,7 +478,7 @@ void menuImpressoes(){
             imprime_semi_bonito(a);
             break;
         case 3:
-            imprime_arvore_generica_como_binaria(a,"Árvore genérica binária");
+            imprime_arvore_generica_como_binaria(a,"Árvore Genérica");
             break;
         case 4:
             free_avl(avl);

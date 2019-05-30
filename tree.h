@@ -60,7 +60,7 @@ int tem_irmaos();
 /*
   Cria um objetivo do tipo quadrado
 */
-TDADO *cria_quadrado(int l);
+TDADO *cria_quadrado(float l);
 
 /*
   Insere em uma determinada árvore um novo nó que é um quadrado

@@ -34,6 +34,7 @@ int main() {
   A partir do arquivo popula a árvore
 */
 void processar_entrada() {
+  TAG* ret_inserir = NULL;
   char s[1000];
   static const char filename[] = "entrada.txt";
   FILE *file = fopen ( filename, "r" );
@@ -79,17 +80,23 @@ void processar_entrada() {
         a = cria_arvore(cod,cria_trapezio(v1,v2,v3));
     }
     if (pai > 0) {
+
       if(strcmp(tipo,"QUA") == 0)
-        insere_filho_quadrado(busca(a,pai),cod,v1);
+        ret_inserir = insere_filho_quadrado(busca(a,pai),cod,v1);
       if (strcmp(tipo,"CIR") == 0)
-        insere_filho_circulo(busca(a,pai),cod,v1);
+        ret_inserir = insere_filho_circulo(busca(a,pai),cod,v1);
       if (strcmp(tipo,"RET") == 0)
-        insere_filho_retangulo(busca(a,pai),cod,v1,v2);
+        ret_inserir = insere_filho_retangulo(busca(a,pai),cod,v1,v2);
       if (strcmp(tipo,"TRI") == 0)
-        insere_filho_triangulo(busca(a,pai),cod,v1,v2);
+        ret_inserir = insere_filho_triangulo(busca(a,pai),cod,v1,v2);
       if (strcmp(tipo,"TRA") == 0)
-        insere_filho_trapezio(busca(a,pai),cod,v1,v2,v3);
+        ret_inserir = insere_filho_trapezio(busca(a,pai),cod,v1,v2,v3);
+
+      if (!ret_inserir) {
+        printf(COLOR_RED"\n\nErro ao inserir nó %d, o pai %d não existe na árvore\n"COLOR_RESET,pai,cod);
+      }
     }
+    ret_inserir = NULL;
   }
 }
 
@@ -529,19 +536,20 @@ int menu(){
     int op;
     while(op!='0'){
         setbuf(stdin,NULL);
-        system("clear");
+        //system("clear");
         for(int i=0;i<79;i++)
             printf("%c",'#');
         printf("\n\n");
         printf(COLOR_YELLOW"Trabalho sobre Árvores de EDA - 2019.1\n\n"COLOR_RESET);
-        printf(COLOR_RED"Digite o valor do menu a baixo para: "COLOR_RESET);
-        printf(COLOR_GREEN"Árvore Genérica\n\n"COLOR_RESET);
-        printf("1 - Impressões\n");
-        printf("2 - Inserção\n");
+        // printf(COLOR_RED"Digite o valor do menu a baixo para: "COLOR_RESET);
+        // printf(COLOR_GREEN"Árvore Genérica\n\n"COLOR_RESET);
+        printf("1 - Imprimir\n");
+        printf("2 - Inserir\n");
         printf("3 - Buscar\n");
         printf("4 - Remover\n");
         printf("5 - Editar\n");
         printf("6 - Gerar Árvore de Busca Balanceada\n");
+        printf("7 - Gerar Árvore B\n");
         printf("9 - Sobre o Grupo\n");
         printf("0 - Para sair\n\n");
         printf("\n");
@@ -578,8 +586,11 @@ int menu(){
             getchar();
             setbuf(stdin,NULL);
             break;
-        case 9:
-            menuSobre();
+        case 7:
+            Libera(b);
+            b = NULL;
+            gerar_arvore_b(a);
+            ImprimeB(b,0);
             break;
         case 0:
             system("clear");

@@ -536,13 +536,13 @@ int menu(){
     int op;
     while(op!='0'){
         setbuf(stdin,NULL);
-        //system("clear");
+        system("clear");
         for(int i=0;i<79;i++)
             printf("%c",'#');
         printf("\n\n");
         printf(COLOR_YELLOW"Trabalho sobre Árvores de EDA - 2019.1\n\n"COLOR_RESET);
-        // printf(COLOR_RED"Digite o valor do menu a baixo para: "COLOR_RESET);
-        // printf(COLOR_GREEN"Árvore Genérica\n\n"COLOR_RESET);
+        printf(COLOR_RED"Digite o valor do menu a baixo para: "COLOR_RESET);
+        printf(COLOR_GREEN"Árvore Genérica\n\n"COLOR_RESET);
         printf("1 - Imprimir\n");
         printf("2 - Inserir\n");
         printf("3 - Buscar\n");
@@ -591,12 +591,22 @@ int menu(){
             b = NULL;
             gerar_arvore_b(a);
             ImprimeB(b,0);
+            printf("\nTecle "COLOR_YELLOW"ENTER"COLOR_RESET" para continuar\n\n");
+            for(int i=0;i<79;i++)
+                printf("%c",'#');
+            printf(COLOR_BLUE"\n---> "COLOR_RESET);
+            setbuf(stdin,NULL);
+            getchar();
+            setbuf(stdin,NULL);
+            break;
+        case 9:
+            menuSobre();
             break;
         case 0:
             system("clear");
-            printf(COLOR_CYAN "\nDestruindo arvore genérica...\n\n"COLOR_RESET);
+            printf(COLOR_CYAN "\nDestruindo arvore genérica..."COLOR_RESET);
             destruir_arvore(a);
-            printf(COLOR_CYAN "Árvore destruida com sucesso!\n"COLOR_RESET);
+            printf(COLOR_CYAN "\nÁrvore destruida com sucesso!\n"COLOR_RESET);
             printf(COLOR_BLUE"\nSAINDO...\n\n"COLOR_RESET);
             exit(0);
         case 51:

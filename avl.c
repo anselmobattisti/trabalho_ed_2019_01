@@ -152,7 +152,7 @@ void inorder(node *T)
 
 
 void print_tree(node* t, char* title) {
-  printf("\n --> %s",title);
+  printf("\n --> %s\n",title);
   print2DUtil(t,0);
   printf("\n <--\n");
 }

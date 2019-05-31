@@ -32,8 +32,7 @@ int main() {
 
 /*
   A partir do arquivo popula a árvore
-*/
-void processar_entrada() {
+*/void processar_entrada() {
   TAG* ret_inserir = NULL;
   char s[1000];
   static const char filename[] = "entrada.txt";
@@ -67,34 +66,45 @@ void processar_entrada() {
       pch = strtok (NULL," /");
       k++;
     }
+
     if (pai == 0) {
-      if (strcmp(tipo,"QUA") == 0)
-        a = cria_arvore(cod,cria_quadrado(v1));
-      if (strcmp(tipo,"CIR") == 0)
-        a = cria_arvore(cod,cria_circulo(v1));
-      if (strcmp(tipo,"RET") == 0)
-        a = cria_arvore(cod,cria_retangulo(v1,v2));
-      if (strcmp(tipo,"TRI") == 0)
-        a = cria_arvore(cod,cria_triangulo(v1,v2));
-      if (strcmp(tipo,"TRA") == 0)
-        a = cria_arvore(cod,cria_trapezio(v1,v2,v3));
+      if (a) {
+        printf(COLOR_RED"\n\n* "COLOR_RESET"A árvore não pode ter duas raízes.\n"COLOR_RESET);
+      } else {
+        if (strcmp(tipo,"QUA") == 0) {
+          a = cria_arvore(cod,cria_quadrado(v1));
+        }
+        if (strcmp(tipo,"CIR") == 0)
+          a = cria_arvore(cod,cria_circulo(v1));
+        if (strcmp(tipo,"RET") == 0)
+          a = cria_arvore(cod,cria_retangulo(v1,v2));
+        if (strcmp(tipo,"TRI") == 0)
+          a = cria_arvore(cod,cria_triangulo(v1,v2));
+        if (strcmp(tipo,"TRA") == 0)
+          a = cria_arvore(cod,cria_trapezio(v1,v2,v3));
+      }
     }
+
     if (pai > 0) {
-      if(strcmp(tipo,"QUA") == 0)
-        ret_inserir = insere_filho_quadrado(busca(a,pai),cod,v1);
-      if (strcmp(tipo,"CIR") == 0)
-        ret_inserir = insere_filho_circulo(busca(a,pai),cod,v1);
-      if (strcmp(tipo,"RET") == 0)
-        ret_inserir = insere_filho_retangulo(busca(a,pai),cod,v1,v2);
-      if (strcmp(tipo,"TRI") == 0)
-        ret_inserir = insere_filho_triangulo(busca(a,pai),cod,v1,v2);
-      if (strcmp(tipo,"TRA") == 0)
-        ret_inserir = insere_filho_trapezio(busca(a,pai),cod,v1,v2,v3);
-      if (!ret_inserir) {
-        printf(COLOR_RED"\n\nErro na leitura do arquivo de entrada!"COLOR_RESET);
-        printf("\nNão foi possível inserir o nó"COLOR_YELLOW" %d,"COLOR_RESET" pois o nó pai "COLOR_YELLOW"%d "COLOR_RESET"não existe na árvore."COLOR_RESET,pai,cod);
-        printf(COLOR_BLUE"\nReinicie a aplicação ao corrigir o erro.\n\n"COLOR_RESET);
-        exit(1);
+      TAG* existe_no = busca(a,cod);
+      if (existe_no) {
+        imprimir_status_arvore(existe_no);
+        printf(COLOR_RED"\n\n* "COLOR_RESET"ERRO, O nó %d já existe na árvore.\n"COLOR_RESET,cod);
+      } else {
+        if(strcmp(tipo,"QUA") == 0)
+          ret_inserir = insere_filho_quadrado(busca(a,pai),cod,v1);
+        if (strcmp(tipo,"CIR") == 0)
+          ret_inserir = insere_filho_circulo(busca(a,pai),cod,v1);
+        if (strcmp(tipo,"RET") == 0)
+          ret_inserir = insere_filho_retangulo(busca(a,pai),cod,v1,v2);
+        if (strcmp(tipo,"TRI") == 0)
+          ret_inserir = insere_filho_triangulo(busca(a,pai),cod,v1,v2);
+        if (strcmp(tipo,"TRA") == 0)
+          ret_inserir = insere_filho_trapezio(busca(a,pai),cod,v1,v2,v3);
+
+        if (!ret_inserir) {
+          printf(COLOR_RED"\n\n* "COLOR_RESET"Erro ao inserir nó %d, o pai %d não existe na árvore ou o tipo da figura é inválido.\n"COLOR_RESET,cod,pai);
+        }
       }
     }
     ret_inserir = NULL;
@@ -571,7 +581,7 @@ int menu(){
     int op;
     while(op!='0'){
         setbuf(stdin,NULL);
-        system("clear");
+        //system("clear");
         for(int i=0;i<79;i++)
             printf("%c",'#');
         printf("\n\n");
@@ -583,9 +593,8 @@ int menu(){
         printf("3 - Buscar\n");
         printf("4 - Remover\n");
         printf("5 - Editar\n");
-        printf("6 - Gerar Árvore de Binária de Busca\n");
-        printf("7 - Gerar Árvore AVL\n");
-        printf("8 - Gerar Árvore B\n");
+        printf("6 - Gerar Árvore AVL\n");
+        printf("7 - Gerar Árvore B\n");
         printf("9 - Sobre o Grupo\n");
         printf("0 - Para sair\n\n");
         printf("\n");
@@ -609,17 +618,17 @@ int menu(){
         case 5:
             menuEditar();
             break;
+        // case 6:
+        //     print_tree(avl,"Árvore Binária de Busca\n");
+        //     printf("\nTecle "COLOR_YELLOW"ENTER"COLOR_RESET" para continuar\n\n");
+        //     for(int i=0;i<79;i++)
+        //         printf("%c",'#');
+        //     printf(COLOR_BLUE"\n---> "COLOR_RESET);
+        //     setbuf(stdin,NULL);
+        //     getchar();
+        //     setbuf(stdin,NULL);
+        //     break;
         case 6:
-            print_tree(avl,"Árvore Binária de Busca\n");
-            printf("\nTecle "COLOR_YELLOW"ENTER"COLOR_RESET" para continuar\n\n");
-            for(int i=0;i<79;i++)
-                printf("%c",'#');
-            printf(COLOR_BLUE"\n---> "COLOR_RESET);
-            setbuf(stdin,NULL);
-            getchar();
-            setbuf(stdin,NULL);
-            break;
-        case 7:
             free_avl(avl);
             avl = NULL;
             gerar_arvore_balanceada(a);
@@ -633,7 +642,7 @@ int menu(){
             getchar();
             setbuf(stdin,NULL);
             break;
-        case 8:
+        case 7:
             Libera(b);
             b = NULL;
             gerar_arvore_b(a);

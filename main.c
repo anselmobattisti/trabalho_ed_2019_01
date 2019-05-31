@@ -80,7 +80,6 @@ void processar_entrada() {
         a = cria_arvore(cod,cria_trapezio(v1,v2,v3));
     }
     if (pai > 0) {
-
       if(strcmp(tipo,"QUA") == 0)
         ret_inserir = insere_filho_quadrado(busca(a,pai),cod,v1);
       if (strcmp(tipo,"CIR") == 0)
@@ -91,9 +90,11 @@ void processar_entrada() {
         ret_inserir = insere_filho_triangulo(busca(a,pai),cod,v1,v2);
       if (strcmp(tipo,"TRA") == 0)
         ret_inserir = insere_filho_trapezio(busca(a,pai),cod,v1,v2,v3);
-
       if (!ret_inserir) {
-        printf(COLOR_RED"\n\nErro ao inserir nó %d, o pai %d não existe na árvore\n"COLOR_RESET,pai,cod);
+        printf(COLOR_RED"\n\nErro na leitura do arquivo de entrada!"COLOR_RESET);
+        printf("\nNão foi possível inserir o nó"COLOR_YELLOW" %d,"COLOR_RESET" pois o nó pai "COLOR_YELLOW"%d "COLOR_RESET"não existe na árvore."COLOR_RESET,pai,cod);
+        printf(COLOR_BLUE"\nReinicie a aplicação ao corrigir o erro.\n\n"COLOR_RESET);
+        exit(1);
       }
     }
     ret_inserir = NULL;
@@ -282,10 +283,8 @@ void menuRemover(){
                         if (!t_novo_pai && cod_novo_pai != -1) {
                           printf(COLOR_RED"Código do novo pai dos filhos de %d não encontrado, digite o novo código ou -1 para voltar."COLOR_RESET,aux->cod);
                         }
-
                         // verifica se o novo pai não está na subárvore do nó que será removido
                         TAG* no_na_sub = busca(aux->f, cod_novo_pai);
-
                         if (no_na_sub) {
                           t_novo_pai = NULL;
                           printf(COLOR_RED"Código do novo pai NÃO pode ser descendente de %d."COLOR_RESET,aux->cod);
@@ -297,7 +296,6 @@ void menuRemover(){
                   }
                   if (cod_novo_pai != -1) {
                     // imprimir_status_arvore(t_novo_pai);
-
                     printf("\nAntes da remoção de %d.",cod);
                     imprime_semi_bonito(a);
                     retira(a, a, cod, t_novo_pai);
@@ -525,7 +523,9 @@ void menuImpressoes(){
             Libera(b);
             b = NULL;
             gerar_arvore_b(a);
+            printf("\nÁrvore B Completa\n----------------\n");
             ImprimeB(b,0);
+            printf("----------------\nTotal de nós: %d\n----------------\n",num_descendentes(a->f)+1);
             break;
         case 6:
             gerar_dot_arvore_generica(a);
@@ -583,8 +583,9 @@ int menu(){
         printf("3 - Buscar\n");
         printf("4 - Remover\n");
         printf("5 - Editar\n");
-        printf("6 - Gerar Árvore de Busca Balanceada\n");
-        printf("7 - Gerar Árvore B\n");
+        printf("6 - Gerar Árvore de Binária de Busca\n");
+        printf("7 - Gerar Árvore AVL\n");
+        printf("8 - Gerar Árvore B\n");
         printf("9 - Sobre o Grupo\n");
         printf("0 - Para sair\n\n");
         printf("\n");
@@ -609,10 +610,7 @@ int menu(){
             menuEditar();
             break;
         case 6:
-            free_avl(avl);
-            avl = NULL;
-            gerar_arvore_balanceada(a);
-            print_tree(avl,"Árvore Balanceada (AVL)");
+            print_tree(avl,"Árvore Binária de Busca\n");
             printf("\nTecle "COLOR_YELLOW"ENTER"COLOR_RESET" para continuar\n\n");
             for(int i=0;i<79;i++)
                 printf("%c",'#');
@@ -622,10 +620,26 @@ int menu(){
             setbuf(stdin,NULL);
             break;
         case 7:
+            free_avl(avl);
+            avl = NULL;
+            gerar_arvore_balanceada(a);
+            print_tree(avl,"Árvore Balanceada (AVL)\n");
+            printf("----------------\nTotal de nós: %d\n----------------\n",num_descendentes(a->f)+1);
+            printf("\nTecle "COLOR_YELLOW"ENTER"COLOR_RESET" para continuar\n\n");
+            for(int i=0;i<79;i++)
+                printf("%c",'#');
+            printf(COLOR_BLUE"\n---> "COLOR_RESET);
+            setbuf(stdin,NULL);
+            getchar();
+            setbuf(stdin,NULL);
+            break;
+        case 8:
             Libera(b);
             b = NULL;
             gerar_arvore_b(a);
+            printf("\nÁrvore B Completa\n----------------\n");
             ImprimeB(b,0);
+            printf("----------------\nTotal de nós: %d\n----------------\n",num_descendentes(a->f)+1);
             printf("\nTecle "COLOR_YELLOW"ENTER"COLOR_RESET" para continuar\n\n");
             for(int i=0;i<79;i++)
                 printf("%c",'#');
@@ -639,14 +653,11 @@ int menu(){
             break;
         case 0:
             system("clear");
-            printf(COLOR_CYAN "\nDestruindo arvore genérica..."COLOR_RESET);
+            printf(COLOR_CYAN "Destruindo arvore genérica..."COLOR_RESET);
             destruir_arvore(a);
             printf(COLOR_CYAN "\nÁrvore destruida com sucesso!\n"COLOR_RESET);
             printf(COLOR_BLUE"\nSAINDO...\n\n"COLOR_RESET);
             exit(0);
-        case 51:
-          //processar_testes();
-          break;
         default:
             break;
         }

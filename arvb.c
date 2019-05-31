@@ -34,8 +34,9 @@ void ImprimeB(TAB *a, int andar){
     int i,j;
     for(i=0; i<=a->nchaves-1; i++){
       ImprimeB(a->filho[i],andar+1);
-      for(j=0; j<=andar; j++) printf("   ");
-      printf("%d\n", a->chave[i]);
+      for(j=0; j<=andar; j++)
+        printf(" -");
+      printf("> %d\n", a->chave[i]);
     }
     ImprimeB(a->filho[i],andar+1);
   }

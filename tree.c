@@ -141,7 +141,6 @@ TDADO *cria_retangulo(float l, float a) {
 
 TDADO *cria_quadrado(float l) {
   TQUADRADO *q = (TQUADRADO*) malloc(sizeof(TQUADRADO));
-  printf("aaaaaaaaaaa %.2f",l);
   q->l = l;
   TDADO *d = (TDADO*) malloc(sizeof(TDADO));
   d->tipo = TIPO_QUADRADO;

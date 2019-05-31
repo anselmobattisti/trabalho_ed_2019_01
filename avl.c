@@ -163,21 +163,17 @@ void print2DUtil(node *root, int space){
     // Base case
     if (root == NULL)
         return;
-
     // Increase distance between levels
-    space += 10;
-
+    space += 3;
     // Process right child first
     print2DUtil(root->right, space);
-
     // Print current node after space
     // count
-    printf("\n");
+    //printf("\n");
     for (int i = 3; i < space; i++)
-        printf(" ");
+        printf(" -");
     TAG* aux_node = (TAG*) root->no_fig;
-    printf("%d, %s\n", root->data,nome_tipo(aux_node->fig->tipo));
-
+    printf("> %d (%s)\n", root->data,nome_tipo(aux_node->fig->tipo));
     // Process left child
     print2DUtil(root->left, space);
 }

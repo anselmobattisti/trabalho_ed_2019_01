@@ -379,12 +379,10 @@ void menuMover(){
                         printf(COLOR_RED"Código do novo pai dos filhos de %d não encontrado, digite o novo código ou -1 para voltar."COLOR_RESET,aux->cod);
                       }
                       // verifica se o novo pai não está na subárvore do nó que será removido
-                      if (aux->f) {
-                        TAG* no_na_sub = busca(aux->f, cod_novo_pai);
-                        if (no_na_sub) {
-                          t_novo_pai = NULL;
-                          printf(COLOR_RED"Código do novo pai NÃO pode ser descendente de %d."COLOR_RESET,aux->cod);
-                        }
+                      TAG* no_na_sub = busca(aux, cod_novo_pai);
+                      if (no_na_sub) {
+                        t_novo_pai = NULL;
+                        printf(COLOR_RED"Código do novo pai NÃO pode ser descendente de %d."COLOR_RESET,aux->cod);
                       }
                     } else {
                       printf(COLOR_RED"Código novo pai não pode ser ele mesmo."COLOR_RESET);

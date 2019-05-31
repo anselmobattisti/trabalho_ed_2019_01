@@ -409,15 +409,16 @@ void imprimir_como_dir(TAG *t, int nivel, int nao_imprimir) {
   for (int i = 0; i < nivel; i++) {
     printf("-");
   }
+
   printf("> %d (%s,%.2f)\n",t->cod,nome_tipo(t->fig->tipo), t->fig->area);
 
   TAG* aux = t->f; // acessa o primeiro filho
 
   while (aux) {
+    if (aux->cod == nao_imprimir) return;
     if (tem_filhos(aux->f)) {
       imprimir_como_dir(aux,nivel+passo, nao_imprimir);
     } else {
-      if (aux->cod == nao_imprimir) return;
       for (int i = 0; i < nivel + passo; i++) {
         printf("-");
       }

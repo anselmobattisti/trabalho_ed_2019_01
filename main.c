@@ -599,9 +599,9 @@ void menuImpressoes(){
         printf("1 - Para Impressão de status de um nó\n");
         printf("2 - Para Impressão da árvore completa (formato hierárquico)\n");
         printf("3 - Para Impressão da árvore generica\n");
-        printf("4 - Para Impressão da árvore Binaria Balanceada (AVL)\n");
-        printf("5 - Para Impressão da árvore B\n");
-        printf("6 - Para Gerar DOT para impressão externa (extra)\n");
+        //printf("4 - Para Impressão da árvore Binaria Balanceada (AVL)\n");
+        //printf("5 - Para Impressão da árvore B\n");
+        printf("4 - Para Gerar DOT para impressão externa (extra)\n");
         printf("0 - Para retornar\n\n");
         printf("\n");
         for(int i=0;i<79;i++)
@@ -625,6 +625,7 @@ void menuImpressoes(){
         case 3:
             imprime_arvore_generica_como_binaria(a,"Árvore Genérica");
             break;
+            /*
         case 4:
             free_avl(avl);
             avl = NULL;
@@ -638,8 +639,8 @@ void menuImpressoes(){
             printf("\nÁrvore B Completa\n----------------\n");
             ImprimeB(b,0);
             printf("----------------\nTotal de nós: %d\n----------------\n",num_descendentes(a->f)+1);
-            break;
-        case 6:
+            break;*/
+        case 4:
             gerar_dot_arvore_generica(a);
             break;
         case 0:

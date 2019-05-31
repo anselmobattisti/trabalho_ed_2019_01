@@ -70,6 +70,7 @@ int main() {
     if (pai == 0) {
       if (a) {
         printf(COLOR_RED"\n\n* "COLOR_RESET"A árvore não pode ter duas raízes.\n"COLOR_RESET);
+        exit(1);
       } else {
         if (strcmp(tipo,"QUA") == 0) {
           a = cria_arvore(cod,cria_quadrado(v1));
@@ -88,8 +89,9 @@ int main() {
     if (pai > 0) {
       TAG* existe_no = busca(a,cod);
       if (existe_no) {
-        imprimir_status_arvore(existe_no);
+        //imprimir_status_arvore(existe_no);
         printf(COLOR_RED"\n\n* "COLOR_RESET"ERRO, O nó %d já existe na árvore.\n"COLOR_RESET,cod);
+        exit(1);
       } else {
         if(strcmp(tipo,"QUA") == 0)
           ret_inserir = insere_filho_quadrado(busca(a,pai),cod,v1);
@@ -104,6 +106,7 @@ int main() {
 
         if (!ret_inserir) {
           printf(COLOR_RED"\n\n* "COLOR_RESET"Erro ao inserir nó %d, o pai %d não existe na árvore ou o tipo da figura é inválido.\n"COLOR_RESET,cod,pai);
+          exit(1);
         }
       }
     }
@@ -680,7 +683,7 @@ int menu(){
     int op;
     while(op!='0'){
         setbuf(stdin,NULL);
-        //system("clear");
+        system("clear");
         for(int i=0;i<79;i++)
             printf("%c",'#');
         printf("\n\n");

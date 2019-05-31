@@ -105,8 +105,10 @@ int main() {
           ret_inserir = insere_filho_trapezio(busca(a,pai),cod,v1,v2,v3);
 
         if (!ret_inserir) {
-          printf(COLOR_RED"\n\n* "COLOR_RESET"Erro ao inserir nó %d, o pai %d não existe na árvore ou o tipo da figura é inválido.\n"COLOR_RESET,cod,pai);
-          exit(1);
+        printf(COLOR_RED"\n\nErro na leitura do arquivo de entrada!"COLOR_RESET);
+        printf("\nNão foi possível inserir o nó"COLOR_YELLOW" %d,"COLOR_RESET" pois o nó pai "COLOR_YELLOW"%d "COLOR_RESET"não existe na árvore."COLOR_RESET,pai,cod);
+        printf(COLOR_BLUE"\nReinicie a aplicação ao corrigir o erro.\n\n"COLOR_RESET);
+        exit(1);
         }
       }
     }

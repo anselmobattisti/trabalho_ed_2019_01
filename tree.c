@@ -396,14 +396,16 @@ void imprimir_status_arvore(TAG *t) {
 
 void imprime_semi_bonito(TAG *t) {
   printf("\nÁrvore Completa\n----------------\n");
-  imprimir_como_dir(t, 1);
+  imprimir_como_dir(t, 1, 0);
   printf("----------------\nTotal de nós: %d\n----------------\n",num_descendentes(t->f)+1);
 }
 
 /*
   @todo: ainda não esta legal
 */
-void imprimir_como_dir(TAG *t, int nivel) {
+void imprimir_como_dir(TAG *t, int nivel, int nao_imprimir) {
+  if (!t) return;
+  if (t->cod == nao_imprimir) return;
   int passo = 2;
   for (int i = 0; i < nivel; i++) {
     printf("-");
@@ -414,7 +416,7 @@ void imprimir_como_dir(TAG *t, int nivel) {
 
   while (aux) {
     if (tem_filhos(aux->f)) {
-      imprimir_como_dir(aux,nivel+passo);
+      imprimir_como_dir(aux,nivel+passo, nao_imprimir);
     } else {
       for (int i = 0; i < nivel + passo; i++) {
         printf("-");
@@ -514,7 +516,8 @@ void destruir_arvore(TAG* t){
 }
 
 //Nao pode remover raiz. Se cod filho e cod pai sao iguais, entao é raiz. Caso contrário, é Nutella. XD
-void retira(TAG* t, TAG* pai, int cod) {
+void retira(TAG* t, TAG* pai, int cod, TAG* novo_pai) {
+
     if (!t || !pai) return;
     if (t->cod == cod) {
 
@@ -569,47 +572,89 @@ void retira(TAG* t, TAG* pai, int cod) {
         }
       }
 
+
       // CASO 4a - o nó não tem irmãos mas tem filho
       // 1 -> 2 -> 3 e quer apagar o 2 então 1 -> 3
       if (t->f != NULL && t->i == NULL) {
         pai->f = t->f;
       }
 
+
       // CASO 5 - o nó  tem irmãos e filhos
       // o pai do nó vai apontar para o primeiro irmão
       // o primeiro filho do nó será colocado no último filho do primeiro irmão
       if (t->f != NULL && t->i != NULL) {
-        // achar o irmão antecessor
-        TAG* no_anterior = NULL;
-        TAG* aux = pai->f;
-        while (aux) {
-          if (aux->cod == t->cod) {
-            break;
+        // aqui só vai entrar SE for passado o código do novo pai
+        if (novo_pai != NULL) {
+          // achar o irmão antecessor
+          TAG* no_anterior = NULL;
+          TAG* aux = novo_pai->f;
+          while (aux) {
+            no_anterior = aux;
+            aux = aux->i;
           }
-          no_anterior = aux;
-          aux = aux->i;
-        }
 
-        // AJUSTE O PONTEIROS DOS FILHOS
-        if (!no_anterior) {
-          // aponta o pai para o primeiro irmão
-          pai->f = t->i;
-        } else {
-          no_anterior->i = t->i;
-        }
+          // AJUSTE O PONTEIROS DOS FILHOS
+          if (!no_anterior) {
+            // aponta o pai para o primeiro irmão
+            novo_pai->f = t->f;
+          } else {
+            no_anterior->i = t->f;
+          }
 
-        // AJUSTA O PONTEIRO DOS IRMÃOS
-        // coloca os filhos de t no final do primeiro irmão de t
-        TAG* ultimo_filho = NULL;
-        aux = pai->f;
-        while (aux) {
-          ultimo_filho = aux;
-          aux = aux->i;
-        }
-        if (!ultimo_filho) {
-          pai->f->i = t->f;
+          // ajustar a posição onde o nó estava
+          // achar o irmão antecessor
+          no_anterior = NULL;
+          aux = pai->f;
+          while (aux) {
+            if (aux->cod == t->cod) {
+              break;
+            }
+            no_anterior = aux;
+            aux = aux->i;
+          }
+
+          // AJUSTE O PONTEIROS DOS FILHOS
+          if (!no_anterior) {
+            // aponta o pai para o primeiro irmão
+            pai->f = t->i;
+          } else {
+            no_anterior->i = t->i;
+          }
+
         } else {
-          ultimo_filho->i = t->f;
+          // achar o irmão antecessor
+          TAG* no_anterior = NULL;
+          TAG* aux = pai->f;
+          while (aux) {
+            if (aux->cod == t->cod) {
+              break;
+            }
+            no_anterior = aux;
+            aux = aux->i;
+          }
+
+          // AJUSTE O PONTEIROS DOS FILHOS
+          if (!no_anterior) {
+            // aponta o pai para o primeiro irmão
+            pai->f = t->i;
+          } else {
+            no_anterior->i = t->i;
+          }
+
+          // AJUSTA O PONTEIRO DOS IRMÃOS
+          // coloca os filhos de t no final do primeiro irmão de t
+          TAG* ultimo_filho = NULL;
+          aux = pai->f;
+          while (aux) {
+            ultimo_filho = aux;
+            aux = aux->i;
+          }
+          if (!ultimo_filho) {
+            pai->f->i = t->f;
+          } else {
+            ultimo_filho->i = t->f;
+          }
         }
       }
 
@@ -621,10 +666,10 @@ void retira(TAG* t, TAG* pai, int cod) {
     } else {
       if (t->f)
         // pesquisa nos filhos e o pai será o próprio t
-        retira(t->f, t, cod);
+        retira(t->f, t, cod, novo_pai);
 
         // pesquisa nos irmãos e nesse caso o pai será o pai do nó atual
         if (t->i)
-          retira(t->i, pai, cod);
+          retira(t->i, pai, cod, novo_pai);
     }
 }

@@ -56,7 +56,7 @@ O nó abaixo possui 3 filhos. Para navegar por todos eles é necessário primeir
 ## Compilar
 
 ```
-gcc -o prog main.c tree.c avl.c testes/testes.c
+gcc -o prog main.c tree.c avl.c arvb.c
 ```
 
 Para rodar o programa basta executar
@@ -70,7 +70,7 @@ Para rodar o programa basta executar
 Estão na pasta testes
 
 ```
-gcc -o prog main.c tree.c avl.c testes/testes.c arvb.c
+gcc -o prog main_testes.c ../tree.c ../avl.c testes.c ../arvb.c
 ```
 
 ## Escopo

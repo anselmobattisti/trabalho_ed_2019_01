@@ -265,12 +265,47 @@ void menuRemover(){
                 printf(COLOR_BLUE"\n---> "COLOR_RESET);
                 scanf("%d",&cod);
                 TAG *aux = busca(a,cod);
+                int cod_novo_pai = 0;
                 if(aux){
-                  printf("\nAntes da remoção de %d.",cod);
-                  imprime_semi_bonito(a);
-                  retira(a, a,cod);
-                  printf("\nDepois da remoção de %d.",cod);
-                  imprime_semi_bonito(a);
+                  // se o nó tem filho e tem irmãos então temos que escolher quem será o novo pai
+                  TAG* t_novo_pai = NULL;
+                  if (aux->f != NULL && aux->i != NULL) {
+                    // Vamor perguntar pro cara o ID do novo pai!
+                    while (!t_novo_pai && cod_novo_pai != -1) {
+                      printf("\nO novo pai pode ser um dos nós abaixo\n");
+                      imprimir_como_dir(a,1,cod);
+                      printf("------------\n");
+                      printf("\nO nó %d possui filhos, digite o código do novo pai: ",aux->cod);
+                      scanf("%d",&cod_novo_pai);
+                      if (cod_novo_pai != aux->cod) {
+                        t_novo_pai = busca(a,cod_novo_pai);
+                        if (!t_novo_pai && cod_novo_pai != -1) {
+                          printf(COLOR_RED"Código do novo pai dos filhos de %d não encontrado, digite o novo código ou -1 para voltar."COLOR_RESET,aux->cod);
+                        }
+
+                        // verifica se o novo pai não está na subárvore do nó que será removido
+                        TAG* no_na_sub = busca(aux->f, cod_novo_pai);
+
+                        if (no_na_sub) {
+                          t_novo_pai = NULL;
+                          printf(COLOR_RED"Código do novo pai NÃO pode ser descendente de %d."COLOR_RESET,aux->cod);
+                        }
+                      } else {
+                        printf(COLOR_RED"Código novo pai não pode ser ele mesmo."COLOR_RESET);
+                      }
+                    }
+                  }
+                  if (cod_novo_pai != -1) {
+                    // imprimir_status_arvore(t_novo_pai);
+
+                    printf("\nAntes da remoção de %d.",cod);
+                    imprime_semi_bonito(a);
+                    retira(a, a, cod, t_novo_pai);
+                    printf("\nDepois da remoção de %d.",cod);
+                    imprime_semi_bonito(a);
+                  } else {
+                    printf("\nVocê não escolheu o novo pai.");
+                  }
                 } else
                      printf(COLOR_RED"\nO nó com o código "COLOR_GREEN"%d "COLOR_RED"não foi localizado!\n"COLOR_RESET,cod);
                 break;

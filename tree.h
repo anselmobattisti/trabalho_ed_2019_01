@@ -95,7 +95,11 @@ void gerar_dot_arvore_generica(TAG* t);
 void gerar_dot_arvore_generica_no(TAG* t, int pai, int tipo);
 void imprimir_status_arvore(TAG *t);
 void imprimir_status_filhos(TAG *t);
-void imprimir_como_dir(TAG *t, int nivel);
+
+/*
+nao_imprimir indica o codigo do pai que não precisa ser impresso
+*/
+void imprimir_como_dir(TAG *t, int nivel, int nao_imprimir);
 void imprime_arvore_generica_como_binaria(TAG* t, char* title);
 void print2DUtilGen(TAG *root, int space);
 
@@ -132,7 +136,7 @@ void destruir_arvore(TAG *t);
 /*
 Removendo um nó
 */
-void retira(TAG*t, TAG*pai, int cod);
+void retira(TAG*t, TAG*pai, int cod, TAG* novo_pai);
 char* dimensoes_tipo(TDADO* fig);
 
 

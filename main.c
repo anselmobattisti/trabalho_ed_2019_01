@@ -393,20 +393,24 @@ void menuMover(){
                       printf(COLOR_RED"Código novo pai não pode ser ele mesmo."COLOR_RESET);
                     }
                   }
-                  if (cod_novo_pai != -1) {
-                    mover_no(aux, pai_aux, t_novo_pai);
-                    // imprimir_status_arvore(t_novo_pai);
-                    // printf("\nAntes da remoção de %d.",cod);
-                    //printf("aaaaaa");
-                    //TAG* pai_aux = no_pai(a, a,cod);
-                    //printf("!dddddddd");
-                    //imprimir_status_arvore(aux);
-                    //imprimir_status_arvore(pai_aux);
-                    //imprimir_status_arvore(t_novo_pai);
-                    //imprime_semi_bonito(a);
-                    //imprime_semi_bonito(a);
+                  if (cod_novo_pai == cod) {
+                      printf(COLOR_RED"Código novo pai não pode ser ele mesmo 2."COLOR_RESET);
                   } else {
-                    printf("\nVocê não escolheu o novo pai.");
+                    if (cod_novo_pai != -1) {
+                      mover_no(aux, pai_aux, t_novo_pai);
+                      // imprimir_status_arvore(t_novo_pai);
+                      // printf("\nAntes da remoção de %d.",cod);
+                      //printf("aaaaaa");
+                      //TAG* pai_aux = no_pai(a, a,cod);
+                      //printf("!dddddddd");
+                      //imprimir_status_arvore(aux);
+                      //imprimir_status_arvore(pai_aux);
+                      //imprimir_status_arvore(t_novo_pai);
+                      //imprime_semi_bonito(a);
+                      //imprime_semi_bonito(a);
+                    } else {
+                      printf("\nVocê não escolheu o novo pai.");
+                    }
                   }
                 } else {
                   printf(COLOR_RED"\nO nó com o código "COLOR_GREEN"%d "COLOR_RED"não foi localizado!\n"COLOR_RESET,cod);

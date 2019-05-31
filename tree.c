@@ -451,7 +451,7 @@ int num_descendentes(TAG *t) {
   Só a impressão que muda
 */
 void imprime_arvore_generica_como_binaria(TAG* t, char* title) {
-  printf("\n --> %s",title);
+  printf("\n --> %s\n",title);
   print2DUtilGen(t,0);
   printf("\n <--\n");
 }
@@ -464,7 +464,7 @@ void print2DUtilGen(TAG *root, int space){
         return;
 
     // Increase distance between levels
-    space += 10;
+    space += 3;
 
     // Process right child first
     print2DUtilGen(root->f, space);
@@ -473,7 +473,7 @@ void print2DUtilGen(TAG *root, int space){
     // count
     printf("\n");
     for (int i = 3; i < space; i++)
-        printf(" ");
+        printf("-");
     //TAG* aux_node = (TAG*) root->fig;
     printf("->%d\n", root->cod);
 

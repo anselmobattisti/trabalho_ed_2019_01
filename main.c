@@ -304,15 +304,20 @@ void menuRemover(){
                       }
                     }
                   }
-                  if (cod_novo_pai != -1) {
-                    // imprimir_status_arvore(t_novo_pai);
-                    printf("\nAntes da remoção de %d.",cod);
-                    imprime_semi_bonito(a);
-                    retira(a, a, cod, t_novo_pai);
-                    printf("\nDepois da remoção de %d.",cod);
-                    imprime_semi_bonito(a);
+                  // tentando mover os filhos dele para ele mesmo
+                  if (cod_novo_pai == cod) {
+                      printf(COLOR_RED"Código novo pai não pode ser ele mesmo."COLOR_RESET);
                   } else {
-                    printf("\nVocê não escolheu o novo pai.");
+                    if (cod_novo_pai != -1) {
+                      // imprimir_status_arvore(t_novo_pai);
+                      printf("\nAntes da remoção de %d.",cod);
+                      imprime_semi_bonito(a);
+                      retira(a, a, cod, t_novo_pai);
+                      printf("\nDepois da remoção de %d.",cod);
+                      imprime_semi_bonito(a);
+                    } else {
+                      printf("\nVocê não escolheu o novo pai.");
+                    }
                   }
                 } else
                      printf(COLOR_RED"\nO nó com o código "COLOR_GREEN"%d "COLOR_RED"não foi localizado!\n"COLOR_RESET,cod);

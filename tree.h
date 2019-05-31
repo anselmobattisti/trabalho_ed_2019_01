@@ -137,6 +137,8 @@ void destruir_arvore(TAG *t);
 Removendo um nó
 */
 void retira(TAG*t, TAG*pai, int cod, TAG* novo_pai);
+void mover_no_remover(TAG* t, TAG* pai, TAG* novo_pai);
+void mover_no(TAG* t, TAG* pai, TAG* novo_pai);
 char* dimensoes_tipo(TDADO* fig);
 
 
@@ -145,3 +147,8 @@ TAG* altera_filho_circulo(TAG *t, int cod, float r);
 TAG* altera_filho_retangulo(TAG *t, int cod, float l, float a);
 TAG* altera_filho_triangulo(TAG *t, int cod, float b, float a);
 TAG* altera_filho_trapezio(TAG *t, int cod, float b1, float b2, float h);
+
+/*
+Dado um nó encontra quem é o seu pai;
+*/
+TAG* no_pai(TAG* t, TAG *pai, int cod);

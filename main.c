@@ -333,6 +333,98 @@ void menuRemover(){
         setbuf(stdin,NULL);
     }
 }
+
+//menu de remover
+void menuMover(){
+    int op,cod;
+    TAG* pai_aux = NULL;
+    int cod_novo_pai = 0;
+    while(op!='0'){
+        setbuf(stdin,NULL);
+        system("clear");
+        for(int i=0;i<79;i++)
+            printf("%c",'#');
+        printf("\n\n");
+        printf(COLOR_YELLOW"Trabalho sobre Árvores de EDA - 2019.1\n\n"COLOR_RESET);
+        printf(COLOR_RED"Digite o valor do menu a baixo para: "COLOR_RESET);
+        printf(COLOR_GREEN"Remover um Nó\n\n"COLOR_RESET);
+        printf("1 - Para Mover\n");
+        printf("0 - Para retornar\n\n");
+        for(int i=0;i<79;i++)
+            printf("%c",'#');
+        printf(COLOR_BLUE"\n---> "COLOR_RESET);
+        scanf("%d",&op);
+        switch(op){
+            case 1:
+                printf("\nDigite o Código do Nó a ser Movido: ");
+                printf(COLOR_BLUE"\n---> "COLOR_RESET);
+                scanf("%d",&cod);
+                TAG *aux = busca(a,cod);
+                // acha o pai do nó que foi digitado
+                pai_aux = no_pai(a,a,cod);
+                if(aux){
+                  // se o nó tem filho e tem irmãos então temos que escolher quem será o novo pai
+                  TAG* t_novo_pai = NULL;
+                  // Vamor perguntar pro cara o ID do novo pai!
+                  while (!t_novo_pai && cod_novo_pai != -1) {
+                    printf("\nO novo pai pode ser um dos nós abaixo\n");
+                    imprimir_como_dir(a,1,cod);
+                    printf("------------\n");
+                    printf("\nDigite o Código do Novo Pai:");
+                    scanf("%d",&cod_novo_pai);
+
+                    if (cod_novo_pai != aux->cod) {
+                      t_novo_pai = busca(a,cod_novo_pai);
+                      if (!t_novo_pai && cod_novo_pai != -1) {
+                        printf(COLOR_RED"Código do novo pai dos filhos de %d não encontrado, digite o novo código ou -1 para voltar."COLOR_RESET,aux->cod);
+                      }
+                      // verifica se o novo pai não está na subárvore do nó que será removido
+                      if (aux->f) {
+                        TAG* no_na_sub = busca(aux->f, cod_novo_pai);
+                        if (no_na_sub) {
+                          t_novo_pai = NULL;
+                          printf(COLOR_RED"Código do novo pai NÃO pode ser descendente de %d."COLOR_RESET,aux->cod);
+                        }
+                      }
+                    } else {
+                      printf(COLOR_RED"Código novo pai não pode ser ele mesmo."COLOR_RESET);
+                    }
+                  }
+                  if (cod_novo_pai != -1) {
+                    mover_no(aux, pai_aux, t_novo_pai);
+                    // imprimir_status_arvore(t_novo_pai);
+                    // printf("\nAntes da remoção de %d.",cod);
+                    //printf("aaaaaa");
+                    //TAG* pai_aux = no_pai(a, a,cod);
+                    //printf("!dddddddd");
+                    //imprimir_status_arvore(aux);
+                    //imprimir_status_arvore(pai_aux);
+                    //imprimir_status_arvore(t_novo_pai);
+                    //imprime_semi_bonito(a);
+                    //imprime_semi_bonito(a);
+                  } else {
+                    printf("\nVocê não escolheu o novo pai.");
+                  }
+                } else {
+                  printf(COLOR_RED"\nO nó com o código "COLOR_GREEN"%d "COLOR_RED"não foi localizado!\n"COLOR_RESET,cod);
+                }
+                break;
+            case 0:
+                menu();
+                break;
+            default:
+                break;
+        }
+        printf("\nTecle "COLOR_YELLOW"ENTER"COLOR_RESET" para continuar\n\n");
+        for(int i=0;i<79;i++)
+            printf("%c",'#');
+        printf("\n");
+        printf(COLOR_BLUE"---> "COLOR_RESET);
+        setbuf(stdin,NULL);
+        getchar();
+        setbuf(stdin,NULL);
+    }
+}
 //menu de busca
 void menuBusca(){
     int op,cod;
@@ -595,6 +687,7 @@ int menu(){
         printf("5 - Editar\n");
         printf("6 - Gerar Árvore AVL\n");
         printf("7 - Gerar Árvore B\n");
+        printf("8 - Mover Nó da Árvore\n");
         printf("9 - Sobre o Grupo\n");
         printf("0 - Para sair\n\n");
         printf("\n");
@@ -657,6 +750,8 @@ int menu(){
             getchar();
             setbuf(stdin,NULL);
             break;
+        case 8:
+            menuMover();
         case 9:
             menuSobre();
             break;

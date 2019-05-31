@@ -417,6 +417,7 @@ void imprimir_como_dir(TAG *t, int nivel, int nao_imprimir) {
     if (tem_filhos(aux->f)) {
       imprimir_como_dir(aux,nivel+passo, nao_imprimir);
     } else {
+      if (aux->cod == nao_imprimir) return;
       for (int i = 0; i < nivel + passo; i++) {
         printf("-");
       }
@@ -585,6 +586,8 @@ void retira(TAG* t, TAG* pai, int cod, TAG* novo_pai) {
       if (t->f != NULL && t->i != NULL) {
         // aqui só vai entrar SE for passado o código do novo pai
         if (novo_pai != NULL) {
+          mover_no_remover(t, pai, novo_pai);
+          /*
           // achar o irmão antecessor
           TAG* no_anterior = NULL;
           TAG* aux = novo_pai->f;
@@ -620,7 +623,7 @@ void retira(TAG* t, TAG* pai, int cod, TAG* novo_pai) {
           } else {
             no_anterior->i = t->i;
           }
-
+          */
         } else {
           // achar o irmão antecessor
           TAG* no_anterior = NULL;
@@ -671,4 +674,100 @@ void retira(TAG* t, TAG* pai, int cod, TAG* novo_pai) {
         if (t->i)
           retira(t->i, pai, cod, novo_pai);
     }
+}
+
+void mover_no_remover(TAG* t, TAG* pai, TAG* novo_pai) {
+  // achar o irmão antecessor
+  TAG* no_anterior = NULL;
+  TAG* aux = novo_pai->f;
+  while (aux) {
+    no_anterior = aux;
+    aux = aux->i;
+  }
+
+  // AJUSTE O PONTEIROS DOS FILHOS
+  if (!no_anterior) {
+    // aponta o pai para o primeiro irmão
+    novo_pai->f = t->f;
+  } else {
+    no_anterior->i = t->f;
+  }
+
+  // ajustar a posição onde o nó estava
+  // achar o irmão antecessor
+  no_anterior = NULL;
+  aux = pai->f;
+  while (aux) {
+    if (aux->cod == t->cod) {
+      break;
+    }
+    no_anterior = aux;
+    aux = aux->i;
+  }
+
+  // AJUSTE O PONTEIROS DOS FILHOS
+  if (!no_anterior) {
+    // aponta o pai para o primeiro irmão
+    pai->f = t->i;
+  } else {
+    no_anterior->i = t->i;
+  }
+}
+
+void mover_no(TAG* t, TAG* pai, TAG* novo_pai) {
+  // achar o irmão antecessor
+  TAG* no_anterior = NULL;
+  TAG* aux = novo_pai->f;
+  while (aux) {
+    no_anterior = aux;
+    aux = aux->i;
+  }
+
+  // AJUSTE O PONTEIROS DOS FILHOS
+  if (!no_anterior) {
+    // aponta o pai para o primeiro irmão
+    novo_pai->f = t;
+  } else {
+    no_anterior->i = t;
+  }
+
+  // ajustar a posição onde o nó estava
+  // achar o irmão antecessor
+  no_anterior = NULL;
+  aux = pai->f;
+  while (aux) {
+    if (aux->cod == t->cod) {
+      break;
+    }
+    no_anterior = aux;
+    aux = aux->i;
+  }
+
+  // AJUSTE O PONTEIROS DOS FILHOS
+  if (!no_anterior) {
+    // aponta o pai para o primeiro irmão
+    pai->f = NULL;
+  } else {
+    no_anterior->i = NULL;
+  }
+}
+
+TAG* no_pai(TAG* t, TAG *pai, int cod) {
+  if (!t) {
+    return NULL;
+  }
+  if (t->cod == cod) {
+    return pai;
+  } else {
+    if (t->f) {
+      // pesquisa nos filhos e o pai será o próprio t
+      TAG* x = no_pai(t->f, t, cod);
+      if (x) return x;
+    }
+    // pesquisa nos irmãos e nesse caso o pai será o pai do nó atual
+    if (t->i) {
+      TAG* x = no_pai(t->i, pai, cod);
+      if (x) return x;
+    }
+  }
 }

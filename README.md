@@ -1,6 +1,6 @@
 # Trabalho Árvore Genérica
 
-## Estrutura de Pastas do Projeto
+## Estrutura de Pastas e Arquivos do Projeto
 
 ### :file_folder: Entradas
 
@@ -11,8 +11,7 @@ São arquivos de testes desenvolvidos com o objetivo de testar o projeto.
 São os arquivos utilizados para a automação dos testes.
 
 * :page_facing_up: **main_testes.c**: esse arquivo executa todos os testes implementados;
-* :page_facing_up: **testes.c**: programção de cada testes em funções
-* :page_facing_up: **testes.h**: cabeçalho das funções de teste.
+* :page_facing_up: **testes.c** e **testes.h**: responsáveis pela programção de cada um dos testes unitários de cada funções do sistema.
 
 ### :file_folder: Trabalho
 
@@ -24,9 +23,9 @@ São os arquivos principais do trabalho.
 * :page_facing_up: **tree.c** e **tree.h**: são os arquivos responsáveis pela implementação da árvore *GENÉRICA*;
 * :page_facing_up: **entrada.txt**: esse é o arquivo processado no momento da execução do programa para importar os nós iniciais da árvore genérica.
 
-## Lógica
+## Lógica da Árvore Genérica
 
-Cada nó da árvore é do tipo TAG (tipo árvore geométrica). Esse nó é composto por dois campos principais, f e i. O campo f indica se aquele nó tem filhos e o compo i indica se o nó tem irmão.
+Cada nó da árvore é do tipo TAG (Tipo Árvore Geométrica/Genérica). Esse nó é composto por dois campos principais, f e i. O campo f aponta para os filhos do nó, já o compo i aponta para os nós irmãos.
 
 Toda vez que um filho é inserido em um determinado nó, é necessário acessar o ponteiro filhos do nó e a partir dai ir navegado pelo ponteiro i que tem os irmãos.
 

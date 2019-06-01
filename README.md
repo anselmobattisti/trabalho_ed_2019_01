@@ -275,7 +275,9 @@ azul</em> indicam relação de irmandade enquanto as setas de cor <em style="col
 Nessa imagem podemos ver que 2, 3, 4 e 10 são filhos de 1. A seta de 1 para 2 é vermelha pois ele é o primeiro filho de 1. Os demais filhos de 1 tem no ponteiro filho o próximo filho de 1. "ideia espertinha essa não!".
 
 ```diff
-+ Para ficar ainda mais legal a exibição da árvore, adotamos a estratégia de colocar no formato do nó refletindo a figura geométrica que está armazenada nele! Então o nó 3 tem formato de trapézio pois ele é um trapézio!
++ Para ficar ainda mais legal a exibição da árvore, adotamos a estratégia de colocar no formato
++ do nó refletindo a figura geométrica que está armazenada nele! Então o
++ nó 3 tem formato de trapézio pois ele é um trapézio!
 ```
 
 ### Menu :two: 2 - Inserir

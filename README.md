@@ -2,11 +2,11 @@
 
 ## Estrutura de Pastas do Projeto
 
-### Entradas
+### :file_folder: Entradas
 
 São arquivos de testes desenvolvidos com o objetivo de testar o projeto.
 
-### Testes
+### :file_folder: Testes
 
 São os arquivos utilizados para a automação dos testes.
 

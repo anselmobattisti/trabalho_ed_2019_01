@@ -123,6 +123,8 @@ Os itens do menu principal do programa são:
 9 - Sobre o Grupo: quem fez o trabalho, e deu trabalho pra caramba!!!!
 0 - Para sair: antes de sair do programa é dado um *free* em cada um dos nós da árvore genérica.
 
+### Menu :1: Imprimir
+
 ## Definição do Trabalho Realizado
 
 Trabalho Computacional: implementação das funções de árvores genéricas no número de filhos, árvores n-árias, e no tipo de informação armazenada, testando com as seguintes figuras geométricas: círculo, quadrado, retângulo, trapézio e triângulo: deve ser permitido ao usuário do sistema:

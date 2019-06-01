@@ -27,7 +27,17 @@ São os arquivos principais do trabalho.
 
 Cada nó da árvore é do tipo TAG (Tipo Árvore Geométrica/Genérica). Esse nó é composto por dois campos principais, f e i. O campo f aponta para os filhos do nó, já o compo i aponta para os nós irmãos.
 
-Toda vez que um filho é inserido em um determinado nó, é necessário acessar o ponteiro filhos do nó e a partir dai ir navegado pelo ponteiro i que tem os irmãos.
+Sendo assim, em última instância uma árvore genérica pode ser considerada uma árvore binária com uma regra de formação onde, os filhos de um nó estão organizados da seguinte maneira.
+
+* O primeiro filho sempre está no ponteiro f;
+* O próximo irmão sempre está no ponteiro i;
+
+Assim, para navegar por todos os filhos de um nó X temos que primeiro acessar o ponteiro de x para f (x->f) e, em seguida navegar por (x->f->i) ou seja, todos os irmãos do primeiro filho.
+
+Uma visualização da árvore genérica pode ser vista na imagem abaixo.
+
+
+![Árvore de exemplo da professora](documentacao/arvore_professora.PNG)
 
 O nó abaixo possui 3 filhos. Para navegar por todos eles é necessário primeiro acessar a variável f e apartir do segundo elemento deve-se navegar pela lista de irmãos, uma vez que o segundo elemento pode ter filhos, logo, a variável f do primeiro filho representam os seus filhos e não os seus irmãos!
 

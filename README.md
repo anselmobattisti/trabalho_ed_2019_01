@@ -218,7 +218,7 @@ Total de nós: 10
 ----------------
 ```
 
-#### Menu :tree: Para Impressão da árvore generica
+#### Menu :three: Para Impressão da árvore generica
 
 Esse tipo de impressão deve ser lida da seguinte forma. Nós que possuem a mesma distância da margem esquerda da tela estão no mesmo nível hierárquico (não respeitando a relaçaõ de parentesco).
 

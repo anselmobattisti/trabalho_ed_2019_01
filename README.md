@@ -331,6 +331,41 @@ Lembrando que o nó 10 não tinha filhos, assim, o nó 25 será o primeiro filho
 
 <img src="documentacao/tela_4.PNG" width="30%" height="30%">
 
+
+
+
+### Menu :three: 3 - Buscar
+
+Esse menu permite que sejam realizadas buscas dentro da árvore genérica. A busca é feita através do **cod** do nó. Caso o **cod** não esteja na árvore é retornada uma mensagem de erro. No código fonte foram implementadas duas buscas, uma recursiva e a outra interativa/recursiva. Ambas retornam o mesmo resultado e optamos por deixar a função recursiva em utilização.
+
+O resultado pela busca do nó com **cod** igual a 25 é a seguinte.
+
+```
+Digite o Código da Busca:
+---> 25
+
++-------------------------------------------------+
+| Cod               : 25
+| Tipo              : Quadrado
+| Dimensões         : L: 25.00
+| N. Filhos         : 0
+| N. Descendentes   : 0
+| Área do Nó        : 625.00
+| Área Descendentes : 0.00
+| Área Total        : 625.00
+| Área Apenas Filhos: 0.00
++-------------------------------------------------+
+```
+
+4 - Remover: permite que a partir de um código **cod** seja removido um nó da árvore. Em linhas gerais a remoção de elementos que tenham filhos e irmãos depende da interação do usuário para definir onde os filhos serão alocados. Caso tenha apenas filhos então eles são alocados automaticamente para o pai do nó que está sendo removido.
+5 - Editar: permite que os dados de um deteminado nó sejam alterados;
+6 - Gerar Árvore AVL: converte a *arvore genérica* em uma árvore *AVL*.
+7 - Gerar Árvore B: converte a *arvore genérica* em uma árvore *B*.
+8 - Mover Nó da Árvore: permite que um nó (e seus descendentes) sejam movidos para outro pai;
+9 - Sobre o Grupo: quem fez o trabalho, e deu trabalho pra caramba!!!!
+0 - Para sair: antes de sair do programa é dado um *free* em cada um dos nós da árvore genérica.
+
+
 ## Descrição do Trabalho
 
 Trabalho Computacional: implementação das funções de árvores genéricas no número de filhos, árvores n-árias, e no tipo de informação armazenada, testando com as seguintes figuras geométricas: círculo, quadrado, retângulo, trapézio e triângulo: deve ser permitido ao usuário do sistema:

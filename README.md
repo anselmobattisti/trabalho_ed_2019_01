@@ -36,8 +36,7 @@ Assim, para navegar por todos os filhos de um nó X temos que primeiro acessar o
 
 Uma visualização da árvore genérica pode ser vista na imagem abaixo.
 
-
-![Árvore de exemplo da professora](documentacao/arvore_professora.PNG){:height="50%" width="50%"}
+<img src="documentacao/arvore_professora.PNG" width="50%" height="50%">
 
 O nó abaixo possui 3 filhos. Para navegar por todos eles é necessário primeiro acessar a variável f e apartir do segundo elemento deve-se navegar pela lista de irmãos, uma vez que o segundo elemento pode ter filhos, logo, a variável f do primeiro filho representam os seus filhos e não os seus irmãos!
 

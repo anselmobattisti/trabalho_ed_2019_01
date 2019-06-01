@@ -1,5 +1,20 @@
 # Trabalho Árvore Genérica
 
+## Estrutura de Pastas do Projeto
+
+### Entradas
+
+São arquivos de testes desenvolvidos com o objetivo de testar o projeto.
+
+### Testes
+
+São os arquivos utilizados para a automação dos testes.
+
+* main_testes.c: esse arquivo executa todos os testes implementados;
+* testes.c: programção de cada testes em funções
+* testes.h: cabeçalho das funções de teste
+
+
 ## Lógica
 
 Cada nó da árvore é do tipo TAG (tipo árvore geométrica). Esse nó é composto por dois campos principais, f e i. O campo f indica se aquele nó tem filhos e o compo i indica se o nó tem irmão.

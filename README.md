@@ -104,8 +104,24 @@ Para rodar o programa após a sua compilação basta executar
 ```
 ./prog
 ```
+O resultado da execução dos casos de teste deve ser uma tela mais ou menos como a da imagem abaixo.
 
 <img src="documentacao/tela_2.PNG" width="50%" height="50%">
+
+## Explicação das Funcionalidades do Trabalho
+
+Os itens do menu principal do programa são:
+
+1 - Imprimir: possui várias modalidades de exibição da árvores, sendo ela: formato hierárquico; formato de árvore binário; formato DOT; impressão dos dados de um único nó e seus filhos;
+2 - Inserir: permite que uma nova figura seja inserida na árvore;
+3 - Buscar: permite que a partir do código **cod** de uma figura seja possível encontrar um nó na árvore;
+4 - Remover: permite que a partir de um código **cod** seja removido um nó da árvore. Em linhas gerais a remoção de elementos que tenham filhos e irmãos depende da interação do usuário para definir onde os filhos serão alocados. Caso tenha apenas filhos então eles são alocados automaticamente para o pai do nó que está sendo removido.
+5 - Editar: permite que os dados de um deteminado nó sejam alterados;
+6 - Gerar Árvore AVL: converte a *arvore genérica* em uma árvore *AVL*.
+7 - Gerar Árvore B: converte a *arvore genérica* em uma árvore *B*.
+8 - Mover Nó da Árvore: permite que um nó (e seus descendentes) sejam movidos para outro pai;
+9 - Sobre o Grupo: quem fez o trabalho, e deu trabalho pra caramba!!!!
+0 - Para sair: antes de sair do programa é dado um *free* em cada um dos nós da árvore genérica.
 
 ## Definição do Trabalho Realizado
 

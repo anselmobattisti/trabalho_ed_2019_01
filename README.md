@@ -267,7 +267,8 @@ digraph  G {
 }
 ```
 
-Vale lembrar que as setas de cor <em style="color:blue">azul</em> indicam relação de irmandade enquanto as setas de cor <em style="color:red">vermelha</em> indicam relação de paternidade.
+Vale lembrar que as setas de cor <em style="color:blue">![#0000ff](https://placehold.it/15/0000ff/000000?text=+)
+azul</em> indicam relação de irmandade enquanto as setas de cor <em style="color:red">![#ff0000](https://placehold.it/15/ff0000/000000?text=+)vermelha</em> indicam relação de paternidade.
 
 
 

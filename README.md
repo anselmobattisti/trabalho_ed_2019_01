@@ -46,74 +46,65 @@ Um nó da árvore genérica é formado pelo arranjo de três *structs*. Essa org
 * TDADO: armazena o tipo da figura bem como o ponteiro para a figura além da área da figura;
 * TAG: nó autocontido em i (ponteiro para irmãos) e f (ponteiro para filhos), além do **cod** que é o identificados único da figura dentro da árvore e do TDADO que aponta para os ponteiros da figura.
 
-A impressão de um nó
-
-
-O nó abaixo possui 3 filhos. Para navegar por todos eles é necessário primeiro acessar a variável f e apartir do segundo elemento deve-se navegar pela lista de irmãos, uma vez que o segundo elemento pode ter filhos, logo, a variável f do primeiro filho representam os seus filhos e não os seus irmãos!
+A impressão de um nó em particular nos traz uma visão geral sobre a sua estrutura e a dos seus filhos. Abaixo temos a impressão do nó 1 da árvore genérica da imagem acima.
 
 ```
-===> PAI
-+----------------------+
-| Cod         : 1
-| Tipo        : qua
-| Filhos      : 3
-| Area        : 16.00
-| Area Filhos : 16.00
-| Area Total  : 32.00
-+-----------------------+
-
-===> Filho (1)
-
-+----------------------+
-| Cod         : 2
-| Tipo        : tra
-| Filhos      : 0
-| Area        : 6.00
-| Area Filhos : 0.00
-| Area Total  : 6.00
-+-----------------------+
-
-===> Filho (2)
-
-+----------------------+
-| Cod         : 3
-| Tipo        : qua
-| Filhos      : 0
-| Area        : 9.00
-| Area Filhos : 0.00
-| Area Total  : 9.00
-+-----------------------+
-
-===> Filho (3)
-
-+----------------------+
-| Cod         : 4
-| Tipo        : qua
-| Filhos      : 1
-| Area        : 1.00
-| Area Filhos : 16.00
-| Area Total  : 17.00
-+-----------------------+
++-------------------------------------------------+
+| Cod               : 1
+| Tipo              : Triângulo
+| Dimensões         : B: 3.00, A: 2.00
+| N. Filhos         : 4
+| N. Descendentes   : 9
+| Área do Nó        : 3.00
+| Área Descendentes : 101.30
+| Área Total        : 104.30
+| Área Apenas Filhos: 70.24
++-------------------------------------------------+
 ```
 
-## Compilar
+Os campos da impressão do nós são os seguintes:
+
+* **Cod**: é o código único de um elemento dentro da árvore;
+* **Tipo**: É o nome do tipo da imagem que está armazenada naquele nó;
+* **Dimensões**: Para cada tipo de dado as informações exibidas ~serão distintas;
+* **N. Filhos**: Representa o número de filhos que o nó possui;
+* **N. Descendentes**: É a soma de todos os nós que descentem diretamente dele. São seus filhos, netos, bisnetos e por ai vai!
+* **Área do Nó**: representa a área da figura geométrica que está contida no nó. É calculado no momento da inserção do nó e também nas futuras atualizações que a figura pode sofrer;
+* **Área Descendentes**: é a soma das áreas de todos os descendentes do nó;
+* **Área Total**: é a soma das áreas de todos os descendentes do nó somado com a área do próprio nó;
+* **Área Apenas Filhos**: é a soma das áreas de todos os filhos que o nó possui.
+
+## Como Compilar o Trabalho
+
+Para compilar o trabalho é necessário linkar todas as bibliotecas utilizadas na sua elaboração. A linha de comando abaixo deve ser executada dentro da pasta **trabalho**.
 
 ```
 gcc -o prog main.c tree.c avl.c arvb.c
 ```
 
-Para rodar o programa basta executar
+Para rodar o programa após a sua compilação basta executar
 
 ```
 ./prog
 ```
 
+O resultado da execução do programa deve ser uma tela mais ou menos como a da imagem abaixo.
+
+<img src="documentacao/tela_1.PNG" width="50%" height="50%">
+
+
 ## Casos de Teste
 
-Estão na pasta testes
+Para executar uma bateria de testes pré-programado acesse a pasta **testes** e compile o programa de testes.
 
 ```
 gcc -o prog main_testes.c ../tree.c ../avl.c testes.c ../arvb.c
+```
+
+Para rodar o programa após a sua compilação basta executar
+
+```
+./prog
 ```
 
 ## Escopo

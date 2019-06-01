@@ -270,7 +270,9 @@ digraph  G {
 Vale lembrar que as setas de cor <em style="color:blue">![#0000ff](https://placehold.it/15/0000ff/000000?text=+)
 azul</em> indicam relação de irmandade enquanto as setas de cor <em style="color:red">![#ff0000](https://placehold.it/15/ff0000/000000?text=+)vermelha</em> indicam relação de paternidade.
 
+<img src="documentacao/arvore_professora.PNG" width="30%" height="30%">
 
+Nessa imagem podemos ver que 2, 3, 4 e 10 são filhos de 1. A site de 1 para 2 é vermelha pois ele é oprimeiro filho de 1, os demais tem no ponteiro filho o próximo filho de 1. "ideia espertinha essa não!".
 
 
 Trabalho Computacional: implementação das funções de árvores genéricas no número de filhos, árvores n-árias, e no tipo de informação armazenada, testando com as seguintes figuras geométricas: círculo, quadrado, retângulo, trapézio e triângulo: deve ser permitido ao usuário do sistema:

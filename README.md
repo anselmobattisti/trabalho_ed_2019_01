@@ -97,9 +97,7 @@ O resultado da execução do programa deve ser uma tela mais ou menos como a da 
 
 Para executar uma bateria de testes pré-programado acesse a pasta **testes** e compile o programa de testes.
 
-```
-gcc -o prog main_testes.c ../tree.c ../avl.c testes.c ../arvb.c
-```
+```gcc -o prog main_testes.c ../trabalho/tree.c ../trabalho/avl.c testes.c ../trabalho/arvb.c```
 
 Para rodar o programa após a sua compilação basta executar
 
@@ -107,7 +105,9 @@ Para rodar o programa após a sua compilação basta executar
 ./prog
 ```
 
-## Escopo
+<img src="documentacao/tela_2.PNG" width="50%" height="50%">
+
+## Definição do Trabalho Realizado
 
 Trabalho Computacional: implementação das funções de árvores genéricas no número de filhos, árvores n-árias, e no tipo de informação armazenada, testando com as seguintes figuras geométricas: círculo, quadrado, retângulo, trapézio e triângulo: deve ser permitido ao usuário do sistema:
 

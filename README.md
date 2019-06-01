@@ -272,8 +272,64 @@ azul</em> indicam relação de irmandade enquanto as setas de cor <em style="col
 
 <img src="documentacao/arvore_professora.PNG" width="30%" height="30%">
 
-Nessa imagem podemos ver que 2, 3, 4 e 10 são filhos de 1. A site de 1 para 2 é vermelha pois ele é oprimeiro filho de 1, os demais tem no ponteiro filho o próximo filho de 1. "ideia espertinha essa não!".
+Nessa imagem podemos ver que 2, 3, 4 e 10 são filhos de 1. A seta de 1 para 2 é vermelha pois ele é o primeiro filho de 1. Os demais filhos de 1 tem no ponteiro filho o próximo filho de 1. "ideia espertinha essa não!".
 
+```diff
++ Para ficar ainda mais legal a exibição da árvore, adotamos a estratégia de colocar no formato do nó refletindo a figura geométrica que está armazenada nele! Então o nó 3 tem formato de trapézio pois ele é um trapézio!
+```
+
+### Menu :two: 2 - Inserir
+
+O menu inserir permite que novas figuras sejam inseridas na árvore genérica. Lembrando que toda manipulação é feita na árvore genérica, a AVL e a B são **novamente** geradas todas as vezes que são invocadas.
+
+Os itens do menu inserir são:
+```
+1 - Para Inserir um Quadrado
+2 - Para Inserir um Círculo
+3 - Para Inserir um Retângulo
+4 - Para Inserir um Triângulo
+5 - Para Inserir um Trapézio
+0 - Para retornar
+```
+
+Todas as opções tem o mesmo funcionamento. Primeiro o usuário precisa escolher qual figura ele quer inserir, em seguida ele deve informar o código do nó que será o pai da nova figura e por fim preencher os dados necessários para criar cada uma das figuras geométricas.
+
+Caso o usuário digite o código de um pai que não existe é exibida uma mensagem de alerta. Após a inserção de uma nova figura são exibidas as informações do nó PAI e as informações do nó da nova figura. Exemplo, caso seja inserido um quadrado com cod 25 e lado 25 e cujo pai é o nó 10 teremos a seguinte saida:
+
+```
+===> PAI
++-------------------------------------------------+
+| Cod               : 10
+| Tipo              : Triângulo
+| Dimensões         : B: 1.00, A: 2.00
+| N. Filhos         : 1
+| N. Descendentes   : 1
+| Área do Nó        : 1.00
+| Área Descendentes : 625.00
+| Área Total        : 626.00
+| Área Apenas Filhos: 625.00
++-------------------------------------------------+
+
+===> Filho (1)
+
++-------------------------------------------------+
+| Cod               : 25
+| Tipo              : Quadrado
+| Dimensões         : L: 25.00
+| N. Filhos         : 0
+| N. Descendentes   : 0
+| Área do Nó        : 625.00
+| Área Descendentes : 0.00
+| Área Total        : 625.00
+| Área Apenas Filhos: 0.00
++-------------------------------------------------+
+```
+
+Lembrando que o nó 10 não tinha filhos, assim, o nó 25 será o primeiro filho do nó 10. Podemos ver isso na imagem abaixo.
+
+<img src="documentacao/tela_4.PNG" width="30%" height="30%">
+
+## Descrição do Trabalho
 
 Trabalho Computacional: implementação das funções de árvores genéricas no número de filhos, árvores n-árias, e no tipo de informação armazenada, testando com as seguintes figuras geométricas: círculo, quadrado, retângulo, trapézio e triângulo: deve ser permitido ao usuário do sistema:
 
@@ -289,13 +345,3 @@ Trabalho Computacional: implementação das funções de árvores genéricas no 
 * 10 - OK as dimensões das figuras geométricas obedecerão ao seguinte padrão: (a) se a figura for um círculo ou um quadrado, uma única dimensão será informada (ou o raio, ou o lado, respectivamente); (b) se a figura for um triângulo ou um retângulo, as duas dimensões informadas serão a base e a altura; e, por fim, (c) se a figura for um trapézio, três dimensões serão informadas, nessa ordem, base menor, base maior e altura;
 * 11 - OK exemplo de arquivo fornecido. PORÉM, SEU CÓDIGO DEVE FUNCIONAR COM QUALQUER ENTRADA QUE SEGUE O PADRÃO SUPRACITADO;
 * 12 - A estrutura deve ser totalmente destruída pelo seu programa antes da execução ser finalizada;
-
-## Informações Importante
-
-## O que precisa fazer
-
-* Implementar um menu para chamar as funções (flavio)
-* Implementar o remover (andré)
-* Implementar a função que transforma essa árvore em uma árvore binária de busca pelos ids (tenho uma ideia)
-* Imprimir bonitinho (flavio)
--* Colocar na impressão dos nós os dados dos campos da figura geométrica e não apenas da área (anselmo)-

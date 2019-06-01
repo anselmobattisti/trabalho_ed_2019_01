@@ -123,7 +123,20 @@ Os itens do menu principal do programa são:
 9 - Sobre o Grupo: quem fez o trabalho, e deu trabalho pra caramba!!!!
 0 - Para sair: antes de sair do programa é dado um *free* em cada um dos nós da árvore genérica.
 
-### Menu :1: Imprimir
+### Menu :one: Imprimir
+
+O menu imprimir é composto por 4 opções, sendo elas:
+
+```
+1 - Para Impressão de status de um nó
+2 - Para Impressão da árvore completa (formato hierárquico)
+3 - Para Impressão da árvore generica
+4 - Para Gerar DOT para impressão externa (extra)
+0 - Para retornar
+```
+
+#### Menu :one: Para Impressão de status de um nó
+
 
 ## Definição do Trabalho Realizado
 

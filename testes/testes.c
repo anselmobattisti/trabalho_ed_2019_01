@@ -36,7 +36,13 @@ void processar_testes() {
   teste_area_total();
   teste_area_filhos();
   teste_dimensoes_tipo();
+
+  getchar();
+  teste_no_pai();
   teste_retira();
+  teste_retira_movendo();
+  teste_tem_irmao();
+  teste_mover();
 }
 
 void teste_num_descendentes() {
@@ -678,5 +684,168 @@ void teste_retira() {
   } else {
     printf(COLOR_RED"[ERRO] -> Não removou o CASO 6a.\n"COLOR_RESET);
   }
+
+}
+
+void teste_no_pai() {
+  TAG *b = NULL;
+  TAG *aux = NULL;
+  TAG* pai = NULL;
+
+  printf("\nNó Pai\n");
+
+  TAG* t = cria_arvore(1,cria_circulo(1));
+  insere_filho_circulo(t,2,1);
+  insere_filho_circulo(t,3,1);
+  insere_filho_circulo(t,4,1);
+  // filhos de 2
+  insere_filho_circulo(busca(t,2),5,1);
+  insere_filho_circulo(busca(t,2),7,1);
+
+  // filhos de 5
+  insere_filho_circulo(busca(t,5),6,1);
+
+  pai = no_pai(t,t,1);
+
+  if (pai->cod == 1) {
+    printf(COLOR_GREEN"[OK] -> Pai correto 1.\n"COLOR_RESET);
+  } else {
+    printf(COLOR_RED"[ERRO] -> Pai incorreto 1.\n"COLOR_RESET);
+  }
+
+  pai = no_pai(t,t,5);
+
+  if (pai->cod == 2) {
+    printf(COLOR_GREEN"[OK] -> Pai correto 2.\n"COLOR_RESET);
+  } else {
+    printf(COLOR_RED"[ERRO] -> Pai incorreto 2.\n"COLOR_RESET);
+  }
+
+  pai = no_pai(t,t,3);
+
+  if (pai->cod == 1) {
+    printf(COLOR_GREEN"[OK] -> Pai correto 3.\n"COLOR_RESET);
+  } else {
+    printf(COLOR_RED"[ERRO] -> Pai incorreto 3.\n"COLOR_RESET);
+  }
+
+}
+
+void teste_retira_movendo() {
+  TAG *c = NULL;
+  TAG *b = NULL;
+  TAG *aux = NULL;
+
+  printf("\nRetirar Elemento movendo\n");
+  TAG* t = cria_arvore(1,cria_circulo(1));
+  insere_filho_circulo(t,2,1);
+  insere_filho_circulo(t,3,1);
+  insere_filho_circulo(t,4,1);
+
+  // filhos de 2
+  insere_filho_circulo(busca(t,2),5,1);
+  insere_filho_circulo(busca(t,2),7,1);
+
+  // filhos de 5
+  insere_filho_circulo(busca(t,5),6,1);
+
+  retira(t,t,5,busca(t,4));
+
+  b = busca(t,4);
+  c = busca(t,5);
+  if (c == NULL && b->f->cod == 6) {
+    printf(COLOR_GREEN"[OK] -> Removeu e moveu corretamente 1.\n"COLOR_RESET);
+  } else {
+    printf(COLOR_RED"[ERRO] -> Não Removeu e moveu corretamente 1.\n"COLOR_RESET);
+  }
+
+  // VERIFICA PAI APÓS A MUDANÇA
+  c = no_pai(t,t,6);
+  if (c->cod == 4) {
+    printf(COLOR_GREEN"[OK] -> Moveu para o lugar certo.\n"COLOR_RESET);
+  } else {
+    printf(COLOR_RED"[ERRO] -> Não moveu para o lugar certo.\n"COLOR_RESET);
+  }
+}
+
+void teste_tem_irmao() {
+
+  printf("\nRetirar Elemento movendo\n");
+  TAG* t = cria_arvore(1,cria_circulo(1));
+  insere_filho_circulo(t,2,1);
+  insere_filho_circulo(t,3,1);
+  insere_filho_circulo(t,4,1);
+
+  // filhos de 2
+  insere_filho_circulo(busca(t,2),5,1);
+  insere_filho_circulo(busca(t,2),7,1);
+
+  int irmao_raiz = tem_irmaos(busca(t,1));
+  if (irmao_raiz == 0) {
+    printf(COLOR_GREEN"[OK] -> Raiz não deve ter irmãos.\n"COLOR_RESET);
+  } else {
+    printf(COLOR_RED"[ERRO] -> Raiz não deve ter irmãos.\n"COLOR_RESET);
+  }
+
+  int irmao_2 = tem_irmaos(busca(t,2));
+  if (irmao_2 == 1) {
+    printf(COLOR_GREEN"[OK] -> O nó dois tem irmão.\n"COLOR_RESET);
+  } else {
+    printf(COLOR_RED"[ERRO] -> O nó dois tem irmão mas não foram computados.\n"COLOR_RESET);
+  }
+}
+
+void teste_mover() {
+ TAG *c = NULL;
+  TAG *b = NULL;
+  TAG *aux = NULL;
+
+  printf("\nMover elemento de um lugar para outro\n");
+  TAG* t = cria_arvore(1,cria_circulo(1));
+  insere_filho_circulo(t,2,1);
+  insere_filho_circulo(t,3,1);
+  insere_filho_circulo(t,4,1);
+
+  // filhos de 2
+  insere_filho_circulo(busca(t,2),5,1);
+  insere_filho_circulo(busca(t,2),7,1);
+
+  // filhos de 5
+  insere_filho_circulo(busca(t,5),6,1);
+
+  int num_nos_antes = num_descendentes(t);
+  mover_no(busca(t,5),no_pai(t,t,5),busca(t,3));
+  int num_nos_depois = num_descendentes(t);
+
+  b = busca(t,2);
+  c = busca(t,3);
+  if (b->f == NULL && c->f->cod == 5) {
+    printf(COLOR_GREEN"[OK] -> Moveu corretamente.\n"COLOR_RESET);
+  } else {
+    printf(COLOR_RED"[ERRO] -> Moveu corretamente.\n"COLOR_RESET);
+  }
+
+  if (num_nos_antes == 7 && num_nos_depois == 7) {
+    printf(COLOR_GREEN"[OK] -> Não perdeu nós.\n"COLOR_RESET);
+  } else {
+    printf(COLOR_RED"[ERRO] -> Perdeu nós.\n"COLOR_RESET);
+  }
+
+  mover_no(busca(t,2),no_pai(t,t,2),busca(t,3));
+  c = no_pai(t,t,2);
+  if (c->cod == 1) {
+    printf(COLOR_GREEN"[OK] -> Não moveu!.\n"COLOR_RESET);
+  } else {
+    printf(COLOR_RED"[ERRO] -> Não devia ter movido.\n"COLOR_RESET);
+  }
+  //gerar_dot_arvore_generica(t);
+  mover_no(busca(t,5),no_pai(t,t,5),busca(t,3));
+  c = no_pai(t,t,5);
+  if (c->cod == 3) {
+    printf(COLOR_GREEN"[OK] -> Não moveu!.\n"COLOR_RESET);
+  } else {
+    printf(COLOR_RED"[ERRO] -> Não devia ter movido.\n"COLOR_RESET);
+  }
+
 
 }

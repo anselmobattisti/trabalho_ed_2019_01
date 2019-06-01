@@ -246,7 +246,7 @@ int tem_filhos(TAG *t) {
   return tem_filhos(t->i)+1;
 }
 
-int tem_irmaos(TAG *t) {
+int tem_irmaos(TAG* t) {
   if (!t->i) return 0;
   return 1;
 }
@@ -716,6 +716,21 @@ void mover_no_remover(TAG* t, TAG* pai, TAG* novo_pai) {
 }
 
 void mover_no(TAG* t, TAG* pai, TAG* novo_pai) {
+  // validar
+  // verificar se o novo pai não pertence a subarvore de T
+  TAG* no_na_sub = NULL;
+  no_na_sub = busca(t, novo_pai->cod);
+  if (no_na_sub) {
+    printf("\nCódigo do novo pai %d NÃO pode ser descendente de %d.\n",novo_pai->cod, t->cod);
+    return;
+  }
+
+  // verificar se o novo pai já não é o pai
+  if (pai->cod == novo_pai->cod) {
+    printf("\nO novo pai e o pai atual são os mesmos.\n");
+    return;
+  }
+
   // achar o irmão antecessor
   TAG* no_anterior = NULL;
   TAG* aux = novo_pai->f;

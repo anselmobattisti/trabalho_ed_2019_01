@@ -22,5 +22,9 @@ void teste_area_total();
 void teste_area_filhos();
 void teste_dimensoes_tipo();
 void teste_retira();
+void teste_retira_movendo();
+void teste_no_pai();
+void teste_tem_irmao();
 
 void processar_testes();
+void teste_mover();

@@ -36,6 +36,10 @@ Assim, para navegar por todos os filhos de um nó X temos que primeiro acessar o
 
 Uma visualização da árvore genérica pode ser vista na imagem abaixo.
 
+<center>
+  <strong>Figura 1</strong>
+</center>
+
 <img src="documentacao/arvore_professora.PNG" width="50%" height="50%">
 
 Na imagem acima, uma seta azul indica uma relação de irmandade entre os nós, já uma seta vermelha indica uma relação de paternidade entre os nós.
@@ -90,6 +94,10 @@ Para rodar o programa após a sua compilação basta executar
 
 O resultado da execução do programa deve ser uma tela mais ou menos como a da imagem abaixo.
 
+<center>
+  <strong>Figura 2</strong>
+</center>
+
 <img src="documentacao/tela_1.PNG" width="50%" height="50%">
 
 
@@ -105,6 +113,10 @@ Para rodar o programa após a sua compilação basta executar
 ./prog
 ```
 O resultado da execução dos casos de teste deve ser uma tela mais ou menos como a da imagem abaixo.
+
+<center>
+  <strong>Figura 3</strong>
+</center>
 
 <img src="documentacao/tela_2.PNG" width="50%" height="50%">
 
@@ -137,8 +149,128 @@ O menu imprimir é composto por 4 opções, sendo elas:
 
 #### Menu :one: Para Impressão de status de um nó
 
+Esse menu solicita que o usuário digite o **cod** do nó que ele está interessado em recuperar informações. Caso o **cod** digitado não exista na árvore será exibida uma mensasgem de erro. Caso o **cod** esteja na árvore então será exibido o status do nó e dos seus filhos. Caso seja impresso o nó **5** com base na *Figura 1* teremos o seguinte resultado.
 
-## Definição do Trabalho Realizado
+```
+===> PAI
++-------------------------------------------------+
+| Cod               : 5
+| Tipo              : Quadrado
+| Dimensões         : L: 3.00
+| N. Filhos         : 2
+| N. Descendentes   : 2
+| Área do Nó        : 9.00
+| Área Descendentes : 17.06
+| Área Total        : 26.06
+| Área Apenas Filhos: 17.06
++-------------------------------------------------+
+
+===> Filho (1)
+
++-------------------------------------------------+
+| Cod               : 7
+| Tipo              : Trapézio
+| Dimensões         : B1: 1.00, B2: 2.00, A: 3.00
+| N. Filhos         : 0
+| N. Descendentes   : 0
+| Área do Nó        : 4.50
+| Área Descendentes : 0.00
+| Área Total        : 4.50
+| Área Apenas Filhos: 0.00
++-------------------------------------------------+
+
+===> Filho (2)
+
++-------------------------------------------------+
+| Cod               : 8
+| Tipo              : Círculo
+| Dimensões         : R: 2.00
+| N. Filhos         : 0
+| N. Descendentes   : 0
+| Área do Nó        : 12.56
+| Área Descendentes : 0.00
+| Área Total        : 12.56
+| Área Apenas Filhos: 0.00
++-------------------------------------------------+
+```
+
+Nesse caso o nó possui dois filhos que são o 7 e o 9 e esses nós não possuem filhos.
+
+#### Menu :two: Para Impressão da árvore completa (formato hierárquico)
+
+Esse tipo de impressão permite que seja visualizada todos os nós da árvore bem como a relação de parentesco entre eles. Esse tipo de exibição é adotada em outras partes do sistema, como por exemplo no remover e no mover onde é necessário que outro nó seja escolhido.
+
+```
+Árvore Completa
+----------------
+-> 1 (Triângulo,3.00)
+---> 2 (Retângulo,9.00)
+-----> 6 (Retângulo,9.00)
+---> 3 (Trapézio,3.00)
+---> 4 (Círculo,50.24)
+-----> 5 (Quadrado,9.00)
+-------> 7 (Trapézio,9.00)
+-------> 8 (Círculo,9.00)
+-----> 9 (Quadrado,50.24)
+---> 10 (Triângulo,3.00)
+----------------
+Total de nós: 10
+----------------
+```
+
+#### Menu :tree: Para Impressão da árvore generica
+
+Esse tipo de impressão deve ser lida da seguinte forma. Nós que possuem a mesma distância da margem esquerda da tela estão no mesmo nível hierárquico (não respeitando a relaçaõ de parentesco).
+
+```
+------->6
+---->2
+------->3
+---------------->7
+------------------->8
+------------->5
+---------------->9
+---------->4
+------------->10
+->1
+```
+
+É interessante notar o desbalanceamento natural da árvore genérica o que torna a recuperação de uma informação em seu interior mais custosa.
+
+#### Menu :four: Para Gerar DOT para impressão externa (extra)
+
+A fim de facilitar o processo de visualização da árvore genérica,criamos um mecanismo para exportar a árvore em formado string no formato DOT. O formado DOT é um padrão descritivo de imagens, em particular ele permite a geração de imagens como a **Figura 1**.
+
+Existe um visualizados web http://www.webgraphviz.com/ que pode ser usado para converter a string em formado DOT para uma imagem. Abaixo um trecho da string DOT da **Figura 1**
+
+```
+digraph  G {
+  1[shape=triangle]
+  2[shape=rect]
+  1 -> 2  [color="red"];
+  3[shape=trapezium]
+  2 -> 3  [color="blue"];
+  4[shape=circle]
+  3 -> 4  [color="blue"];
+  10[shape=triangle]
+  4 -> 10  [color="blue"];
+  5[shape=square]
+  4 -> 5  [color="red"];
+  9[shape=square]
+  5 -> 9  [color="blue"];
+  7[shape=trapezium]
+  5 -> 7  [color="red"];
+  8[shape=circle]
+  7 -> 8  [color="blue"];
+  6[shape=rect]
+  2 -> 6  [color="red"];
+}
+```
+
+Vale lembrar que as setas de cor <em style="color:blue">azul</em> indicam relação de irmandade enquanto as setas de cor <em style="color:red">vermelha</em> indicam relação de paternidade.
+
+
+
 
 Trabalho Computacional: implementação das funções de árvores genéricas no número de filhos, árvores n-árias, e no tipo de informação armazenada, testando com as seguintes figuras geométricas: círculo, quadrado, retângulo, trapézio e triângulo: deve ser permitido ao usuário do sistema:
 

@@ -385,6 +385,36 @@ Para implementar esse caso vamos inserir em nossa árvore dois novos nós, o pai
 
 <img src="documentacao/tela_7.PNG" width="30%" height="30%">
 
+#### Caso 3, o nó tem filhos mas tem irmão.
+
+Nesse cenário adotamos uma estratégia automática de posicionamento dos descendentes do elemento que está sendo removido. Para testar esse caso vamos inserir um filho para o nó 6, esse filho terá o **cod** 40.
+
+Nesse cenário optamos por realizar a seguinte operação, o filho de 6 será alocado como filho do seu pai, ou seja, o avó está cuidando do neto. Caso o avo não tenha outros filhos então o ponteiro f do pai apontará pra o filho do nó que está sendo removido, caso o pai já tenha filhos então o filho do nó que está sendo removido será inserido dentro do último filho do nó pai.
+
+Ou seja, se removermos o nó 6 da figura anterior o nó 40 irá entrar como nó irmão de 10. Caso seja removido o nó 6 então ele será alocado como o primeiro filho de 2. Como pode ser visto na figura abaixo.
+<img src="documentacao/tela_8.PNG" width="30%" height="30%">
+
+
+#### Caso 4, o nó tem filhos e tem irmão.
+
+Por fim chegamos ao caso mais complexo onde o nó removido tem filhos e irmãos! Nesse caso o usuário terá que escolher qual será o novo nó pai do nó removido. Vale ressaltar que o novo nó pai NÃO pode ser um descendente do nó que está sendo removido!
+
+Com base na figura anterior vamos remover o nó 5. Nesse caso teremos que optar por colocar o nó 5 em outro nó que não seja seu descendente. Nesse caso temos várias opções, sendo elas:
+
+```
+O novo pai pode ser um dos nós abaixo
+-> 1 (Triângulo,3.00)
+---> 2 (Retângulo,9.00)
+-----> 40 (Quadrado,9.00)
+---> 3 (Trapézio,3.00)
+---> 4 (Círculo,50.24)
+---> 10 (Triângulo,3.00)
+```
+
+A informação gerada acima é gerada automaticamente pelo sistema para ajudar o usuário a escolher qual será o novo nó pai do nó 5. Vejam que não estão sendo exibido nem o 5 nem nenhum de seus descendentes. Para dar andamento vamos supor que o novo nó pai dos filhos de seja o nó 10. Sendo assim o resultado da nossa remoção pode ser vido na figura abaixo.
+
+<img src="documentacao/tela_9.PNG" width="30%" height="30%">
+
 
 5 - Editar: permite que os dados de um deteminado nó sejam alterados;
 6 - Gerar Árvore AVL: converte a *arvore genérica* em uma árvore *AVL*.

@@ -291,6 +291,7 @@ char* nome_tipo_grafico(int tipo) {
       return "trapezium";
       break;
     default:
+      return "erro";
       break;
   }
 }
@@ -487,6 +488,8 @@ void gerar_dot_arvore_generica(TAG* t) {
   printf("Para visualizar acesse: http://www.webgraphviz.com/ e cole as linhas abaixo.\n");
   printf("-----------------------\n\n");
   printf("digraph  G {  subgraph cluster_legend { {rank=cluster_legend}label = \"Legenda\";N1 [shape=square]N2 [shape=square]I  [shape=square]F  [shape=square]{ rank=same N1 F}{ rank=same N2 I}N1->F [label=\"  Pai\" color=\"red\"]N2->I [label=\"  Irmão\" color=\"blue\"]}\n");
+
+  printf("\n%d[shape=%s]",t->cod,nome_tipo_grafico(t->fig->tipo));
   gerar_dot_arvore_generica_no(t->f, t->cod, 0);
   printf("\n}\n\n\n");
 }
@@ -500,9 +503,9 @@ void gerar_dot_arvore_generica_no(TAG* t, int pai, int tipo) {
   if (!tipo)
     cor = "[color=\"red\"];";
 
-  printf("%d[shape=%s]\n",t->cod,nome_tipo_grafico(t->fig->tipo));
+  printf("\n%d[shape=%s]",t->cod,nome_tipo_grafico(t->fig->tipo));
 
-  printf("%d -> %d  %s \n",pai, t->cod,cor);
+  printf("\n%d -> %d  %s",pai, t->cod,cor);
 
   gerar_dot_arvore_generica_no(t->i, t->cod, 1);
   gerar_dot_arvore_generica_no(t->f, t->cod, 0);

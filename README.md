@@ -280,7 +280,7 @@ Nessa imagem podemos ver que 2, 3, 4 e 10 são filhos de 1. A seta de 1 para 2 �
 + nó 3 tem formato de trapézio pois ele é um trapézio!
 ```
 
-### Menu :two: 2 - Inserir
+### Menu :two: Inserir
 
 O menu inserir permite que novas figuras sejam inseridas na árvore genérica. Lembrando que toda manipulação é feita na árvore genérica, a AVL e a B são **novamente** geradas todas as vezes que são invocadas.
 
@@ -331,10 +331,7 @@ Lembrando que o nó 10 não tinha filhos, assim, o nó 25 será o primeiro filho
 
 <img src="documentacao/tela_4.PNG" width="30%" height="30%">
 
-
-
-
-### Menu :three: 3 - Buscar
+### Menu :three: Buscar
 
 Esse menu permite que sejam realizadas buscas dentro da árvore genérica. A busca é feita através do **cod** do nó. Caso o **cod** não esteja na árvore é retornada uma mensagem de erro. No código fonte foram implementadas duas buscas, uma recursiva e a outra interativa/recursiva. Ambas retornam o mesmo resultado e optamos por deixar a função recursiva em utilização.
 
@@ -357,7 +354,38 @@ Digite o Código da Busca:
 +-------------------------------------------------+
 ```
 
-4 - Remover: permite que a partir de um código **cod** seja removido um nó da árvore. Em linhas gerais a remoção de elementos que tenham filhos e irmãos depende da interação do usuário para definir onde os filhos serão alocados. Caso tenha apenas filhos então eles são alocados automaticamente para o pai do nó que está sendo removido.
+### Menu :four: Remover
+
+Permite que a partir de um código **cod** seja removido um nó da árvore. Em linhas gerais a remoção de elementos que tenham filhos e irmãos depende da interação do usuário para definir onde os filhos serão alocados. Caso tenha apenas filhos então eles são alocados automaticamente para o pai do nó que está sendo removido.
+
+```diff
+- O nó raiz não pode ser removido!
+```
+
+Abaixo serão executados diversos testes de remoção. A mesma árvore será usada em todos os testes e a próxima remoção será realizada com base na anterior.
+
+#### Caso 1, o nó não tem nem filho nem irmão.
+
+Esse é o caso é o mais simples. Por exemplo supondo que o n´[o removido serja o 25, se removermos ele o que será feito é setar como NULL o ponteiro f do nó 10.
+
+O resultado dessa remoção pode ser visto abaixo.
+
+<img src="documentacao/tela_5.PNG" width="30%" height="30%">
+
+#### Caso 2, o nó não tem filhos mas tem irmão.
+
+Esse é o caso do nó 7. Se removermos o nó 7 terá que ser alterado o ponteiro filho do nó 5 (que é o pai de 7) para o irmão de 7 que é o 8.
+
+O resultado dessa remoção pode ser visto abaixo.
+<img src="documentacao/tela_6.PNG" width="30%" height="30%">
+
+A situação é um pouco diferente caso o nó removido não seja o primeiro filho, mas um dos filhos intermediários ou até mesmo o último filho, nesse caso o que deve ser alterado é o ponteiro *i* do irmão anterior para que esse agora para o irmão do nó que será removido.
+
+Para implementar esse caso vamos inserir em nossa árvore dois novos nós, o pai desses elementos serão o nó 4. Os elementos 11 e 12 serão inseridos, assim, os filhos de 4 serão 5->9->11->12 e após isso iremos remover o nó 11. Sendo assim o nó que sofrerá a alteração em seus ponteiros será o nó 9 cujo irmão agora não mais será o 11 mas sim o 12.
+
+<img src="documentacao/tela_7.PNG" width="30%" height="30%">
+
+
 5 - Editar: permite que os dados de um deteminado nó sejam alterados;
 6 - Gerar Árvore AVL: converte a *arvore genérica* em uma árvore *AVL*.
 7 - Gerar Árvore B: converte a *arvore genérica* em uma árvore *B*.

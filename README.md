@@ -97,9 +97,9 @@ O resultado da execução do programa deve ser uma tela mais ou menos como a da 
 <center>
   <strong>Figura 2</strong>
 </center>
-
+<hr/>
 <img src="documentacao/tela_1.PNG" width="50%" height="50%">
-
+<hr/>
 
 ## Casos de Teste
 
@@ -117,8 +117,9 @@ O resultado da execução dos casos de teste deve ser uma tela mais ou menos com
 <center>
   <strong>Figura 3</strong>
 </center>
-
+<hr/>
 <img src="documentacao/tela_2.PNG" width="50%" height="50%">
+<hr/>
 
 ## Explicação das Funcionalidades do Trabalho
 
@@ -329,7 +330,9 @@ Caso o usuário digite o código de um pai que não existe é exibida uma mensag
 
 Lembrando que o nó 10 não tinha filhos, assim, o nó 25 será o primeiro filho do nó 10. Podemos ver isso na imagem abaixo.
 
+<hr/>
 <img src="documentacao/tela_4.PNG" width="30%" height="30%">
+<hr/>
 
 ### Menu :three: Buscar
 
@@ -370,20 +373,27 @@ Esse é o caso é o mais simples. Por exemplo supondo que o n´[o removido serja
 
 O resultado dessa remoção pode ser visto abaixo.
 
+<hr/>
 <img src="documentacao/tela_5.PNG" width="30%" height="30%">
+<hr/>
 
 #### Caso 2, o nó não tem filhos mas tem irmão.
 
 Esse é o caso do nó 7. Se removermos o nó 7 terá que ser alterado o ponteiro filho do nó 5 (que é o pai de 7) para o irmão de 7 que é o 8.
 
 O resultado dessa remoção pode ser visto abaixo.
+
+<hr/>
 <img src="documentacao/tela_6.PNG" width="30%" height="30%">
+<hr/>
 
 A situação é um pouco diferente caso o nó removido não seja o primeiro filho, mas um dos filhos intermediários ou até mesmo o último filho, nesse caso o que deve ser alterado é o ponteiro *i* do irmão anterior para que esse agora para o irmão do nó que será removido.
 
 Para implementar esse caso vamos inserir em nossa árvore dois novos nós, o pai desses elementos serão o nó 4. Os elementos 11 e 12 serão inseridos, assim, os filhos de 4 serão 5->9->11->12 e após isso iremos remover o nó 11. Sendo assim o nó que sofrerá a alteração em seus ponteiros será o nó 9 cujo irmão agora não mais será o 11 mas sim o 12.
 
+<hr/>
 <img src="documentacao/tela_7.PNG" width="30%" height="30%">
+<hr/>
 
 #### Caso 3, o nó tem filhos mas tem irmão.
 
@@ -392,7 +402,10 @@ Nesse cenário adotamos uma estratégia automática de posicionamento dos descen
 Nesse cenário optamos por realizar a seguinte operação, o filho de 6 será alocado como filho do seu pai, ou seja, o avó está cuidando do neto. Caso o avo não tenha outros filhos então o ponteiro f do pai apontará pra o filho do nó que está sendo removido, caso o pai já tenha filhos então o filho do nó que está sendo removido será inserido dentro do último filho do nó pai.
 
 Ou seja, se removermos o nó 6 da figura anterior o nó 40 irá entrar como nó irmão de 10. Caso seja removido o nó 6 então ele será alocado como o primeiro filho de 2. Como pode ser visto na figura abaixo.
+
+<hr/>
 <img src="documentacao/tela_8.PNG" width="30%" height="30%">
+<hr/>
 
 
 #### Caso 4, o nó tem filhos e tem irmão.

@@ -4,7 +4,6 @@
 #include "tree.h"
 #include "avl.h"
 #include "arvb.h"
-#include "./testes/testes.h"
 
 #define COLOR_RED     "\x1b[31m"
 #define COLOR_GREEN   "\x1b[32m"

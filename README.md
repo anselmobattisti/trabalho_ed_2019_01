@@ -10,10 +10,19 @@ São arquivos de testes desenvolvidos com o objetivo de testar o projeto.
 
 São os arquivos utilizados para a automação dos testes.
 
-* :page_facing_up: main_testes.c: esse arquivo executa todos os testes implementados;
-* :page_facing_up: testes.c: programção de cada testes em funções
-* :page_facing_up: testes.h: cabeçalho das funções de teste
+* :page_facing_up: **main_testes.c**: esse arquivo executa todos os testes implementados;
+* :page_facing_up: **testes.c**: programção de cada testes em funções
+* :page_facing_up: **testes.h**: cabeçalho das funções de teste.
 
+### :file_folder: Trabalho
+
+São os arquivos principais do trabalho.
+
+* :page_facing_up: **arbv.c** e **arbv.h**: são os arquivos responsáveis pela implementação da árvore B;
+* :page_facing_up: **avl.c** e **avl.h**: são os arquivos responsáveis pela implementação da árvore AVL;
+* :page_facing_up: **main.c**: programa principal, trata da importação, menus e chamadas da funções;
+* :page_facing_up: **tree.c** e **tree.h**: são os arquivos responsáveis pela implementação da árvore *GENÉRICA*;
+* :page_facing_up: **entrada.txt**: esse é o arquivo processado no momento da execução do programa para importar os nós iniciais da árvore genérica.
 
 ## Lógica
 

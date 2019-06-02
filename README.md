@@ -531,10 +531,20 @@ Integrantes do grupo:
 
 Antes de sair do programa é dado um *free* em cada um dos nós da árvore genérica.
 
+### Menu Exportar
+
+Gera uma string de saída no mesmo formado do arquivo de entrada. A string é gerada com base na árvore que está na memória do programa.
+
 ### Menu Easter Egg 51
 
 Executa todos os casos de teste do sistema.
 
+## O que podemos fazer para melhorar
+
+* busca por tipo e por tamanho das figuras, hoje só tem por código
+* colocar dentro da árvore B o ponteiro para o nó da árvore genérica (não sei se ela espera isso, pq na árvore AVL foi implementado)
+* ordenar as figuras por tamanho ou ainda por tipo
+* fazer um relatório do tipo 10% das figuras são círculos, (bi de imagens)
 
 ## Descrição do Trabalho
 

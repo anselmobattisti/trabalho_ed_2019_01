@@ -381,7 +381,7 @@ Esse é o caso é o mais simples. Por exemplo: supondo que o nó removido seja o
 O resultado dessa remoção pode ser visto abaixo.
 
 <hr/>
-<img src="documentacao/tela_5.PNG" width="30%" height="30%">
+<img src="documentacao/tela_5.PNG" width="15%" height="15%">
 <hr/>
 
 #### Caso 2: o nó não tem filhos mas tem irmão.

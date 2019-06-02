@@ -1,5 +1,7 @@
 # Trabalho Árvore Genérica
 
+Data da nossa apresentação: 14/06 às 11:50h - G03
+
 ## Estrutura de Pastas e Arquivos do Projeto
 
 ### :file_folder: Entradas

@@ -515,6 +515,8 @@ void destruir_arvore(TAG* t){
   if(t){
     destruir_arvore(t->f);
     destruir_arvore(t->i);
+    free(t->fig->fig);
+    free(t->fig);
     free(t);
   }
 }

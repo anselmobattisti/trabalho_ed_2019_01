@@ -82,8 +82,10 @@ Os campos da impressão do nós são os seguintes:
 
 Para compilar o trabalho é necessário linkar todas as bibliotecas utilizadas na sua elaboração. A linha de comando abaixo deve ser executada dentro da pasta **trabalho**.
 
+É necessário rodar com o testes.c para poder executar o 51 e ver o resultado dos testes
+
 ```
-gcc -o prog main.c tree.c avl.c arvb.c
+gcc -o prog main.c tree.c avl.c arvb.c ../testes/testes.c
 ```
 
 Para rodar o programa após a sua compilação basta executar
@@ -426,15 +428,91 @@ O novo pai pode ser um dos nós abaixo
 
 A informação gerada acima é gerada automaticamente pelo sistema para ajudar o usuário a escolher qual será o novo nó pai do nó 5. Vejam que não estão sendo exibido nem o 5 nem nenhum de seus descendentes. Para dar andamento vamos supor que o novo nó pai dos filhos de seja o nó 10. Sendo assim o resultado da nossa remoção pode ser vido na figura abaixo.
 
+<hr/>
 <img src="documentacao/tela_9.PNG" width="30%" height="30%">
+<hr/>
+
+### Menu :five: Remover
+
+Permite que os dados de um deteminado nó sejam alterados. O código do nó não pode ser alterado, os dados que são modificados são tipo da figura e as suas informações.
+
+Vamos supor que quermeos modificar o nó cujo **cod** é igual a 10. Ao solicitar a edição será solicitado que o usuário escolha a nova figura geométrica que será associada ao nó 10.
+
+```
+Digite o Código da Busca:
+---> 10
+
++-------------------------------------------------+
+| Cod               : 10
+| Tipo              : Triângulo
+| Dimensões         : B: 1.00, A: 2.00
+| N. Filhos         : 0
+| N. Descendentes   : 0
+| Área do Nó        : 1.00
+| Área Descendentes : 0.00
+| Área Total        : 1.00
+| Área Apenas Filhos: 0.00
++-------------------------------------------------+
+
+Escolha uma das opções
+
+1 - Alterar para um Quadrado
+2 - Alterar para um Círculo
+3 - Alterar para um Retângulo
+4 - Alterar para um Triângulo
+5 - Alterar para um Trapézio
+0 - Para retornar
+
+---> 1
+
+Digite o Lado do Quadrado:
+---> 58
+
+===> PAI
++-------------------------------------------------+
+| Cod               : 10
+| Tipo              : Quadrado
+| Dimensões         : L: 58.00
+| N. Filhos         : 0
+| N. Descendentes   : 0
+| Área do Nó        : 3364.00
+| Área Descendentes : 0.00
+| Área Total        : 3364.00
+| Área Apenas Filhos: 0.00
++-------------------------------------------------+
+
+```
+
+Agora o nó 10 que era um triângulo virou um quadrado cujo lado é igual a 58 e sua área é igual a 3364.00.
 
 
-5 - Editar: permite que os dados de um deteminado nó sejam alterados;
-6 - Gerar Árvore AVL: converte a *arvore genérica* em uma árvore *AVL*.
-7 - Gerar Árvore B: converte a *arvore genérica* em uma árvore *B*.
-8 - Mover Nó da Árvore: permite que um nó (e seus descendentes) sejam movidos para outro pai;
-9 - Sobre o Grupo: quem fez o trabalho, e deu trabalho pra caramba!!!!
-0 - Para sair: antes de sair do programa é dado um *free* em cada um dos nós da árvore genérica.
+### Menu :six: Gerar Árvore AVL
+
+Converte a *arvore genérica* em uma árvore *AVL*.
+
+### Menu :seven: Gerar Árvore B
+
+Converte a *arvore genérica* em uma árvore *B*.
+
+### Menu :eight: Mover
+
+Permite que um nó (e seus descendentes) sejam movidos para outro pai;
+
+### Menu :nine: Sobre
+
+Integrantes do grupo:
+
+* Andre Montevecchi
+* Anselmo Battisti
+* Flávio Miranda de Farias
+
+### Menu :zero: Sair
+
+Antes de sair do programa é dado um *free* em cada um dos nós da árvore genérica.
+
+### Menu Easter Egg 51
+
+
 
 
 ## Descrição do Trabalho

@@ -127,6 +127,7 @@ O resultado da execução dos casos de teste deve ser uma tela mais ou menos com
 
 Os itens do menu principal do programa são:
 
+```
 1 - Imprimir: possui várias modalidades de exibição da árvores, sendo ela: formato hierárquico; formato de árvore binário; formato DOT; impressão dos dados de um único nó e seus filhos;
 2 - Inserir: permite que uma nova figura seja inserida na árvore;
 3 - Buscar: permite que a partir do código **cod** de uma figura seja possível encontrar um nó na árvore;
@@ -136,7 +137,9 @@ Os itens do menu principal do programa são:
 7 - Gerar Árvore B: converte a *arvore genérica* em uma árvore *B*.
 8 - Mover Nó da Árvore: permite que um nó (e seus descendentes) sejam movidos para outro pai;
 9 - Sobre o Grupo: quem fez o trabalho, e deu trabalho pra caramba!!!!
+10 - Exportar
 0 - Para sair: antes de sair do programa é dado um *free* em cada um dos nós da árvore genérica.
+```
 
 ### Menu :one: Imprimir
 
@@ -336,7 +339,7 @@ Lembrando que o nó 10 não tinha filhos, assim, o nó 25 será o primeiro filho
 <img src="documentacao/tela_4.PNG" width="30%" height="30%">
 <hr/>
 
-### Menu :three: Buscar
+### Menu :three: Buscar :mag:
 
 Esse menu permite que sejam realizadas buscas dentro da árvore genérica. A busca é feita através do **cod** do nó. Caso o **cod** não esteja na árvore é retornada uma mensagem de erro. No código fonte foram implementadas duas buscas, uma recursiva e a outra interativa/recursiva. Ambas retornam o mesmo resultado e optamos por deixar a função recursiva em utilização.
 
@@ -432,7 +435,7 @@ A informação gerada acima é gerada automaticamente pelo sistema para ajudar o
 <img src="documentacao/tela_9.PNG" width="30%" height="30%">
 <hr/>
 
-### Menu :five: Remover
+### Menu :five: Editar :pencil:
 
 Permite que os dados de um deteminado nó sejam alterados. O código do nó não pode ser alterado, os dados que são modificados são tipo da figura e as suas informações.
 

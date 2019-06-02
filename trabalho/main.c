@@ -770,6 +770,7 @@ int menu(){
             menuSobre();
             break;
         case 51:
+            system("clear");
             processar_testes();
             break;
         case 10:

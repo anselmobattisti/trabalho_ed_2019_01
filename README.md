@@ -136,8 +136,8 @@ Os itens do menu principal do programa são:
 6 - Gerar Árvore AVL: converte a *arvore genérica* em uma árvore *AVL*.
 7 - Gerar Árvore B: converte a *arvore genérica* em uma árvore *B*.
 8 - Mover Nó da Árvore: permite que um nó (e seus descendentes) sejam movidos para outro pai;
-9 - Sobre o Grupo: quem fez o trabalho, e deu trabalho pra caramba!!!!
-10 - Exportar
+9 - Sobre o Grupo: quem fez o trabalho, e deu trabalho pra caramba!!!!;
+10 - Exportar: gera a partir da árvore genérica em memória uma string igual a utilizada pelo arquivo de importação;
 0 - Para sair: antes de sair do programa é dado um *free* em cada um dos nós da árvore genérica.
 ```
 

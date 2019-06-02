@@ -152,3 +152,8 @@ TAG* altera_filho_trapezio(TAG *t, int cod, float b1, float b2, float h);
 Dado um nó encontra quem é o seu pai;
 */
 TAG* no_pai(TAG* t, TAG *pai, int cod);
+
+/*
+Gera a árvore atual no mesmo formato da importação
+*/
+void export_nodes(TAG* t, TAG* pai);

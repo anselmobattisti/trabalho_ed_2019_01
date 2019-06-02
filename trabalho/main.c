@@ -693,16 +693,17 @@ int menu(){
         printf(COLOR_YELLOW"Trabalho sobre Árvores de EDA - 2019.1\n\n"COLOR_RESET);
         printf(COLOR_RED"Digite o valor do menu a baixo para: "COLOR_RESET);
         printf(COLOR_GREEN"Árvore Genérica\n\n"COLOR_RESET);
-        printf("1 - Imprimir\n");
-        printf("2 - Inserir\n");
-        printf("3 - Buscar\n");
-        printf("4 - Remover\n");
-        printf("5 - Editar\n");
-        printf("6 - Gerar Árvore AVL\n");
-        printf("7 - Gerar Árvore B\n");
-        printf("8 - Mover Nó da Árvore\n");
-        printf("9 - Sobre o Grupo\n");
-        printf("0 - Para sair\n\n");
+        printf("  1 - Imprimir\n");
+        printf("  2 - Inserir\n");
+        printf("  3 - Buscar\n");
+        printf("  4 - Remover\n");
+        printf("  5 - Editar\n");
+        printf("  6 - Gerar Árvore AVL\n");
+        printf("  7 - Gerar Árvore B\n");
+        printf("  8 - Mover Nó da Árvore\n");
+        printf("  9 - Sobre o Grupo\n");
+        printf(" 10 - Exportar\n");
+        printf("  0 - Para sair\n\n");
         printf("\n");
         for(int i=0;i<79;i++)
             printf("%c",'#');
@@ -771,6 +772,14 @@ int menu(){
         case 51:
             processar_testes();
             break;
+        case 10:
+          system("clear");
+          printf(COLOR_GREEN"Árvore exporta no mesmo formato do arquivo de entrada\n\n"COLOR_RESET);
+          setbuf(stdin,NULL);
+          export_nodes(a,a);
+          printf("\nTecle "COLOR_YELLOW"ENTER"COLOR_RESET" para continuar\n\n");
+          getchar();
+          break;
         case 0:
             system("clear");
             printf(COLOR_CYAN "Destruindo arvore genérica..."COLOR_RESET);

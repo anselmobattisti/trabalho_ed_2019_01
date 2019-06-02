@@ -51,6 +51,7 @@ TAG* busca(TAG* t, int cod) {
       return aux;
   }
 }
+
 TAG* buscaPai(TAG* t, int cod) {
   // if (t->cod == cod) {
   //   return t;
@@ -672,13 +673,13 @@ void retira(TAG* t, TAG* pai, int cod, TAG* novo_pai) {
       free(t);
       return;
     } else {
+      // pesquisa nos filhos e o pai será o próprio t
       if (t->f)
-        // pesquisa nos filhos e o pai será o próprio t
         retira(t->f, t, cod, novo_pai);
 
-        // pesquisa nos irmãos e nesse caso o pai será o pai do nó atual
-        if (t->i)
-          retira(t->i, pai, cod, novo_pai);
+      // pesquisa nos irmãos e nesse caso o pai será o pai do nó atual
+      if (t->i)
+        retira(t->i, pai, cod, novo_pai);
     }
 }
 
@@ -791,4 +792,54 @@ TAG* no_pai(TAG* t, TAG *pai, int cod) {
       if (x) return x;
     }
   }
+}
+
+
+void export_nodes(TAG* t, TAG* pai) {
+
+  printf("%d",t->cod);
+  if (t->cod == pai->cod) {
+    printf("/0");
+  } else {
+    printf("/%d",pai->cod);
+  }
+
+  TQUADRADO *aux_q;
+  TCIRCULO *aux_c;
+  TRETANGULO *aux_r;
+  TTRIANGULO *aux_tri;
+  TTRAPEZIO *aux_tra;
+
+  switch (t->fig->tipo){
+      case TIPO_QUADRADO:
+        aux_q = t->fig->fig;
+        printf("/QUA %.0f", aux_q->l);
+        break;
+      case TIPO_CIRCULO:
+        aux_c = t->fig->fig;
+        printf("/CIR %.0f", aux_c->r);
+        break;
+      case TIPO_RETANGULO:
+        aux_r = t->fig->fig;
+        printf("/RET %.0f %.0f", aux_r->l, aux_r->a);
+        break;
+      case TIPO_TRIANGULO:
+        aux_tri = t->fig->fig;
+        printf("/TRI %.0f %.0f", aux_tri->b, aux_tri->a);
+        break;
+      case TIPO_TRAPEZIO:
+        aux_tra = t->fig->fig;
+        printf("/TRA %.0f %.0f %.0f", aux_tra->b1, aux_tra->b2, aux_tra->h);
+      default:
+        break;
+    }
+
+  printf("\n");
+  // pesquisa nos filhos e o pai será o próprio t
+  if (t->f)
+    export_nodes(t->f, t);
+
+  // pesquisa nos irmãos e nesse caso o pai será o pai do nó atual
+  if (t->i)
+    export_nodes(t->i, pai);
 }

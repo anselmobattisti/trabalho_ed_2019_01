@@ -488,15 +488,36 @@ Agora o nó 10 que era um triângulo virou um quadrado cujo lado é igual a 58 e
 
 ### Menu :six: Gerar Árvore AVL
 
-Converte a *arvore genérica* em uma árvore *AVL*.
+Converte a *arvore genérica* em uma árvore *AVL*. Esse processo é feito a partir de um caminhamento em largura pela árvore genérica. Para cada nó encontrado ele é inserido na árbore AVL. Além do **cod** também é inserido um ponteiro para o nó da árvore genérica.
 
 ### Menu :seven: Gerar Árvore B
 
-Converte a *arvore genérica* em uma árvore *B*.
+Converte a *arvore genérica* em uma árvore *B*. Esse processo é feito a partir de um caminhamento em largura pela árvore genérica. Para cada nó encontrado ele é inserido na árbore AVL. Além do **cod** também é inserido um ponteiro para o nó da árvore genérica.
 
 ### Menu :eight: Mover
 
-Permite que um nó (e seus descendentes) sejam movidos para outro pai;
+Permite que um nó (e seus descendentes) sejam movidos para outro pai. Tomando como referência o **Figura 1**, podemos mover o nó 5 que é filho de 4 para o nó 6. Nesse caso a árvore resultante pode ser vista na imagem abaixo. Aqui enfrentamos a mesma restrição de distino do nó em relação aos seus descendentes, ou seja, o nó só pode ser movido para um outro nó que tenha como antecessor o nó movido .
+
+```
+Digite o Código do Nó a ser Movido:
+---> 5
+
+O novo pai pode ser um dos nós abaixo
+-> 1 (Triângulo,3.00)
+---> 2 (Retângulo,9.00)
+-----> 6 (Retângulo,9.00)
+---> 3 (Trapézio,3.00)
+---> 4 (Círculo,50.24)
+---> 10 (Triângulo,3.00)
+------------
+
+Digite o Código do Novo Pai:6
+```
+
+<hr/>
+<img src="documentacao/tela_10.PNG" width="30%" height="30%">
+<hr/>
+
 
 ### Menu :nine: Sobre
 
@@ -512,7 +533,7 @@ Antes de sair do programa é dado um *free* em cada um dos nós da árvore gené
 
 ### Menu Easter Egg 51
 
-
+Executa todos os casos de teste do sistema.
 
 
 ## Descrição do Trabalho

@@ -141,7 +141,7 @@ Os itens do menu principal do programa são:
 0 - Para sair: antes de sair do programa é dado um *free* em cada um dos nós da árvore genérica.
 ```
 
-### Menu :one: Imprimir
+### :card_index: Menu :one: Imprimir
 
 O menu imprimir é composto por 4 opções, sendo elas:
 
@@ -286,7 +286,7 @@ Nessa imagem podemos ver que 2, 3, 4 e 10 são filhos de 1. A seta de 1 para 2 �
 + nó 3 tem formato de trapézio pois ele é um trapézio!
 ```
 
-### Menu :two: Inserir
+### :arrow_right: Menu :two: Inserir
 
 O menu inserir permite que novas figuras sejam inseridas na árvore genérica. Lembrando que toda manipulação é feita na árvore genérica, a AVL e a B são **novamente** geradas todas as vezes que são invocadas.
 
@@ -339,7 +339,7 @@ Lembrando que o nó 10 não tinha filhos, assim, o nó 25 será o primeiro filho
 <img src="documentacao/tela_4.PNG" width="30%" height="30%">
 <hr/>
 
-### Menu :three: Buscar :mag:
+### :mag: Menu :three: Buscar
 
 Esse menu permite que sejam realizadas buscas dentro da árvore genérica. A busca é feita através do **cod** do nó. Caso o **cod** não esteja na árvore é retornada uma mensagem de erro. No código fonte foram implementadas duas buscas, uma recursiva e a outra interativa/recursiva. Ambas retornam o mesmo resultado e optamos por deixar a função recursiva em utilização.
 
@@ -362,7 +362,7 @@ Digite o Código da Busca:
 +-------------------------------------------------+
 ```
 
-### Menu :four: Remover
+### :no_entry: Menu :four: Remover
 
 Permite que a partir de um código **cod** seja removido um nó da árvore. Em linhas gerais a remoção de elementos que tenham filhos e irmãos depende da interação do usuário para definir onde os filhos serão alocados. Caso tenha apenas filhos então eles são alocados automaticamente para o pai do nó que está sendo removido.
 
@@ -435,7 +435,7 @@ A informação gerada acima é gerada automaticamente pelo sistema para ajudar o
 <img src="documentacao/tela_9.PNG" width="30%" height="30%">
 <hr/>
 
-### Menu :five: Editar :pencil:
+### :pencil: Menu :five: Editar
 
 Permite que os dados de um deteminado nó sejam alterados. O código do nó não pode ser alterado, os dados que são modificados são tipo da figura e as suas informações.
 
@@ -489,15 +489,15 @@ Digite o Lado do Quadrado:
 Agora o nó 10 que era um triângulo virou um quadrado cujo lado é igual a 58 e sua área é igual a 3364.00.
 
 
-### Menu :six: Gerar Árvore AVL
+### :evergreen_tree: Menu :six: Gerar Árvore AVL
 
 Converte a *arvore genérica* em uma árvore *AVL*. Esse processo é feito a partir de um caminhamento em largura pela árvore genérica. Para cada nó encontrado ele é inserido na árbore AVL. Além do **cod** também é inserido um ponteiro para o nó da árvore genérica.
 
-### Menu :seven: Gerar Árvore B
+### :deciduous_tree: Menu :seven: Gerar Árvore B
 
 Converte a *arvore genérica* em uma árvore *B*. Esse processo é feito a partir de um caminhamento em largura pela árvore genérica. Para cada nó encontrado ele é inserido na árbore AVL. Além do **cod** também é inserido um ponteiro para o nó da árvore genérica.
 
-### Menu :eight: Mover
+### :truck: Menu :eight: Mover
 
 Permite que um nó (e seus descendentes) sejam movidos para outro pai. Tomando como referência o **Figura 1**, podemos mover o nó 5 que é filho de 4 para o nó 6. Nesse caso a árvore resultante pode ser vista na imagem abaixo. Aqui enfrentamos a mesma restrição de distino do nó em relação aos seus descendentes, ou seja, o nó só pode ser movido para um outro nó que tenha como antecessor o nó movido .
 
@@ -522,7 +522,7 @@ Digite o Código do Novo Pai:6
 <hr/>
 
 
-### Menu :nine: Sobre
+### :100: Menu :nine: Sobre
 
 Integrantes do grupo:
 
@@ -530,15 +530,15 @@ Integrantes do grupo:
 * Anselmo Battisti
 * Flávio Miranda de Farias
 
-### Menu :zero: Sair
+### :door: Menu :zero: Sair
 
 Antes de sair do programa é dado um *free* em cada um dos nós da árvore genérica.
 
-### Menu Exportar
+### :ship: Menu Exportar
 
 Gera uma string de saída no mesmo formado do arquivo de entrada. A string é gerada com base na árvore que está na memória do programa.
 
-### Menu Easter Egg 51
+### :egg: Menu "51 Easter Egg" Casos de teste
 
 Executa todos os casos de teste do sistema.
 

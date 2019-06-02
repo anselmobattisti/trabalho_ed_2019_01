@@ -370,6 +370,12 @@ void menuMover(){
                 printf(COLOR_BLUE"\n---> "COLOR_RESET);
                 scanf("%d",&cod);
                 TAG *aux = busca(a,cod);
+
+                if (a->cod == aux->cod) {
+                  printf(COLOR_RED"\nA raiz não pode ser movida.\n"COLOR_RESET);
+                  break;
+                }
+
                 // acha o pai do nó que foi digitado
                 pai_aux = no_pai(a,a,cod);
                 if(aux){
@@ -380,7 +386,7 @@ void menuMover(){
                     printf("\nO novo pai pode ser um dos nós abaixo\n");
                     imprimir_como_dir(a,1,cod);
                     printf("------------\n");
-                    printf("\nDigite o Código do Novo Pai:");
+                    printf("\nDigite o Código do Novo Pai (ou -1 para voltar): ");
                     scanf("%d",&cod_novo_pai);
 
                     if (cod_novo_pai != aux->cod) {

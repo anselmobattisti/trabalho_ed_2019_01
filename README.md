@@ -285,7 +285,7 @@ Nessa imagem podemos ver que 2, 3, 4 e 10 são filhos de 1. A seta de 1 para 2 �
 ```diff
 + Para ficar ainda mais legal a exibição da árvore, adotamos a estratégia de colocar no formato
 + do nó refletindo a figura geométrica que está armazenada nele! Então o
-+ nó 3 tem formato de trapézio pois ele é um trapézio! :wink:
++ nó 3 tem formato de trapézio pois ele é um trapézio! ;)
 ```
 
 ### :arrow_right: Menu :two: Inserir
@@ -369,7 +369,7 @@ Digite o Código da Busca:
 Permite que a partir de um código **cod** seja removido um nó da árvore. Em linhas gerais, a remoção de elementos que tenham filhos e irmãos depende da interação do usuário para definir onde os filhos serão alocados. Caso o nó tenha apenas filhos, então eles são alocados automaticamente para o pai do nó que está sendo removido.
 
 ```diff
-- Garantimos que o nó raiz não pode ser removido! :wink:
+- Garantimos que o nó raiz não pode ser removido! ;)
 ```
 
 Abaixo serão executados diversos testes de remoção. A mesma árvore será usada em todos os testes e a próxima remoção será realizada com base na anterior.

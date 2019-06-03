@@ -375,7 +375,7 @@ void menuMover(){
                   printf(COLOR_RED"\nA raiz não pode ser movida.\n"COLOR_RESET);
                   break;
                 }
-
+                cod_novo_pai = 0;
                 // acha o pai do nó que foi digitado
                 pai_aux = no_pai(a,a,cod);
                 if(aux){

@@ -3,7 +3,8 @@
 #include "avl.h"
 #include "tree.h"
 
-node * insert(node *T,int x, void* no_fig){
+node * insert(node *T,int x, void* no_fig)
+{
 	if(T==NULL)
 	{
 		T=(node*)malloc(sizeof(node));
@@ -139,8 +140,10 @@ void preorder(node *T)
 	}
 }
 
-void inorder(node *T){
-	if(T!=NULL)	{
+void inorder(node *T)
+{
+	if(T!=NULL)
+	{
 		inorder(T->left);
 		printf("%d(Bf=%d)",T->data,BF(T));
 		inorder(T->right);
@@ -154,11 +157,11 @@ void print_tree(node* t, char* title) {
   printf("\n <--\n");
 }
 
-void print_tree_ordenado(node* t) {
+void print_tree(node* t) {
     if(t){
-        print_tree_ordenado(t->left);
-        printf("%d ",t->data);
-        print_tree_ordenado(t->right);
+        ordenaArvore(t->left);
+        printf("%d ",avl->data);
+        ordenaArvore(avl->right);
     }
 }
 

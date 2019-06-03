@@ -21,3 +21,4 @@ int BF(node *);
 void print_tree(node* t, char* title);
 void print2DUtil(node *root, int space);
 void free_avl(node *T);
+void print_tree_ordenado(node* t);

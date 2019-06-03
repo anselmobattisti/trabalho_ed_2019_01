@@ -674,7 +674,7 @@ void menuImpressoes(){
             break;*/
         case 4:
             gerar_arvore_balanceada(a);
-            printf("\n----------------\nAs Chaves em Ordem crescente: \n----------------\n\n");
+            printf("\n\n----------------\nTotal de nós: %d\n----------------\n"
             print_tree_ordenado(avl);
             printf("\n\n----------------\nTotal de nós: %d\n----------------\n",num_descendentes(a->f)+1);
             break;

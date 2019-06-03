@@ -130,7 +130,7 @@ O resultado da execução dos casos de teste deve ser uma tela semelhante à rep
 Os ítens do menu principal do programa são:
 
 ```
-1 - Imprimir: possui várias modalidades de exibição da árvores, sendo elas: formato hierárquico; formato de árvore binária; formato DOT; impressão dos dados de um único nó e seus filhos;
+1 - Imprimir: possui várias modalidades de exibição da árvores, sendo elas: formato hierárquico; formato de árvore binária; formato DOT; impressão dos dados de um único nó e seus filhos bem como a impressão de todos os nós da árvores ordenados pelo código;
 2 - Inserir: permite que uma nova figura seja inserida na árvore;
 3 - Buscar: permite que a partir do código **cod** de uma figura, seja possível encontrar um nó na árvore;
 4 - Remover: permite que a partir de um código **cod** seja removido um nó da árvore. Em linhas gerais, a remoção de elementos que tenham filhos e irmãos depende da interação do usuário para definir onde os filhos serão alocados. Caso tenha apenas filhos, então eles são alocados automaticamente para o pai do nó que está sendo removido.
@@ -151,7 +151,8 @@ O menu imprimir é composto por 4 opções, sendo elas:
 1 - Para Impressão de status de um nó
 2 - Para Impressão da árvore completa (formato hierárquico)
 3 - Para Impressão da árvore generica
-4 - Para Gerar DOT para impressão externa (extra)
+4 - Para Imprimir as chaves de forma Ordenada
+5 - Para Gerar DOT para impressão externa (extra)
 0 - Para retornar
 ```
 
@@ -245,7 +246,25 @@ Esse tipo de impressão deve ser lida da seguinte forma: nós que possuem a mesm
 
 É interessante notar o desbalanceamento natural da árvore genérica, o que torna a recuperação de uma informação em seu interior mais custosa.
 
-#### Menu :four: Para Gerar DOT para impressão externa (extra)
+#### Menu :four: 4 - Para Imprimir as chaves de forma Ordenada (extra)
+
+Imprime em ordem crescente os códigos dos nós da árvore. Usa a árvore AVL e o percorrimento inordem para realizar a operação.
+
+O resultado do percorrimento é:
+
+```
+----------------
+As Chaves em Ordem crescente:
+----------------
+
+1 2 3 4 5 6 7 8 9 10 25 59 60 61 69
+
+----------------
+Total de nós: 15
+----------------
+```
+
+#### Menu :five: Para Gerar DOT para impressão externa (extra)
 
 A fim de facilitar o processo de visualização da árvore genérica, criamos um mecanismo para exportar a árvore em formado string no formato DOT. O formado DOT é um padrão descritivo de imagens que permite a geração de imagens como a **Figura 1**.
 

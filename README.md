@@ -290,7 +290,7 @@ Nessa imagem podemos ver que 2, 3, 4 e 10 são filhos de 1. A seta de 1 para 2 �
 
 ### :arrow_right: Menu :two: Inserir
 
-O menu inserir permite que novas figuras sejam inseridas na árvore genérica. Lembrando que em toda manipulação que é feita na árvore genérica, a AVL e a B são **novamente** geradas. 
+O menu inserir permite que novas figuras sejam inseridas na árvore genérica. Lembrando que em toda manipulação que é feita na árvore genérica, a AVL e a B são **novamente** geradas.
 
 Os itens do menu inserir são:
 ```
@@ -343,7 +343,11 @@ Lembrando que o nó 10 não tinha filhos, portanto, o nó 25 será o primeiro fi
 
 ### :mag: Menu :three: Buscar
 
-Esse menu permite que sejam realizadas buscas dentro da árvore genérica. A busca é feita através do **cod** do nó. Caso o **cod** não esteja na árvore, é retornada uma mensagem de erro. No código fonte foram implementadas duas buscas: uma recursiva e a outra interativa/recursiva. Ambas retornam o mesmo resultado e optamos por deixar a função recursiva como padrão.
+Esse menu permite que sejam realizadas buscas dentro da árvore genérica. As buscas podem ser relizadas pelo código ou pelo tipo da figura desejada.
+
+#### Menu :one: Busca por código
+
+A busca é feita através do **cod** do nó. Caso o **cod** não esteja na árvore, é retornada uma mensagem de erro. No código fonte foram implementadas duas buscas: uma recursiva e a outra interativa/recursiva. Ambas retornam o mesmo resultado e optamos por deixar a função recursiva como padrão.
 
 O resultado pela busca do nó com **cod** igual a 25 é a seguinte:
 
@@ -362,6 +366,32 @@ Digite o Código da Busca:
 | Área Total        : 625.00
 | Área Apenas Filhos: 0.00
 +-------------------------------------------------+
+```
+
+#### Menu :one: Busca por código
+
+A busca é feita informando qual o tipo de figura geométrica você gostaria de localizar. Basta escolher um dos tipo que serão listados todos os nós com aquele tipo juntamente com seu código e área, ao final, será exibida a soma de todas as áreas das figuras.
+
+```
+Códigos dos Tipos
+--------------------
+1 - Quadrado
+2 - Círculo
+3 - Retângulo
+4 - Triângulo
+5 - Trapézio
+--------------------
+
+Digite o Código do Tipo:
+---> 5
+
+Todos os nós com o tipo Trapézio.
+--------
+Cód: 3 Área: 10.00
+--------
+Cód: 7 Área: 4.50
+============
+Área Total: 14.50
 ```
 
 ### :no_entry: Menu :four: Remover

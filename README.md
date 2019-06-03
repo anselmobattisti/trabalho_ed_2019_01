@@ -566,7 +566,7 @@ Integrantes do grupo:
 
 Antes de sair do programa é dado um *free* em cada um dos nós da árvore genérica.
 
-### :ship: Menu Exportar
+### :ship: Menu :one::zero: Exportar
 
 Gera uma string de saída no mesmo formado do arquivo de entrada. A string é gerada com base na árvore que está na memória do programa.
 

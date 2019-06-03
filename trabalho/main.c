@@ -677,9 +677,11 @@ void menuImpressoes(){
             printf("\n----------------\nAs Chaves em Ordem crescente: \n----------------\n\n");
             print_tree_ordenado(avl);
             printf("\n\n----------------\nTotal de nós: %d\n----------------\n",num_descendentes(a->f)+1);
+            getchar();
             break;
         case 5:
             gerar_dot_arvore_generica(a);
+            break;
         case 0:
             menu();
             break;

@@ -151,7 +151,8 @@ O menu imprimir é composto por 4 opções, sendo elas:
 1 - Para Impressão de status de um nó
 2 - Para Impressão da árvore completa (formato hierárquico)
 3 - Para Impressão da árvore generica
-4 - Para Gerar DOT para impressão externa (extra)
+4 - Para Imprimir as chaves de forma Ordenada
+5 - Para Gerar DOT para impressão externa (extra)
 0 - Para retornar
 ```
 
@@ -245,7 +246,11 @@ Esse tipo de impressão deve ser lida da seguinte forma: nós que possuem a mesm
 
 É interessante notar o desbalanceamento natural da árvore genérica, o que torna a recuperação de uma informação em seu interior mais custosa.
 
-#### Menu :four: Para Gerar DOT para impressão externa (extra)
+#### Menu :four: Para Imprimir as Chaves de forma Ordenada
+
+Lista todas as Chaves ordenadas de forma crescente.
+
+#### Menu :five: Para Gerar DOT para impressão externa (extra)
 
 A fim de facilitar o processo de visualização da árvore genérica, criamos um mecanismo para exportar a árvore em formado string no formato DOT. O formado DOT é um padrão descritivo de imagens que permite a geração de imagens como a **Figura 1**.
 

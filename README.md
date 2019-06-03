@@ -246,7 +246,7 @@ Esse tipo de impressão deve ser lida da seguinte forma: nós que possuem a mesm
 
 É interessante notar o desbalanceamento natural da árvore genérica, o que torna a recuperação de uma informação em seu interior mais custosa.
 
-#### Menu :four: 4 - Para Imprimir as chaves de forma Ordenada (extra)
+#### Menu :four: Para Imprimir as chaves de forma Ordenada (extra)
 
 Imprime em ordem crescente os códigos dos nós da árvore. Usa a árvore AVL e o percorrimento inordem para realizar a operação.
 

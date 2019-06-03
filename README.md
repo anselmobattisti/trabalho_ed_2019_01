@@ -368,7 +368,7 @@ Digite o Código da Busca:
 +-------------------------------------------------+
 ```
 
-#### Menu :one: Busca por código
+#### Menu :two: Busca por tipo de figura
 
 A busca é feita informando qual o tipo de figura geométrica você gostaria de localizar. Basta escolher um dos tipo que serão listados todos os nós com aquele tipo juntamente com seu código e área, ao final, será exibida a soma de todas as áreas das figuras.
 

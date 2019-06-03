@@ -83,6 +83,10 @@ TAG* insere_filho_trapezio(TAG *t, int cod, float b1, float b2, float h);
 TAG* busca(TAG* t, int cod);
 TAG* busca_it(TAG* t, int cod);
 
+void busca_tipo(TAG* t, int tipo);
+void busca_tipo_rec(TAG* t, int tipo, float* total);
+
+
 /*
 Dado um nó da árvore ele imprime os dados
 do nó e dos seus filhos

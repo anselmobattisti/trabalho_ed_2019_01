@@ -456,6 +456,7 @@ void menuBusca(){
         printf(COLOR_RED"Digite o valor do menu a baixo para: "COLOR_RESET);
         printf(COLOR_GREEN"Gerar uma Busca\n\n"COLOR_RESET);
         printf("1 - Para Buscar por um Nó\n");
+        printf("2 - Exbie nós por tipo\n");
         printf("0 - Para retornar\n\n");
         printf("\n");
         for(int i=0;i<79;i++)
@@ -472,6 +473,27 @@ void menuBusca(){
                     imprimir_status_arvore(busca(a,cod));
                 else
                      printf(COLOR_RED"\nO nó com o código "COLOR_GREEN"%d "COLOR_RED"não foi localizado!\n"COLOR_RESET,cod);
+                break;
+            case 2:
+                printf("\nCódigos dos Tipos\n");
+                printf("--------------------\n");
+                printf("1 - Quadrado\n");
+                printf("2 - Círculo\n");
+                printf("3 - Retângulo\n");
+                printf("4 - Triângulo\n");
+                printf("5 - Trapézio\n");
+                printf("--------------------\n");
+
+                printf("\nDigite o Código do Tipo: ");
+                printf(COLOR_BLUE"\n---> "COLOR_RESET);
+                scanf("%d",&cod);
+
+                if(cod >= 1 && cod <= 5) {
+                  system("clear");
+                  busca_tipo(a,cod);
+                } else {
+                    printf(COLOR_RED"\nO código do tipo é inválido\n"COLOR_RESET);
+                }
                 break;
             case 0:
                 menu();

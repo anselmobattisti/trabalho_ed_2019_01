@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "tree.h"
+#include "avl.h"
 
 TAG* insere_filho(TAG *t, int cod, void* fig) {
   // cria a nova árvore
@@ -842,4 +843,36 @@ void export_nodes(TAG* t, TAG* pai) {
   // pesquisa nos irmãos e nesse caso o pai será o pai do nó atual
   if (t->i)
     export_nodes(t->i, pai);
+}
+
+/*
+  Imprime uma lista com todos os cod de um detemrinado tipo
+*/
+void busca_tipo(TAG* t, int tipo) {
+  float total = 0;
+  printf("\nTodos os nós com o tipo %s.\n",nome_tipo(tipo));
+  busca_tipo_rec(t,tipo, &total);
+  printf("============\n");
+  printf("Área Total: %.2f\n",total);
+}
+
+void busca_tipo_rec(TAG* t, int tipo, float* total) {
+  if (!t) return;
+
+  if (t->fig->tipo == tipo) {
+    *total += t->fig->area;
+    printf("--------\n");
+    printf("Cód: %d",t->cod);
+    printf(" Área: %.2f\n",t->fig->area);
+  }
+
+
+  // pesquisa nos filhos e o pai será o próprio t
+  if (t->f)
+    busca_tipo_rec(t->f, tipo, total);
+
+  // pesquisa nos irmãos e nesse caso o pai será o pai do nó atual
+  if (t->i)
+    busca_tipo_rec(t->i, tipo, total);
+
 }

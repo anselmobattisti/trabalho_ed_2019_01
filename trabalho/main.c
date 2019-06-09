@@ -557,6 +557,9 @@ void insere_figura(int fig){
             imprimir_status_filhos(no_pai);
         }
     }
+    setbuf(stdin,NULL);
+    getchar();
+    setbuf(stdin,NULL);
 }
 //menu de insercoes
 void menuInsercoes(){
@@ -586,8 +589,12 @@ void menuInsercoes(){
             menu();
             break;
         default:
+          if (op >= 1 && op <= 5) {
             insere_figura(op);
-            break;
+          } else {
+            printf(COLOR_RED"Figura inválida!"COLOR_RESET);
+          }
+          break;
         }
         printf("\nTecle "COLOR_YELLOW"ENTER"COLOR_RESET" para continuar\n\n");
         for(int i=0;i<79;i++)

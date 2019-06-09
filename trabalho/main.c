@@ -142,6 +142,11 @@ void gerar_arvore_b(TAG* a) {
 void edita_figura(int fig, int cod, TAG *no){
     float v1, v2, v3;
     TAG *novo;
+
+    if (fig < 0 || fig > 5) {
+      printf(COLOR_RED"\n\nTipo de figura inválida!"COLOR_RESET);
+      return;
+    }
     if(fig==1){
         printf("\nDigite o Lado do Quadrado: ");
         printf(COLOR_BLUE"\n---> "COLOR_RESET);

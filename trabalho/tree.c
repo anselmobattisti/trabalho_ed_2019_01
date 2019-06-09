@@ -54,9 +54,6 @@ TAG* busca(TAG* t, int cod) {
 }
 
 TAG* buscaPai(TAG* t, int cod) {
-  // if (t->cod == cod) {
-  //   return t;
-  // }
   if (t->f) {
     if(t->f->cod == cod){
       printf("Entrou na funcao busca pai. Pai eh %d\n\n", cod);

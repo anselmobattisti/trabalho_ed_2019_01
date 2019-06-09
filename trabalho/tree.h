@@ -109,8 +109,6 @@ void print2DUtilGen(TAG *root, int space);
 
 /*
   Função auxiliar que retorna o nome do tipo da figura
-  #define TIPO_QUADRADO 1
-  #define TIPO_CIRCULO 2
 */
 char* nome_tipo(int tipo);
 

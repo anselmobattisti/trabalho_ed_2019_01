@@ -593,13 +593,6 @@ Gera uma string de saída no mesmo formado do arquivo de entrada. A string é ge
 
 Executa todos os casos de teste do sistema.
 
-## O que podemos fazer para melhorar
-
-* busca por tipo e por tamanho das figuras, hoje só tem por código
-* colocar dentro da árvore B o ponteiro para o nó da árvore genérica (não sei se ela espera isso, pq na árvore AVL foi implementado)
-* ordenar as figuras por tamanho ou ainda por tipo
-* fazer um relatório do tipo 10% das figuras são círculos (bi de imagens)
-
 ## Descrição do Trabalho
 
 Trabalho Computacional: implementação das funções de árvores genéricas no número de filhos, árvores n-árias, e no tipo de informação armazenada, testando com as seguintes figuras geométricas: círculo, quadrado, retângulo, trapézio e triângulo: deve ser permitido ao usuário do sistema:

@@ -25,8 +25,6 @@ int menu();
 
 int main() {
     processar_entrada();
-    //gerar_arvore_balanceada(a);
-    //print_tree_ordenado(avl);
     menu();
     return 0;
 }
@@ -67,7 +65,6 @@ int main() {
       pch = strtok (NULL," /");
       k++;
     }
-
     if (pai == 0) {
       if (a) {
         printf(COLOR_RED"\n\n* "COLOR_RESET"A árvore não pode ter duas raízes.\n"COLOR_RESET);
@@ -86,7 +83,6 @@ int main() {
           a = cria_arvore(cod,cria_trapezio(v1,v2,v3));
       }
     }
-
     if (pai > 0) {
       TAG* existe_no = busca(a,cod);
       if (existe_no) {
@@ -137,7 +133,6 @@ void gerar_arvore_balanceada(TAG* a) {
 void gerar_arvore_b(TAG* a) {
     if (!a) return;
         b = InsereB(b,a->cod,2);
-        //ArvB = insert(ArvB,t->cod,t);
     if (a->f)
         gerar_arvore_b(a->f);
     if (a->i)
@@ -257,7 +252,6 @@ void menuEditar(){
     }
 }
 
-
 //menu de remover
 void menuRemover(){
     int op,cod;
@@ -371,7 +365,6 @@ void menuMover(){
                 printf(COLOR_BLUE"\n---> "COLOR_RESET);
                 scanf("%d",&cod);
                 TAG *aux = busca(a,cod);
-
                 if (a->cod == aux->cod) {
                   printf(COLOR_RED"\nA raiz não pode ser movida.\n"COLOR_RESET);
                   break;
@@ -409,19 +402,9 @@ void menuMover(){
                       printf(COLOR_RED"Código novo pai não pode ser ele mesmo 2."COLOR_RESET);
                   } else {
                     if (cod_novo_pai != -1) {
-                      mover_no(aux, pai_aux, t_novo_pai);
-                      // imprimir_status_arvore(t_novo_pai);
-                      // printf("\nAntes da remoção de %d.",cod);
-                      //printf("aaaaaa");
-                      //TAG* pai_aux = no_pai(a, a,cod);
-                      //printf("!dddddddd");
-                      //imprimir_status_arvore(aux);
-                      //imprimir_status_arvore(pai_aux);
-                      //imprimir_status_arvore(t_novo_pai);
-                      //imprime_semi_bonito(a);
-                      //imprime_semi_bonito(a);
+                        mover_no(aux, pai_aux, t_novo_pai);
                     } else {
-                      printf("\nVocê não escolheu o novo pai.");
+                        printf("\nVocê não escolheu o novo pai.");
                     }
                   }
                 } else {
@@ -630,8 +613,6 @@ void menuImpressoes(){
         printf("1 - Para Impressão de status de um nó\n");
         printf("2 - Para Impressão da árvore completa (formato hierárquico)\n");
         printf("3 - Para Impressão da árvore generica\n");
-        //printf("4 - Para Impressão da árvore Binaria Balanceada (AVL)\n");
-        //printf("5 - Para Impressão da árvore B\n");
         printf("4 - Para Imprimir as chaves de forma Ordenada\n");
         printf("5 - Para Gerar DOT para impressão externa (extra)\n");
         printf("0 - Para retornar\n\n");
@@ -657,25 +638,11 @@ void menuImpressoes(){
         case 3:
             imprime_arvore_generica_como_binaria(a,"Árvore Genérica");
             break;
-            /*
-        case 4:
-            free_avl(avl);
-            avl = NULL;
-            gerar_arvore_balanceada(a);
-            print_tree(avl,"Árvore Balanceada (AVL)");
-            break;
-        case 5:
-            Libera(b);
-            b = NULL;
-            gerar_arvore_b(a);
-            printf("\nÁrvore B Completa\n----------------\n");
-            ImprimeB(b,0);
-            printf("----------------\nTotal de nós: %d\n----------------\n",num_descendentes(a->f)+1);
-            break;*/
         case 4:
             gerar_arvore_balanceada(a);
             printf("\n----------------\nAs Chaves em Ordem crescente: \n----------------\n\n");
             print_tree_ordenado(avl);
+            free_avl(avl);
             printf("\n\n----------------\nTotal de nós: %d\n----------------\n",num_descendentes(a->f)+1);
             getchar();
             break;
@@ -762,21 +729,11 @@ int menu(){
         case 5:
             menuEditar();
             break;
-        // case 6:
-        //     print_tree(avl,"Árvore Binária de Busca\n");
-        //     printf("\nTecle "COLOR_YELLOW"ENTER"COLOR_RESET" para continuar\n\n");
-        //     for(int i=0;i<79;i++)
-        //         printf("%c",'#');
-        //     printf(COLOR_BLUE"\n---> "COLOR_RESET);
-        //     setbuf(stdin,NULL);
-        //     getchar();
-        //     setbuf(stdin,NULL);
-        //     break;
         case 6:
-            free_avl(avl);
             avl = NULL;
             gerar_arvore_balanceada(a);
             print_tree(avl,"Árvore Balanceada (AVL)\n");
+            free_avl(avl);
             printf("----------------\nTotal de nós: %d\n----------------\n",num_descendentes(a->f)+1);
             printf("\nTecle "COLOR_YELLOW"ENTER"COLOR_RESET" para continuar\n\n");
             for(int i=0;i<79;i++)
@@ -787,11 +744,11 @@ int menu(){
             setbuf(stdin,NULL);
             break;
         case 7:
-            Libera(b);
             b = NULL;
             gerar_arvore_b(a);
             printf("\nÁrvore B Completa\n----------------\n");
             ImprimeB(b,0);
+            Libera(b);
             printf("----------------\nTotal de nós: %d\n----------------\n",num_descendentes(a->f)+1);
             printf("\nTecle "COLOR_YELLOW"ENTER"COLOR_RESET" para continuar\n\n");
             for(int i=0;i<79;i++)

@@ -639,10 +639,11 @@ void menuImpressoes(){
             imprime_arvore_generica_como_binaria(a,"Árvore Genérica");
             break;
         case 4:
+            free_avl(avl);
+            avl = NULL;
             gerar_arvore_balanceada(a);
             printf("\n----------------\nAs Chaves em Ordem crescente: \n----------------\n\n");
             print_tree_ordenado(avl);
-            free_avl(avl);
             printf("\n\n----------------\nTotal de nós: %d\n----------------\n",num_descendentes(a->f)+1);
             getchar();
             break;

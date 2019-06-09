@@ -408,6 +408,7 @@ void menuMover(){
                   } else {
                     if (cod_novo_pai != -1) {
                         mover_no(aux, pai_aux, t_novo_pai);
+                        imprime_semi_bonito(a);
                     } else {
                         printf("\nVocê não escolheu o novo pai.");
                     }
@@ -458,10 +459,14 @@ void menuBusca(){
                 printf(COLOR_BLUE"\n---> "COLOR_RESET);
                 scanf("%d",&cod);
                 TAG *aux = busca(a,cod);
-                if(aux)
+                if(aux) {
+                    printf("\nStatus do Nó\n");
                     imprimir_status_arvore(busca(a,cod));
-                else
+                    printf("\nRelação dos descendentes\n");
+                    imprimir_como_dir(aux, 1, 0);
+                } else {
                      printf(COLOR_RED"\nO nó com o código "COLOR_GREEN"%d "COLOR_RED"não foi localizado!\n"COLOR_RESET,cod);
+                }
                 break;
             case 2:
                 printf("\nCódigos dos Tipos\n");

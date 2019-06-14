@@ -731,7 +731,7 @@ void mover_no(TAG* t, TAG* pai, TAG* novo_pai) {
   // validar
   // verificar se o novo pai não pertence a subarvore de T
   TAG* no_na_sub = NULL;
-  no_na_sub = busca(t, novo_pai->cod);
+  no_na_sub = busca(t->f, novo_pai->cod);
   if (no_na_sub) {
     printf("\nCódigo do novo pai %d NÃO pode ser descendente de %d.\n",novo_pai->cod, t->cod);
     return;

@@ -643,7 +643,9 @@ void menuImpressoes(){
         printf("2 - Para Impressão da árvore completa (formato hierárquico)\n");
         printf("3 - Para Impressão da árvore generica\n");
         printf("4 - Para Imprimir as chaves de forma Ordenada\n");
-        printf("5 - Para Gerar DOT para impressão externa (extra)\n");
+        printf("5 - Para Gerar DOT para impressão externa - Árvore Genérica (extra)\n");
+        printf("6 - Para Gerar DOT para impressão externa - Árvore AVL (extra)\n");
+        printf("7 - Para Gerar DOT para impressão externa - Árvore B (extra)\n");
         printf("0 - Para retornar\n\n");
         printf("\n");
         for(int i=0;i<79;i++)
@@ -678,6 +680,12 @@ void menuImpressoes(){
             break;
         case 5:
             gerar_dot_arvore_generica(a);
+            break;
+        case 6:
+
+            break;
+        case 7:
+
             break;
         case 0:
             menu();

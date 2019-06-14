@@ -32,19 +32,19 @@ int main() {
 
 /*
   A partir do arquivo popula a árvore
-*/void processar_entrada() {
-  TAG* ret_inserir = NULL;
-  char s[1000];
-
+*/
+void processar_entrada() {
   system("clear");
   //char *f_name = "entrada.txt";
 
+  TAG* ret_inserir = NULL;
+  char s[1000];
   printf("Digite o nome do arquivo : ");
-  char *f_name;
+  char f_name[200] = "";
   scanf("%s",f_name);
 
   if (!strcmp(f_name, "1")){
-    f_name = "entrada.txt";
+    strcpy(f_name,"entrada.txt");
   }
 
   //static const char filename[] = f_name;
@@ -53,7 +53,9 @@ int main() {
     printf("Erro ao ler arquivo");
     exit(1);
   }
+
   while ( fgets ( s, sizeof s, file ) != NULL ) {
+
     int cod = 0;
     int pai = 0;
     char *tipo;
@@ -124,6 +126,7 @@ int main() {
     }
     ret_inserir = NULL;
   }
+  fclose(file);
 }
 
 /*
@@ -755,6 +758,7 @@ int menu(){
         printf("  8 - Mover Nó da Árvore\n");
         printf("  9 - Sobre o Grupo\n");
         printf(" 10 - Exportar\n");
+        printf(" 11 - Abrir Arquivo\n");
         printf("  0 - Para sair\n\n");
         printf("\n");
         for(int i=0;i<79;i++)
@@ -836,6 +840,11 @@ int menu(){
             setbuf(stdin,NULL);
             getchar();
           break;
+        case 11:
+            destruir_arvore(a);
+            a = NULL;
+            processar_entrada();
+            break;
         case 0:
             system("clear");
             printf(COLOR_CYAN "Destruindo arvore genérica..."COLOR_RESET);

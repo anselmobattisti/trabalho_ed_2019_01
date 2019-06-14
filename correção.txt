@@ -56,3 +56,4 @@ Antes de chamar a arvore B estamos pedindo
 
 4 - DOT da AVL
 --------------
+Implementada a função que gera o DOT da AVL

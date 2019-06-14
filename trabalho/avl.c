@@ -171,7 +171,7 @@ void gerar_dot_arvore_avl(no* t) {
   printf("-----------------------\n");
   printf("Para visualizar acesse: http://www.webgraphviz.com/ e cole as linhas abaixo.\n");
   printf("-----------------------\n\n");
-  printf("digraph  G {  subgraph cluster_legend { {rank=cluster_legend}label = \"Legenda\";N1 [shape=square]N2 [shape=square]I  [shape=square]F  [shape=square]{ rank=same N1 F}{ rank=same N2 I}N1->F [label=\"  Pai\" color=\"red\"]N2->I [label=\"  Irmão\" color=\"blue\"]}\n");
+  printf("digraph  G { \n");
 
   TAG* aux_node = (TAG*) t->no_fig;
   printf("\n%d[shape=%s]", t->info, nome_tipo_grafico(aux_node->fig->tipo));

@@ -421,6 +421,9 @@ void imprimir_como_dir(TAG *t, int nivel, int nao_imprimir) {
     if (tem_filhos(aux->f) && aux->cod != nao_imprimir) {
       imprimir_como_dir(aux,nivel+passo, nao_imprimir);
     } else {
+      if (aux->cod == nao_imprimir) {
+        nivel -= passo;
+      }
       for (int i = 0; i < nivel + passo; i++) {
         printf("-");
       }

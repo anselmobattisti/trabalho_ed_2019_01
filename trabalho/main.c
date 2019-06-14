@@ -38,7 +38,10 @@ int main() {
 
   system("clear");
   char *f_name;
-  printf("Digite o nome do arquivo : ");
+    for(int i=0;i<79;i++)
+        printf("%c",'#');
+  printf(COLOR_GREEN"\nDigite o nome do arquivo: "COLOR_RESET);
+  printf(COLOR_BLUE"\n---> "COLOR_RESET);
   scanf("%s",f_name);
 
   if (f_name[0] == '\0'){
@@ -47,7 +50,7 @@ int main() {
   //static const char filename[] = f_name;
   FILE *file = fopen ( f_name, "r" );
   if ( file == NULL ) {
-    printf("Erro ao ler arquivo");
+    printf(COLOR_RED"Erro ao ler arquivo\n"COLOR_RESET);
     exit(1);
   }
   while ( fgets ( s, sizeof s, file ) != NULL ) {
@@ -259,8 +262,7 @@ void menuEditar(){
         printf("\nTecle "COLOR_YELLOW"ENTER"COLOR_RESET" para continuar\n\n");
         for(int i=0;i<79;i++)
             printf("%c",'#');
-        printf("\n");
-        printf(COLOR_BLUE"---> "COLOR_RESET);
+        printf(COLOR_BLUE"\n---> "COLOR_RESET);
         setbuf(stdin,NULL);
         getchar();
         setbuf(stdin,NULL);
@@ -774,7 +776,8 @@ int menu(){
         case 7:
             b = NULL;
             int tt;
-            printf("Digite o t: ");
+            printf("\nDigite a ordem (t) da Árvore B: ");
+            printf(COLOR_BLUE"\n---> "COLOR_RESET);
             scanf("%d",&tt);
             if (tt >= 2) {
               gerar_arvore_b(a, tt);

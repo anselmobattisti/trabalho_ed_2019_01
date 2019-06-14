@@ -1,4 +1,5 @@
 typedef struct ArvB{
+  void* no_fig;
   int nchaves, folha, *chave;
   struct ArvB **filho;
 }TAB;

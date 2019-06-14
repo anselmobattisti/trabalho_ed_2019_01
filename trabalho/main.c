@@ -20,7 +20,8 @@ TAB *b;
 
 void processar_entrada();
 void gerar_arvore_balanceada(TAG* a);
-void gerar_arvore_b(TAG* a);
+void gerar_arvore_b(TAG* a, int tt);
+
 int menu();
 
 int main() {
@@ -34,11 +35,20 @@ int main() {
 */void processar_entrada() {
   TAG* ret_inserir = NULL;
   char s[1000];
-  static const char filename[] = "entrada.txt";
-  FILE *file = fopen ( filename, "r" );
+
+  system("clear");
+  char *f_name;
+  printf("Digite o nome do arquivo : ");
+  scanf("%s",f_name);
+
+  if (f_name[0] == '\0'){
+    f_name = "entrada.txt";
+  }
+  //static const char filename[] = f_name;
+  FILE *file = fopen ( f_name, "r" );
   if ( file == NULL ) {
-    printf("Erro ao ler arquivo.");
-    return;
+    printf("Erro ao ler arquivo");
+    exit(1);
   }
   while ( fgets ( s, sizeof s, file ) != NULL ) {
     int cod = 0;
@@ -130,13 +140,13 @@ void gerar_arvore_balanceada(TAG* a) {
 /*
  Percorre a árvore genérica e inserer na árvore B
 */
-void gerar_arvore_b(TAG* a) {
+void gerar_arvore_b(TAG* a, int tt) {
     if (!a) return;
-        b = InsereB(b,a->cod,2);
+        b = InsereB(b,a->cod,tt);
     if (a->f)
-        gerar_arvore_b(a->f);
+        gerar_arvore_b(a->f, tt);
     if (a->i)
-        gerar_arvore_b(a->i);
+        gerar_arvore_b(a->i, tt);
 }
 
 void edita_figura(int fig, int cod, TAG *no){
@@ -763,11 +773,18 @@ int menu(){
             break;
         case 7:
             b = NULL;
-            gerar_arvore_b(a);
-            printf("\nÁrvore B Completa\n----------------\n");
-            ImprimeB(b,0);
-            Libera(b);
-            printf("----------------\nTotal de nós: %d\n----------------\n",num_descendentes(a->f)+1);
+            int tt;
+            printf("Digite o t: ");
+            scanf("%d",&tt);
+            if (tt >= 2) {
+              gerar_arvore_b(a, tt);
+              printf("\nÁrvore B Completa\n----------------\n");
+              ImprimeB(b,0);
+              Libera(b);
+              printf("----------------\nTotal de nós: %d\n----------------\n",num_descendentes(a->f)+1);
+            } else {
+              printf(COLOR_RED"\n\n* "COLOR_RESET"O T deve ser maior ou igual a 2.\n"COLOR_RESET);
+            }
             printf("\nTecle "COLOR_YELLOW"ENTER"COLOR_RESET" para continuar\n\n");
             for(int i=0;i<79;i++)
                 printf("%c",'#');

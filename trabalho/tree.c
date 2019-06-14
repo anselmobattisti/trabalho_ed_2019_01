@@ -410,19 +410,23 @@ void imprimir_como_dir(TAG *t, int nivel, int nao_imprimir) {
     printf("-");
   }
 
-  printf("> %d (%s,%.2f)\n",t->cod,nome_tipo(t->fig->tipo), t->fig->area);
+  if (t->cod != nao_imprimir) {
+    printf("> %d (%s,%.2f)\n",t->cod,nome_tipo(t->fig->tipo), t->fig->area);
+  }
 
   TAG* aux = t->f; // acessa o primeiro filho
 
   while (aux) {
-    if (aux->cod == nao_imprimir) return;
-    if (tem_filhos(aux->f)) {
+    //if (aux->cod == nao_imprimir) return;
+    if (tem_filhos(aux->f) && aux->cod != nao_imprimir) {
       imprimir_como_dir(aux,nivel+passo, nao_imprimir);
     } else {
       for (int i = 0; i < nivel + passo; i++) {
         printf("-");
       }
-      printf("> %d (%s,%.2f)\n",aux->cod,nome_tipo(aux->fig->tipo), t->fig->area);
+      if (aux->cod != nao_imprimir) {
+        printf("> %d (%s,%.2f)\n",aux->cod,nome_tipo(aux->fig->tipo), t->fig->area);
+      }
     }
     aux = aux->i; // navega pelos irmãos
   }

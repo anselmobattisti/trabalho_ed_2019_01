@@ -1,0 +1,58 @@
+1 - Problema relativo ao remover.
+--------------------------------------
+R = o Problema era apenas na
+exibição dos possíveis filhos, se colocasse novo pai válido
+o remover iria alocar corretamente o sujeito para o novo pai
+
+a função modificada foi:
+void imprimir_como_dir(TAG *t, int nivel, int nao_imprimir) {
+  if (!t) return;
+  if (t->cod == nao_imprimir) return;
+  int passo = 2;
+  for (int i = 0; i < nivel; i++) {
+    printf("-");
+  }
+
+  if (t->cod != nao_imprimir) {
+    printf("> %d (%s,%.2f)\n",t->cod,nome_tipo(t->fig->tipo), t->fig->area);
+  }
+
+  TAG* aux = t->f; // acessa o primeiro filho
+
+  while (aux) {
+    //if (aux->cod == nao_imprimir) return;
+    if (tem_filhos(aux->f) && aux->cod != nao_imprimir) {
+      imprimir_como_dir(aux,nivel+passo, nao_imprimir);
+    } else {
+      for (int i = 0; i < nivel + passo; i++) {
+        printf("-");
+      }
+      if (aux->cod != nao_imprimir) {
+        printf("> %d (%s,%.2f)\n",aux->cod,nome_tipo(aux->fig->tipo), t->fig->area);
+      }
+    }
+    aux = aux->i; // navega pelos irmãos
+  }
+}
+
+2 - Melhoria relativa ao arquivo de entrada
+-------------------------------------------
+Antes da função de início da aplicação
+estamos pedindo o nome do arquivo.
+
+system("clear");
+char *f_name;
+printf("Digite o nome do arquivo : ");
+scanf("%s",f_name);
+
+3 - T da árvore B
+------------------
+Antes de chamar a arvore B estamos pedindo
+
+            printf("Digite o t: ");
+            scanf("%d",&tt);
+            if (tt >= 2) {
+              gerar_arvore_b(a, tt);
+
+4 - DOT da AVL
+--------------

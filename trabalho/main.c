@@ -430,7 +430,7 @@ void menuMover(){
                     }
                   }
                   if (cod_novo_pai == cod || pai_aux->cod == cod_novo_pai){
-                      printf(COLOR_RED"Código novo pai não pode ser ele mesmo 2."COLOR_RESET);
+                      printf(COLOR_RED"Código novo pai não pode ser ele mesmo."COLOR_RESET);
                   } else {
                     if (cod_novo_pai != -1) {
                         mover_no(aux, pai_aux, t_novo_pai);

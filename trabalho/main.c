@@ -37,14 +37,16 @@ int main() {
   char s[1000];
 
   system("clear");
-  char *f_name = "entrada.txt";
+  //char *f_name = "entrada.txt";
 
-  /* printf("Digite o nome do arquivo : ");
+  printf("Digite o nome do arquivo : ");
+  char *f_name;
   scanf("%s",f_name);
 
-  if (f_name[0] == '\0'){
+  if (!strcmp(f_name, "1")){
     f_name = "entrada.txt";
-  }*/
+  }
+
   //static const char filename[] = f_name;
   FILE *file = fopen ( f_name, "r" );
   if ( file == NULL ) {

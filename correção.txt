@@ -60,3 +60,4 @@ Implementada a função que gera o DOT da AVL
 
 5 - Mover
 --------------
+Corrigido

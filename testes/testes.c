@@ -11,7 +11,7 @@
 void processar_testes() {
   printf("Casos de teste\n");
   printf("--------------");
-  teste_criacao_trapezio();
+  /*teste_criacao_trapezio();
   teste_criacao_quadrado();
   teste_criacao_retangulo();
   teste_criacao_triangulo();
@@ -41,7 +41,7 @@ void processar_testes() {
   teste_no_pai();
   teste_retira();
   teste_retira_movendo();
-  teste_tem_irmao();
+  teste_tem_irmao();*/
   teste_mover();
 }
 
@@ -838,6 +838,7 @@ void teste_mover() {
   } else {
     printf(COLOR_RED"[ERRO] -> Não devia ter movido.\n"COLOR_RESET);
   }
+
   //gerar_dot_arvore_generica(t);
   mover_no(busca(t,5),no_pai(t,t,5),busca(t,3));
   c = no_pai(t,t,5);
@@ -847,5 +848,8 @@ void teste_mover() {
     printf(COLOR_RED"[ERRO] -> Não devia ter movido.\n"COLOR_RESET);
   }
 
+  // volta ao normal
+  mover_no(busca(t,5),no_pai(t,t,5),busca(t,2));
 
+  imprimir_como_dir(t,1,0);
 }

@@ -381,6 +381,11 @@ void menuMover(){
                 printf(COLOR_BLUE"\n---> "COLOR_RESET);
                 scanf("%d",&cod);
                 TAG *aux = busca(a,cod);
+                if (!aux) {
+                  printf(COLOR_RED"\nNó não localizado.\n"COLOR_RESET);
+                  break;
+                }
+
                 if (a->cod == aux->cod) {
                   printf(COLOR_RED"\nA raiz não pode ser movida.\n"COLOR_RESET);
                   break;
@@ -391,6 +396,7 @@ void menuMover(){
                 if(aux){
                   // se o nó tem filho e tem irmãos então temos que escolher quem será o novo pai
                   TAG* t_novo_pai = NULL;
+
                   // Vamor perguntar pro cara o ID do novo pai!
                   while (!t_novo_pai && cod_novo_pai != -1) {
                     printf("\nO novo pai pode ser um dos nós abaixo\n");
@@ -400,21 +406,25 @@ void menuMover(){
                     scanf("%d",&cod_novo_pai);
 
                     if (cod_novo_pai != aux->cod) {
+                      //printf("sssssss");
                       t_novo_pai = busca(a,cod_novo_pai);
                       if (!t_novo_pai && cod_novo_pai != -1) {
                         printf(COLOR_RED"Código do novo pai dos filhos de %d não encontrado, digite o novo código ou -1 para voltar."COLOR_RESET,aux->cod);
                       }
+
                       // verifica se o novo pai não está na subárvore do nó que será removido
-                      TAG* no_na_sub = busca(aux, cod_novo_pai);
+                      TAG* no_na_sub = busca(aux->f, cod_novo_pai);
+                      //printf("pai %d %d",aux->cod, t_novo_pai->cod);
                       if (no_na_sub) {
                         t_novo_pai = NULL;
                         printf(COLOR_RED"Código do novo pai NÃO pode ser descendente de %d."COLOR_RESET,aux->cod);
                       }
+
                     } else {
                       printf(COLOR_RED"Código novo pai não pode ser ele mesmo."COLOR_RESET);
                     }
                   }
-                  if (cod_novo_pai == cod || pai_aux->cod == cod_novo_pai) {
+                  if (cod_novo_pai == cod || pai_aux->cod == cod_novo_pai){
                       printf(COLOR_RED"Código novo pai não pode ser ele mesmo 2."COLOR_RESET);
                   } else {
                     if (cod_novo_pai != -1) {

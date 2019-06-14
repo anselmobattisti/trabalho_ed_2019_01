@@ -38,6 +38,7 @@ TAG* insere_filho(TAG *t, int cod, void* fig) {
 }
 
 TAG* busca(TAG* t, int cod) {
+  if (!t) return NULL;
   if (t->cod == cod) {
     return t;
   }
@@ -773,10 +774,11 @@ void mover_no(TAG* t, TAG* pai, TAG* novo_pai) {
   // AJUSTE O PONTEIROS DOS FILHOS
   if (!no_anterior) {
     // aponta o pai para o primeiro irmão
-    pai->f = NULL;
+    pai->f = t->i;
   } else {
-    no_anterior->i = NULL;
+    no_anterior->i = t->i;
   }
+  t->i = NULL;
 }
 
 TAG* no_pai(TAG* t, TAG *pai, int cod) {

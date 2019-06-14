@@ -15,8 +15,8 @@
 #define COLOR_RESET   "\x1b[0m"
 
 TAG *a;
-node* avl;
-TAB *b;
+no* avl = NULL;
+TAB *b = NULL;
 
 void processar_entrada();
 void gerar_arvore_balanceada(TAG* a);
@@ -37,13 +37,14 @@ int main() {
   char s[1000];
 
   system("clear");
-  char *f_name;
-  printf("Digite o nome do arquivo : ");
+  char *f_name = "entrada.txt";
+
+  /* printf("Digite o nome do arquivo : ");
   scanf("%s",f_name);
 
   if (f_name[0] == '\0'){
     f_name = "entrada.txt";
-  }
+  }*/
   //static const char filename[] = f_name;
   FILE *file = fopen ( f_name, "r" );
   if ( file == NULL ) {
@@ -128,7 +129,7 @@ int main() {
 */
 void gerar_arvore_balanceada(TAG* a) {
   if (!a) return;
-  avl = insert(avl,a->cod,a);
+  avl = insere(a->cod, avl, a);
   if (a->f) {
     gerar_arvore_balanceada(a->f);
   }
@@ -642,6 +643,7 @@ void menuImpressoes(){
         printf("3 - Para Impressão da árvore generica\n");
         printf("4 - Para Imprimir as chaves de forma Ordenada\n");
         printf("5 - Para Gerar DOT para impressão externa (extra)\n");
+        printf("6 - Para Gerar DOT da AVL (extra)\n");
         printf("0 - Para retornar\n\n");
         printf("\n");
         for(int i=0;i<79;i++)
@@ -676,6 +678,12 @@ void menuImpressoes(){
             break;
         case 5:
             gerar_dot_arvore_generica(a);
+            break;
+        case 6:
+            free_avl(avl);
+            avl = NULL;
+            gerar_arvore_balanceada(a);
+            gerar_dot_arvore_avl(avl);
             break;
         case 0:
             menu();
@@ -760,9 +768,11 @@ int menu(){
         case 6:
             avl = NULL;
             gerar_arvore_balanceada(a);
+            printf("\n------");
             print_tree(avl,"Árvore Balanceada (AVL)\n");
-            free_avl(avl);
-            printf("----------------\nTotal de nós: %d\n----------------\n",num_descendentes(a->f)+1);
+            printf("\n------");
+            //free_avl(avl);
+            //printf("----------------\nTotal de nós: %d\n----------------\n",num_descendentes(a->f)+1);
             printf("\nTecle "COLOR_YELLOW"ENTER"COLOR_RESET" para continuar\n\n");
             for(int i=0;i<79;i++)
                 printf("%c",'#');

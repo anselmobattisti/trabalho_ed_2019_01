@@ -159,3 +159,5 @@ TAG* no_pai(TAG* t, TAG *pai, int cod);
 Gera a árvore atual no mesmo formato da importação
 */
 void export_nodes(TAG* t, TAG* pai);
+
+char* nome_tipo_grafico(int tipo);

@@ -512,8 +512,8 @@ void gerar_dot_arvore_generica_no(TAG* t, int pai, int tipo) {
 
   gerar_dot_arvore_generica_no(t->i, t->cod, 1);
   gerar_dot_arvore_generica_no(t->f, t->cod, 0);
-
 }
+
 void destruir_arvore(TAG* t){
   if(t){
     destruir_arvore(t->f);

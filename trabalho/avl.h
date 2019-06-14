@@ -1,24 +1,16 @@
-typedef struct node
-{
-	int data;
-  void* no_fig;
-	struct node *left,*right;
-	int ht;
-}node;
+typedef struct no{
+    int info;
+    struct no*  esq;
+    struct no*  dir;
+    int alt;
+    void* no_fig;
+}no;
 
-node *insert(node *,int,void*);
-void preorder(node *);
-void inorder(node *);
-int height( node *);
-node *rotateright(node *);
-node *rotateleft(node *);
-node *RR(node *);
-node *LL(node *);
-node *LR(node *);
-node *RL(node *);
-int BF(node *);
+void print_tree(no* t, char* title);
+void free_avl(no* t);
+no* insere(int e, no* t, void* no_fig);
+void print2DUtil(no *root, int space);
+void print_tree_ordenado(no* t);
 
-void print_tree(node* t, char* title);
-void print2DUtil(node *root, int space);
-void free_avl(node *T);
-void print_tree_ordenado(node* t);
+void gerar_dot_arvore_avl(no* t);
+void gerar_dot_arvore_avl_no(no* t, int pai);

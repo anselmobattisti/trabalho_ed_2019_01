@@ -39,7 +39,11 @@ void processar_entrada() {
 
   TAG* ret_inserir = NULL;
   char s[1000];
-  printf("Digite o nome do arquivo : ");
+    for(int i=0;i<79;i++)
+        printf("%c",'#');
+    printf(COLOR_YELLOW"\n\nTrabalho sobre Árvores de EDA - 2019.1\n\n"COLOR_RESET);
+    printf(COLOR_GREEN"\nDigite o nome do arquivo: "COLOR_RESET);
+    printf(COLOR_BLUE"\n---> "COLOR_RESET);
   char f_name[200] = "";
   scanf("%s",f_name);
 
@@ -50,7 +54,7 @@ void processar_entrada() {
   //static const char filename[] = f_name;
   FILE *file = fopen ( f_name, "r" );
   if ( file == NULL ) {
-    printf("Erro ao ler arquivo");
+    printf(COLOR_RED"\nErro ao ler arquivo\n"COLOR_RESET"Inicie o sistema novamente com um arquivo válido.\n\n");
     exit(1);
   }
 
@@ -308,26 +312,27 @@ void menuRemover(){
                       imprimir_como_dir(a,1,cod);
                       printf("------------\n");
                       printf("\nO nó %d possui filhos, digite o código do novo pai: ",aux->cod);
+                      printf(COLOR_BLUE"\n---> "COLOR_RESET);
                       scanf("%d",&cod_novo_pai);
                       if (cod_novo_pai != aux->cod) {
                         t_novo_pai = busca(a,cod_novo_pai);
                         if (!t_novo_pai && cod_novo_pai != -1) {
-                          printf(COLOR_RED"Código do novo pai dos filhos de %d não encontrado, digite o novo código ou -1 para voltar."COLOR_RESET,aux->cod);
+                          printf(COLOR_RED"\nCódigo do novo pai dos filhos de %d não encontrado.\n"COLOR_RESET COLOR_BLUE"Digite o novo código ou -1 para retornar.\n"COLOR_RESET,aux->cod);
                         }
                         // verifica se o novo pai não está na subárvore do nó que será removido
                         TAG* no_na_sub = busca(aux->f, cod_novo_pai);
                         if (no_na_sub) {
                           t_novo_pai = NULL;
-                          printf(COLOR_RED"Código do novo pai NÃO pode ser descendente de %d."COLOR_RESET,aux->cod);
+                          printf(COLOR_RED"\nCódigo do novo pai NÃO pode ser descendente de %d.\n"COLOR_RESET,aux->cod);
                         }
                       } else {
-                        printf(COLOR_RED"Código novo pai não pode ser ele mesmo."COLOR_RESET);
+                        printf(COLOR_RED"\nCódigo novo pai não pode ser ele mesmo.\n"COLOR_RESET);
                       }
                     }
                   }
                   // tentando mover os filhos dele para ele mesmo
                   if (cod_novo_pai == cod) {
-                      printf(COLOR_RED"Código novo pai não pode ser ele mesmo."COLOR_RESET);
+                      printf(COLOR_RED"\nCódigo novo pai não pode ser ele mesmo.\n"COLOR_RESET);
                   } else {
                     if (cod_novo_pai != -1) {
                       // imprimir_status_arvore(t_novo_pai);
@@ -407,14 +412,15 @@ void menuMover(){
                     printf("\nO novo pai pode ser um dos nós abaixo\n");
                     imprimir_como_dir(a,1,cod);
                     printf("------------\n");
-                    printf("\nDigite o Código do Novo Pai (ou -1 para voltar): ");
+                    printf("\nDigite o Código do Novo Pai (ou -1 para retornar): ");
+                    printf(COLOR_BLUE"\n---> "COLOR_RESET);
                     scanf("%d",&cod_novo_pai);
 
                     if (cod_novo_pai != aux->cod) {
                       //printf("sssssss");
                       t_novo_pai = busca(a,cod_novo_pai);
                       if (!t_novo_pai && cod_novo_pai != -1) {
-                        printf(COLOR_RED"Código do novo pai dos filhos de %d não encontrado, digite o novo código ou -1 para voltar."COLOR_RESET,aux->cod);
+                        printf(COLOR_RED"\nCódigo do novo pai dos filhos de %d não encontrado.\n"COLOR_RESET,aux->cod);
                       }
 
                       // verifica se o novo pai não está na subárvore do nó que será removido
@@ -422,21 +428,21 @@ void menuMover(){
                       //printf("pai %d %d",aux->cod, t_novo_pai->cod);
                       if (no_na_sub) {
                         t_novo_pai = NULL;
-                        printf(COLOR_RED"Código do novo pai NÃO pode ser descendente de %d."COLOR_RESET,aux->cod);
+                        printf(COLOR_RED"\nCódigo do novo pai NÃO pode ser descendente de %d.\n"COLOR_RESET,aux->cod);
                       }
 
                     } else {
-                      printf(COLOR_RED"Código novo pai não pode ser ele mesmo."COLOR_RESET);
+                      printf(COLOR_RED"\nCódigo novo pai não pode ser ele mesmo.\n"COLOR_RESET);
                     }
                   }
                   if (cod_novo_pai == cod || pai_aux->cod == cod_novo_pai){
-                      printf(COLOR_RED"Código novo pai não pode ser ele mesmo."COLOR_RESET);
+                      printf(COLOR_RED"\nCódigo novo pai não pode ser ele mesmo.\n"COLOR_RESET);
                   } else {
                     if (cod_novo_pai != -1) {
                         mover_no(aux, pai_aux, t_novo_pai);
                         imprime_semi_bonito(a);
                     } else {
-                        printf("\nVocê não escolheu o novo pai.");
+                        printf("\nVocê não escolheu o novo pai.\n");
                     }
                   }
                 } else {
@@ -721,8 +727,7 @@ void menuSobre(){
     setbuf(stdin,NULL);
     for(int i=0;i<79;i++)
         printf("%c",'#');
-    printf("\n\n");
-    printf(COLOR_YELLOW"Trabalho sobre Árvores de EDA - 2019.1\n\n"COLOR_RESET);
+    printf(COLOR_YELLOW"\n\nTrabalho sobre Árvores de EDA - 2019.1\n\n"COLOR_RESET);
     printf(COLOR_RED"Professora Isabel Rosseti\n"COLOR_RESET);
     printf("Integrantes do grupo:\n");
     printf("Andre Montevecchi\n");
@@ -800,7 +805,8 @@ int menu(){
         case 7:
             b = NULL;
             int tt;
-            printf("Digite o t: ");
+            printf("\nDigite a ordem (T) da Árvore B: ");
+            printf(COLOR_BLUE"\n---> "COLOR_RESET);
             scanf("%d",&tt);
             if (tt >= 2) {
               gerar_arvore_b(a, tt);
@@ -809,7 +815,7 @@ int menu(){
               Libera(b);
               printf("----------------\nTotal de nós: %d\n----------------\n",num_descendentes(a->f)+1);
             } else {
-              printf(COLOR_RED"\n\n* "COLOR_RESET"O T deve ser maior ou igual a 2.\n"COLOR_RESET);
+              printf(COLOR_RED"\n\n* "COLOR_RESET"O T deve ser maior ou igual a 2.\n");
             }
             printf("\nTecle "COLOR_YELLOW"ENTER"COLOR_RESET" para continuar\n\n");
             for(int i=0;i<79;i++)
@@ -830,6 +836,9 @@ int menu(){
             break;
         case 10:
           system("clear");
+        for(int i=0;i<79;i++)
+            printf("%c",'#');
+        printf(COLOR_YELLOW"\n\nTrabalho sobre Árvores de EDA - 2019.1\n\n"COLOR_RESET);
           printf(COLOR_GREEN"Árvore exporta no mesmo formato do arquivo de entrada\n\n"COLOR_RESET);
           setbuf(stdin,NULL);
           export_nodes(a,a);

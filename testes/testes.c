@@ -11,7 +11,7 @@
 void processar_testes() {
   printf("Casos de teste\n");
   printf("--------------");
-  /*teste_criacao_trapezio();
+  teste_criacao_trapezio();
   teste_criacao_quadrado();
   teste_criacao_retangulo();
   teste_criacao_triangulo();
@@ -41,7 +41,7 @@ void processar_testes() {
   teste_no_pai();
   teste_retira();
   teste_retira_movendo();
-  teste_tem_irmao();*/
+  teste_tem_irmao();
   teste_mover();
 }
 
@@ -812,6 +812,7 @@ void teste_mover() {
 
   // filhos de 5
   insere_filho_circulo(busca(t,5),6,1);
+  // imprime_semi_bonito(t);
 
   int num_nos_antes = num_descendentes(t);
   mover_no(busca(t,5),no_pai(t,t,5),busca(t,3));
@@ -819,7 +820,8 @@ void teste_mover() {
 
   b = busca(t,2);
   c = busca(t,3);
-  if (b->f == NULL && c->f->cod == 5) {
+  // imprime_semi_bonito(t);
+  if (b->f->cod == 7 && c->f->cod == 5) {
     printf(COLOR_GREEN"[OK] -> Moveu corretamente.\n"COLOR_RESET);
   } else {
     printf(COLOR_RED"[ERRO] -> Moveu corretamente.\n"COLOR_RESET);
@@ -831,7 +833,9 @@ void teste_mover() {
     printf(COLOR_RED"[ERRO] -> Perdeu nós.\n"COLOR_RESET);
   }
 
-  mover_no(busca(t,2),no_pai(t,t,2),busca(t,3));
+  //imprime_semi_bonito(t);
+  mover_no(busca(t,2),no_pai(t,t,2),busca(t,7));
+  //imprime_semi_bonito(t);
   c = no_pai(t,t,2);
   if (c->cod == 1) {
     printf(COLOR_GREEN"[OK] -> Não moveu!.\n"COLOR_RESET);
@@ -850,6 +854,5 @@ void teste_mover() {
 
   // volta ao normal
   mover_no(busca(t,5),no_pai(t,t,5),busca(t,2));
-
-  imprimir_como_dir(t,1,0);
+  //imprimir_como_dir(t,1,0);
 }

@@ -589,6 +589,10 @@ Antes de sair do programa é dado um *free* em cada um dos nós da árvore gené
 
 Gera uma string de saída no mesmo formado do arquivo de entrada. A string é gerada com base na árvore que está na memória do programa.
 
+### :ship: Menu :one::one: Abrir Arquivo
+
+Possibilita importar em tempo de execução um novo arquivo para substituir a árvore atual.
+
 ### :egg: Menu "51 Easter Egg, tá ali mas não tá" Casos de teste
 
 Executa todos os casos de teste do sistema.

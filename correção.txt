@@ -1,4 +1,4 @@
-1 - Problema relativo ao remover.
+﻿1 - Problema relativo ao remover.
 --------------------------------------
 R = o Problema era apenas na
 exibição dos possíveis filhos, se colocasse novo pai válido
@@ -60,4 +60,4 @@ Implementada a função que gera o DOT da AVL
 
 5 - Mover
 --------------
-Corrigido
+Corrigido, o problema estava no ponteiro para os filhos que estava sendo acesso mesmo que o nó não tivesse sido localizado 

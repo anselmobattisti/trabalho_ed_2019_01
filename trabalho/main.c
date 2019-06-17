@@ -42,7 +42,7 @@ void processar_entrada() {
     for(int i=0;i<79;i++)
         printf("%c",'#');
     printf(COLOR_YELLOW"\n\nTrabalho sobre Árvores de EDA - 2019.1\n\n"COLOR_RESET);
-    printf(COLOR_GREEN"\nDigite o nome do arquivo: "COLOR_RESET);
+    printf(COLOR_GREEN"\nDigite o nome do arquivo (ex.: entrada.txt): "COLOR_RESET);
     printf(COLOR_BLUE"\n---> "COLOR_RESET);
   char f_name[200] = "";
   scanf("%s",f_name);
